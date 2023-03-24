@@ -1,25 +1,29 @@
-import React from 'react';
-import { generateProductData } from '../productData.js'
-
-const data = generateProductData();
+import React, { useState, useEffect } from 'react';
+import { generateProductData } from '../productData.js';
+import { useParams } from 'react-router-dom';
 
 function ProductDetail() {
-    const { name, description, price, imageUrls } = props;
+  const { id } = useParams();
+  const [products, setProducts] = useState(generateProductData);
+  const [product, setProduct] = useState(null);
 
-    return (
-      <div>
-        <h2>{name}</h2>
-        <p>{description}</p>
-        <p>Price: ${price.toFixed(2)}</p>
-        <ul>
-          {data.map((imageUrl, index) => (
-            <li key={index}>
-              <img src={imageUrl} alt={name} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
+  useEffect(() => {
+    const currentProduct = products.find((product) => product.id === Number(id));
+    setProduct(currentProduct);
+  }, [products, id]);
+
+  return (
+    <>
+      {product && (
+        <div>
+          <p>productdetail</p>
+          <h2>{product.name}</h2>
+          <h3>hej</h3>
+          <p>{product.description}</p>
+        </div>
+      )}
+    </>
+  );
 }
 
 export default ProductDetail
