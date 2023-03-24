@@ -69,7 +69,6 @@ export function generateProductData() {
         price: 100.00,
         images: [
           "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d14fc386-1067-4a72-961e-9f8134680703/dunk-low-sko-csdjbw.png",
-          "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/d14fc386-1067-4a72-961e-9f8134680703/dunk-low-sko-csdjbw.png",
         ],
         availableSizes: ['US 7', 'US 8', 'US 9', 'US 10', 'US 11'],
         brand: 'Nike',

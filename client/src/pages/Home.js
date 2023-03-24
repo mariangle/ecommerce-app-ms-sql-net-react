@@ -13,6 +13,11 @@ export default function Home() {
           key={product.id}
           name={product.name}
           description={product.description}
+          style={product.style}
+          brand={product.brand}
+          color={product.color}
+          material={product.material}
+          gender={product.gender}
           price={product.price}
           images={product.images}
           />      
