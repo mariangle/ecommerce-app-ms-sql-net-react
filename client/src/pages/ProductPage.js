@@ -4,15 +4,20 @@ import { useParams } from 'react-router-dom';
 import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
 
-function ProductDetail() {
+function ProductDetail(props ) {
   const { id } = useParams();
   const [products, setProducts] = useState(generateProductData);
   const [product, setProduct] = useState(null);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const currentProduct = products.find((product) => product.id === Number(id));
     setProduct(currentProduct);
   }, [products, id]);
+
+  function handleAddToCart() {
+    props.addToCart(product);
+  }
 
   return (
     <>
@@ -43,7 +48,7 @@ function ProductDetail() {
                 );
               })}
             </Sizes>
-            <Button>Add to Basket</Button>
+            <Button onClick={handleAddToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
         </StyledProductDetail>

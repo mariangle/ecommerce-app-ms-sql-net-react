@@ -1,20 +1,28 @@
-import React from 'react'
-import styled from 'styled-components'
-import basket from "../assets/images/basket.png"
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Cart from './Cart';
 
-function Header() {
+function Header(props) {
+  const { cart, setCart } = props;
+
   return (
     <StyledHeader>
       <StyledNav>
-      <h1><Link to="/">Store</Link></h1>
+        <h1>
+          <Link to="/">Store</Link>
+        </h1>
         <NavLinks>
-          <li><input type="search" placeholder='Search'/></li>
-          <Link to="/cart"><img src={basket} alt="" /></Link>
+          <li>
+            <input type="search" placeholder="Search" />
+          </li>
+          <Link to="/cart">
+            <Cart cart={cart} setCart={setCart} key={cart.length} />
+          </Link>
         </NavLinks>
       </StyledNav>
     </StyledHeader>
-  )
+  );
 }
 const StyledHeader = styled.nav`  
 border-bottom: 1px solid grey;
