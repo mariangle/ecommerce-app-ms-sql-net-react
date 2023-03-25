@@ -4,15 +4,28 @@ import styled from 'styled-components';
 import CartItem from "../components/CartItem";
 
 function CartPage({cart}) {
-  const cartArray = Object.values(cart); // turn into an array to map over
+  const cartObject = Object.values(cart).reduce((acc, product) => {
+    const key = `${product.id}-${product.selectedSize}`;
+    if (!acc[key]) {
+      acc[key] = {...product, quantity: 0};
+    }
+    acc[key].quantity += 1;
+    return acc;
+  }, {});
+
+  const cartArray = Object.values(cartObject);
 
   return (
     <StyledCart>
       <Basket>
         <h4>Basket</h4>
-        {cartArray.map((product, index) => (
-          <CartItem key={index} product={product}/>
-        ))}
+        <ul>
+          {cartArray.map((product, index) => (
+            <li key={index}>
+              <CartItem product={product} />
+            </li>
+          ))}
+        </ul>
       </Basket>
       <Overview>
         <h4>Overview</h4>
