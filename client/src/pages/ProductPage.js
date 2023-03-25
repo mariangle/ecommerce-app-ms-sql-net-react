@@ -42,9 +42,9 @@ function ProductDetail(props ) {
               {product.brand}
               <span>{product.model}</span>
             </h3>
-            <p>{product.price} kr</p>
-            <Sizes>
-              <p>Available sizes: </p>
+            <Price>{product.price} kr.</Price>
+            <p>Available sizes: </p>
+            <SizesGrid>
               {product.availableSizes.map((size, index) => {
                 return (
                   <Size className="size" key={index}>
@@ -59,7 +59,7 @@ function ProductDetail(props ) {
                   </Size>
                 );
               })}
-            </Sizes>
+            </SizesGrid>
             <Button onClick={handleAddToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
@@ -70,45 +70,56 @@ function ProductDetail(props ) {
 }
 
 const StyledProductDetail = styled(Container)`
+  align-items: flex-start;
+  @media (max-width: 850px) {
+    display: block;
+  }
 `;
 
 const ProductImages = styled(Image)`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  min-height: 50vh;
-`;
+padding: 5rem 0rem;
+  `;
 
 const ProductInfo = styled(About)`
+  height: 100%;
+  justify-content: space-between;
   h3 {
     font-weight: 500;
   }
   h3 span {
+    padding-top: 0.5rem;
     display: block;
     font-weight: 700;
   }
-  p {
-    margin: 1rem 0rem;
+  @media (max-width: 850px) {
+  margin-top: 2rem;
+  }
+  @media (min-width: 850px) {
   }
 `;
 
-const Sizes = styled.div`
-  margin-top: 1rem;
-  p {
-    margin: 1rem 0rem;
-  }
+const Price = styled.p`
+margin: 2rem 0rem; 
+font-size: 1.6rem;
+`; 
+
+const SizesGrid = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
 `;
 
 const Size = styled.label`
+border: 2px solid #646464;
+border-radius: 5px;
+padding: 0.5rem;
+text-align: center;
   &:hover {
     background-color: black;
     color: white;
     cursor: pointer;
   }
-  border: 2px solid black;
-  padding: 0.5rem;
   input {
     display: none;
   }
@@ -119,7 +130,6 @@ const Size = styled.label`
 
 
 const Button = styled.button`
-  width: 100%;
 `;
 
 export default ProductDetail;

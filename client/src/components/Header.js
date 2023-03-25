@@ -29,12 +29,13 @@ function Header(props) {
 const StyledHeader = styled.nav`  
 border-bottom: 1px solid grey;
 position: sticky;
+@media (max-width: 850px) {
+  display: flex;
+}
 `
 const StyledNav = styled(Container)`
 min-height: 5vh;
-align-items: flex-start;
-margin: auto;
-padding: 2rem 1rem;
+padding: 1.5rem 1rem;
 justify-content: space-between;
 `;
 

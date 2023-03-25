@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components';
-import { Container } from '../styles/styles';
 
 function CartItem({product}) {
   const mainImg = Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : '';
@@ -20,18 +19,21 @@ function CartItem({product}) {
   )
 }
 
-const StyledCartItem = styled(Container)`
+const StyledCartItem = styled.div`
 display: flex;
 flex: 1;
 width: 100%;
+margin-bottom: 1rem;
 `
 const ItemImage = styled.div`
-width: 30%;
+width: 150px;
+height: 150px;
+display: flex;
+align-items: center;
 background: #f0f0f0;
-padding: 1rem;
+margin-right: 1rem;
 img{
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 `

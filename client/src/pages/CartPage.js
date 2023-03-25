@@ -47,30 +47,25 @@ function CartPage({cart}) {
 
 const StyledCart = styled(Container)`
   align-items: flex-start;
-  width: 100%;
-  @media (max-width: 1050px) {
-    width: 100%;
-    display: flex;
-  }
+  @media (max-width: 850px) {
+  display: block;
+}
 `
 const Basket = styled.div`
-flex: 2 2 40rem;
+flex: 2 1 40rem;
 `
 const Overview = styled.div`
-flex: 1;
+flex: 1 2 30rem;
 `
 const Subtotal = styled.div`
-flex: 1;
 `
 const Delivery = styled.div`
 flex: 1;
 `
 const TotalPrice = styled.div`
-flex: 1;
 `
 
 const CheckoutButton = styled.button`
-width: 100%;
 `
 
 export default CartPage

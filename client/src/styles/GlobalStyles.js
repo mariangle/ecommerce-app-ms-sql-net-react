@@ -24,6 +24,8 @@ const GlobalStyles = createGlobalStyle`
     background: #141414;
     font-weight: bold;
     color: white;
+    width: 100%;
+
   }
   h3{
     font-size: 1.6rem;

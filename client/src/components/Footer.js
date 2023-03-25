@@ -55,6 +55,9 @@ const StyledFooter = styled.nav`
   min-height: 10vh;
   display: flex;
   align-items: center;
+  @media (max-width: 850px) {
+  display: flex;
+}
 `;
 
 const StyledFooterContainer = styled(Container)`

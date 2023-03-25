@@ -15,7 +15,7 @@ function Product(props) {
         </ProductImg>
         <ProductInfo>
           <h3>{brand} {model} <span>{color} - {material}</span></h3>
-          <Price>{price} kr</Price>
+          <Price>{price} kr.</Price>
         </ProductInfo>
       </ProductCard>
     </Link>
