@@ -70,14 +70,6 @@ function ProductDetail(props ) {
 }
 
 const StyledProductDetail = styled(Container)`
-  width: 70%;
-  flex: 1;
-  display: flex;
-  align-items: stretch;
-  @media (max-width: 800px) {
-    display: block;
-    padding: 2rem;
-  }
 `;
 
 const ProductImages = styled(Image)`

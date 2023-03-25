@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Cart from './Cart';
+import { Container } from '../styles/styles';
+
 
 function Header(props) {
   const { cart, setCart } = props;
@@ -27,18 +29,14 @@ function Header(props) {
 const StyledHeader = styled.nav`  
 border-bottom: 1px solid grey;
 position: sticky;
-width: 100%;
 `
-const StyledNav = styled.nav`
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-direction: row;
-padding: 1rem 0rem;
-margin: 0rem 15rem;  
-width: 80%;
+const StyledNav = styled(Container)`
+min-height: 5vh;
+align-items: flex-start;
 margin: auto;
-`
+padding: 2rem 1rem;
+justify-content: space-between;
+`;
 
 const NavLinks = styled.ul` 
 display: flex;

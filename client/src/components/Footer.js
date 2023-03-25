@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Facebook from "../assets/icons/facebook.svg"
 import Instagram from "../assets/icons/instagram.svg"
 import Twitter from "../assets/icons/twitter.svg"
+import { Container } from '../styles/styles.js';
+
 
 
 const Footer = () => {
@@ -53,15 +55,12 @@ const StyledFooter = styled.nav`
   min-height: 10vh;
   display: flex;
   align-items: center;
-
 `;
 
-const StyledFooterContainer = styled.div`
-  padding: 5rem 0rem;
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
+const StyledFooterContainer = styled(Container)`
+min-height: 20vh;
+align-items: flex-start;
+padding: 5rem 1rem;
 `;
 
 const FooterSection = styled.div`

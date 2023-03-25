@@ -46,11 +46,15 @@ function CartPage({cart}) {
 
 
 const StyledCart = styled(Container)`
-align-items: flex-start;
-width: 50%;
+  align-items: flex-start;
+  width: 100%;
+  @media (max-width: 1050px) {
+    width: 100%;
+    display: flex;
+  }
 `
 const Basket = styled.div`
-flex: 2;
+flex: 2 2 40rem;
 `
 const Overview = styled.div`
 flex: 1;

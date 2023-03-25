@@ -35,7 +35,6 @@ const Grid = styled(Container)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 1rem;
-  max-width: 1920px;
 `;
 
 export default ProductGrid

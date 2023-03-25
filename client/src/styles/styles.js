@@ -5,15 +5,12 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80%;
   margin: 0 auto;
-  padding: 5rem 0rem;
-  @media (max-width: 800px) {
-    display: block;
-    width: 95%;
-  }
-  max-width: 1920px;
-
+  padding: 5rem 1rem;
+  width: 100%;
+  @media (min-width: 800px) {
+  max-width: 1400px
+}
 `;
 
 export const Image = styled.div`
