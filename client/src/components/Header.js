@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import basket from "../assets/images/basket.png"
-import { useLocation, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <StyledHeader>
       <StyledNav>
-        <h1><p to="/"> </p></h1>
+      <h1><Link to="/">Nike</Link></h1>
         <NavLinks>
           <li><input type="search" placeholder='Search'/></li>
           <li><img src={basket} alt="" /></li>
@@ -28,6 +28,7 @@ flex-direction: row;
 padding: 1rem 0rem;
 margin: 0rem 15rem;  
 width: 80%;
+margin: auto;
 `
 
 const NavLinks = styled.ul` 

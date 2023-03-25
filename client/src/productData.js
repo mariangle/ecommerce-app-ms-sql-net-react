@@ -149,7 +149,37 @@ export function generateProductData() {
             date: '2022-03-17'
           }
         ]
-      }   
+      },
+      {
+        id: 6,
+        model: 'Air Jordan 1 Low Smoke Grey',
+        description: "The Air Jordan 1 Low Smoke Grey features a leather upper with suede overlays, a padded collar for comfort, and a rubber outsole for traction.",
+        price: 1500,
+        images: [
+          'http://cdn.shopify.com/s/files/1/0611/8437/7026/products/AIRJORDAN1LOWSMOKEGREY1_1200x1200.png?v=1650890826'
+        ],
+        availableSizes: ['EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'],
+        brand: 'Nike',
+        color: 'White',
+        style: 'Lifestyle Shoes',
+        material: 'Leather',
+        gender: 'Women',
+        category: 'Sneakers',
+        reviews: [
+          {
+            id: 1,
+            rating: 4,
+            text: 'These shoes are really comfortable and versatile.',
+            date: '2022-02-15'
+          },
+          {
+            id: 2,
+            rating: 3,
+            text: 'The fit is a bit snug, but overall a great shoe.',
+            date: '2022-03-05'
+          }
+        ]
+      },
     ]
   }
   
