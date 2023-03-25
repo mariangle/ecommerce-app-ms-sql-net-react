@@ -7,10 +7,10 @@ function Header() {
   return (
     <StyledHeader>
       <StyledNav>
-      <h1><Link to="/">Nike</Link></h1>
+      <h1><Link to="/">Store</Link></h1>
         <NavLinks>
           <li><input type="search" placeholder='Search'/></li>
-          <li><img src={basket} alt="" /></li>
+          <Link to="/cart"><img src={basket} alt="" /></Link>
         </NavLinks>
       </StyledNav>
     </StyledHeader>
@@ -18,9 +18,10 @@ function Header() {
 }
 const StyledHeader = styled.nav`  
 border-bottom: 1px solid grey;
+position: sticky;
+width: 100%;
 `
 const StyledNav = styled.nav`
-position: sticky;
 display: flex;
 align-items: center;
 justify-content: space-between;

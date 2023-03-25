@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 1rem 2rem;
     cursor: pointer;
     margin: 2rem 0rem;
-    background: black;
+    background: #141414;
     font-weight: bold;
     color: white;
   }

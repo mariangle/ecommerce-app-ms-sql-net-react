@@ -8,7 +8,6 @@ function ProductDetail() {
   const { id } = useParams();
   const [products, setProducts] = useState(generateProductData);
   const [product, setProduct] = useState(null);
-  const [selectedSize, setSelectedSize] = useState(null);
 
   useEffect(() => {
     const currentProduct = products.find((product) => product.id === Number(id));
@@ -54,6 +53,7 @@ function ProductDetail() {
 }
 
 const StyledProductDetail = styled(Container)`
+  width: 70%;
   flex: 1;
   display: flex;
   align-items: stretch;
