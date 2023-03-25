@@ -8,15 +8,26 @@ function ProductDetail(props ) {
   const { id } = useParams();
   const [products, setProducts] = useState(generateProductData);
   const [product, setProduct] = useState(null);
-  const [cart, setCart] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(null);
+
 
   useEffect(() => {
     const currentProduct = products.find((product) => product.id === Number(id));
     setProduct(currentProduct);
   }, [products, id]);
 
+  function handleSizeChange(event) {
+    setSelectedSize(event.target.value);
+  }
+
   function handleAddToCart() {
-    props.addToCart(product);
+    if (selectedSize) {
+      const productToAdd = { ...product, selectedSize };
+      props.addToCart(productToAdd);
+      console.log(productToAdd.selectedSize);
+    } else {
+      console.log('Please select a size');
+    }
   }
 
   return (
@@ -41,7 +52,8 @@ function ProductDetail(props ) {
                       type="radio"
                       name="size"
                       value={size}
-                      onChange={() => console.log("hej")}
+                      checked={selectedSize === size}
+                      onChange={handleSizeChange}
                       />
                     <label>{size}</label>
                   </Size>

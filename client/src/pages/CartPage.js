@@ -1,14 +1,18 @@
-import React from 'react'
+import React,{ useEffect} from 'react'
 import { Container } from '../styles/styles.js';
 import styled from 'styled-components';
 import CartItem from "../components/CartItem";
 
-function Cart() {
+function CartPage({cart}) {
+  const cartArray = Object.values(cart); // turn into an array to map over
+
   return (
     <StyledCart>
       <Basket>
         <h4>Basket</h4>
-        <CartItem></CartItem>
+        {cartArray.map((product, index) => (
+          <CartItem key={index} product={product}/>
+        ))}
       </Basket>
       <Overview>
         <h4>Overview</h4>
@@ -26,6 +30,7 @@ function Cart() {
     </StyledCart>
   )
 }
+
 
 const StyledCart = styled(Container)`
 align-items: flex-start;
@@ -51,4 +56,4 @@ const CheckoutButton = styled.button`
 width: 100%;
 `
 
-export default Cart
+export default CartPage

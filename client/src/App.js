@@ -16,11 +16,9 @@ function App() {
   function addToCart(product) {
     setCart((prevCart) => [...prevCart, product]);
   }
-
   useEffect(() => {
     console.log(cart);
   }, [cart]);
-
   return (
     <>
       <GlobalStyles />

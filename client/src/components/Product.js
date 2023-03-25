@@ -5,13 +5,13 @@ import { Image } from '../styles/styles';
 
 function Product(props) {
   const { model, price, images, brand, material, color, id} = props;
-  const imageUrl = Array.isArray(images) && images.length > 0 ? images[0] : '';
+  const mainImg = Array.isArray(images) && images.length > 0 ? images[0] : '';
 
   return (
     <Link to={`/${id}`}>
       <ProductCard>
         <ProductImg>
-          <img src={imageUrl} alt="" />
+          <img src={mainImg} alt="" />
         </ProductImg>
         <ProductInfo>
           <h3>{brand} {model} <span>{color} - {material}</span></h3>
