@@ -10,9 +10,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   html {
-    @media (max-width: 1600px) {
-      font-size: 80%;
-    }
+
   }
   body {
     line-height: 150%;
