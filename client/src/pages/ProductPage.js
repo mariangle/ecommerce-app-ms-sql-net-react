@@ -33,7 +33,7 @@ function ProductDetail(props ) {
   return (
     <>
       {product && (
-        <StyledProductDetail>
+        <StyledProductPage>
           <ProductImages>
             <img src={product.images} alt="" />
           </ProductImages>
@@ -63,14 +63,13 @@ function ProductDetail(props ) {
             <Button onClick={handleAddToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
-        </StyledProductDetail>
+        </StyledProductPage>
       )}
     </>
   );
 }
 
-const StyledProductDetail = styled(Container)`
-  align-items: flex-start;
+const StyledProductPage = styled(Container)`
   @media (max-width: 850px) {
     display: block;
   }

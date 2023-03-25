@@ -30,6 +30,11 @@ const GlobalStyles = createGlobalStyle`
   h3{
     font-size: 1.6rem;
   }
+  h4{
+    font-size: 1.6rem;
+    font-weight: lighter;
+    margin-bottom: 2rem;
+  }
   p{
     font-size: 1rem; // clamp(1rem, 1vw + 1rem, 3rem)
   }

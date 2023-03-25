@@ -9,11 +9,15 @@ function CartItem({product}) {
         <img src={mainImg} alt={product.model} />
       </ItemImage>
       <ItemInfo>
-        <h3>{product.brand} {product.model}</h3>
-        <p>Color: {product.color}</p>
-        <p>Size: {product.selectedSize}</p>
-        <p>Quantity: {product.quantity}</p>
-        <p>{product.price} kr</p>
+        <ItemDetails>
+          <h3>{product.brand} {product.model}</h3>
+          <p>Color: {product.color}</p>
+          <p>Size: {product.selectedSize}</p>
+          <p>Quantity: {product.quantity}</p>
+        </ItemDetails>
+        <ItemPrice>
+          <p>{product.price} kr.</p>
+        </ItemPrice>
       </ItemInfo>
     </StyledCartItem>
   )
@@ -38,9 +42,23 @@ img{
 }
 `
 const ItemInfo = styled.div`
+display: flex;
+justify-content: space-between;
 width: 70%;
 h3{
   font-size: 1rem;
+  font-weight: 500;
+}
+p{
+    color: var(--color-text)
+  }
+`
+
+const ItemDetails = styled.div`
+`
+const ItemPrice = styled.div`
+p{
+  color: black;
 }
 `
 

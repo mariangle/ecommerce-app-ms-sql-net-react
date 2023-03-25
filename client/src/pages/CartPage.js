@@ -1,5 +1,5 @@
 import React,{ useEffect} from 'react'
-import { Container } from '../styles/styles.js';
+import { Container, About } from '../styles/styles.js';
 import styled from 'styled-components';
 import CartItem from "../components/CartItem";
 
@@ -15,29 +15,41 @@ function CartPage({cart}) {
 
   const cartArray = Object.values(cartObject);
 
+  const totalSum = cartArray.reduce((acc, product) => {
+    return acc + (product.price * product.quantity);
+  }, 0);
+  const deliveryPrice = 0 ;
+
   return (
     <StyledCart>
       <Basket>
         <h4>Basket</h4>
-        <ul>
-          {cartArray.map((product, index) => (
+        {cartArray.length === 0 ? (
+          <p>You have no items in your basket.</p>
+          ) : (
+          <ul>
+              {cartArray.map((product, index) => (
             <li key={index}>
-              <CartItem product={product} />
-            </li>
-          ))}
-        </ul>
+                <CartItem product={product} />
+              </li>
+            ))}
+          </ul>
+        )}
       </Basket>
       <Overview>
         <h4>Overview</h4>
-        <Subtotal>
-          <p>Subtotal</p>
-        </Subtotal>
-        <Delivery>
+        <Cost>
+          Subtotal
+          <p>{totalSum} kr.</p>
+        </Cost>
+        <Cost>
           <p>Delivery</p>
-        </Delivery>
-        <TotalPrice>
+          <p>{deliveryPrice ? deliveryPrice + " kr." : "Gratis"}</p>
+        </Cost>
+        <Cost>
         <p>Total Price</p>
-        </TotalPrice>
+        <p>{totalSum + deliveryPrice} kr.</p>
+        </Cost>
         <CheckoutButton>Checkout</CheckoutButton>
       </Overview>
     </StyledCart>
@@ -46,24 +58,24 @@ function CartPage({cart}) {
 
 
 const StyledCart = styled(Container)`
-  align-items: flex-start;
+max-width: 1200px;
   @media (max-width: 850px) {
   display: block;
 }
 `
 const Basket = styled.div`
-flex: 2 1 40rem;
+flex: 2;
 `
-const Overview = styled.div`
-flex: 1 2 30rem;
+const Overview = styled(About)`
+  flex: 1;
 `
-const Subtotal = styled.div`
-`
-const Delivery = styled.div`
-flex: 1;
-`
-const TotalPrice = styled.div`
-`
+
+const Cost = styled.div`
+  margin-bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const CheckoutButton = styled.button`
 `
