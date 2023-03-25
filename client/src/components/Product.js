@@ -8,7 +8,7 @@ function Product(props) {
   const imageUrl = Array.isArray(images) && images.length > 0 ? images[0] : '';
 
   return (
-    <Link to={`/product/${id}`}>
+    <Link to={`/${id}`}>
       <ProductCard>
         <ProductImg>
           <img src={imageUrl} alt="" />

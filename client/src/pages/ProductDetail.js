@@ -42,6 +42,7 @@ function ProductDetail() {
 }
 
 const StyledProductDetail = styled(Container)`
+  flex: 1;
   display: flex;
   align-items: stretch;
   @media (max-width: 800px) {
@@ -51,13 +52,14 @@ const StyledProductDetail = styled(Container)`
 `
 
 const ProductImages = styled(Image)`
+flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  min-height: 50vh;
 `
 const ProductInfo = styled(About)`
-margin-left: 5rem;
 h3{
   font-weight: 500;
 }

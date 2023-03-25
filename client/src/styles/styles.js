@@ -5,12 +5,15 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem 10rem;
+  width: 80%;
   margin: 0 auto;
+  padding: 5rem 0rem;
   @media (max-width: 800px) {
     display: block;
-    padding: 2rem;
+    width: 95%;
   }
+  max-width: 1920px;
+
 `;
 
 export const Image = styled.div`
@@ -18,20 +21,24 @@ export const Image = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  height: 300px;
   padding: 1rem;
   background: #f0f0f0;
-img{
+  img{
   max-width: 100%;
   max-height: 100%;
+  object-fit: cover;
+} 
+@media (max-width: 800px) {
+  display: block;
+  padding: 0rem;
 }
 `
 
 export const About = styled.div`
   flex: 1;
   flex-wrap: wrap;
-  padding-right: 5rem;
-  @media (max-width: 1300px) {
-    padding: 0;
-  }
+  margin-left: 5rem;
+  @media (max-width: 800px) {
+  margin-left: 0rem;
+}
 `;
