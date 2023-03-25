@@ -1,23 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import { Image } from '../styles/styles';
 
 function Product(props) {
-  const { name, price, images, brand, material, color, id} = props;
+  const { model, price, images, brand, material, color, id} = props;
   const imageUrl = Array.isArray(images) && images.length > 0 ? images[0] : '';
 
   return (
     <Link to={`/product/${id}`}>
       <ProductCard>
-        <ProductTumb>
+        <ProductImg>
           <img src={imageUrl} alt="" />
-        </ProductTumb>
-        <Details>
-          <h3>{name}</h3>
-          <p>{brand} - {color} - {material}</p>
+        </ProductImg>
+        <ProductInfo>
+          <h3>{brand} {model} <span>{color} - {material}</span></h3>
           <Price>{price} kr</Price>
-        </Details>
+        </ProductInfo>
       </ProductCard>
     </Link>
   );
@@ -28,35 +27,27 @@ const ProductCard = styled.div`
   //  position: relative;
 `
 
-const ProductTumb = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const ProductImg = styled(Image)`
   height: 300px;
-  padding: 1rem;
-  background: #f0f0f0;
-img{
-  max-width: 100%;
-  max-height: 100%;
-}
 `
-const Details = styled.div`
-  margin-top: 1rem;
-  h3, p{
+const ProductInfo = styled.div`
+  h3{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0.5rem 0rem 1rem 0rem;
   }
   h3{
+    font-size: 1rem;
     font-weight: lighter;
   }
-  p:nth-child(2){
+  h3 span{
+    display: block;
     color: var(--color-text)
   }
 `
 
 const Price = styled.p`
-  margin-top: 1rem;
 `
 
 

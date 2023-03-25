@@ -14,7 +14,7 @@ function ProductGrid() {
             {data.map((product) => (
                 <Product
                 key={product.id}
-                name={product.name}
+                model={product.model}
                 description={product.description}
                 style={product.style}
                 brand={product.brand}
@@ -32,7 +32,6 @@ function ProductGrid() {
 }
 
 const Grid = styled(Container)`
-  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 1rem;
