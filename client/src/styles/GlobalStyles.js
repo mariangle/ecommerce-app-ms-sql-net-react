@@ -25,7 +25,14 @@ const GlobalStyles = createGlobalStyle`
     font-weight: bold;
     color: white;
     width: 100%;
-
+    &:hover{
+      background: #444444;
+    }
+  }
+  input{
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.2rem;
   }
   h3{
     font-size: 1.6rem;

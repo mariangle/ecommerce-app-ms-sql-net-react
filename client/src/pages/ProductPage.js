@@ -9,24 +9,25 @@ function ProductDetail(props ) {
   const [products, setProducts] = useState(generateProductData);
   const [product, setProduct] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
+  const [sizeError, setSizeError] = useState(false);
 
 
   useEffect(() => {
     const currentProduct = products.find((product) => product.id === Number(id));
-    setProduct(currentProduct);
+    setProduct(currentProduct); 
   }, [products, id]);
 
   function handleSizeChange(event) {
     setSelectedSize(event.target.value);
+    setSizeError(false);
   }
 
   function handleAddToCart() {
     if (selectedSize) {
       const productToAdd = { ...product, selectedSize };
       props.addToCart(productToAdd);
-      console.log(productToAdd.selectedSize);
     } else {
-      console.log('Please select a size');
+      setSizeError(true); 
     }
   }
 
@@ -60,6 +61,7 @@ function ProductDetail(props ) {
                 );
               })}
             </SizesGrid>
+            {sizeError && <ErrorMessage>Please select a size.</ErrorMessage>}
             <Button onClick={handleAddToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
@@ -107,6 +109,7 @@ const SizesGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 0.5rem;
+  margin-bottom: 2rem;
 `;
 
 const Size = styled.label`
@@ -129,6 +132,11 @@ text-align: center;
 
 
 const Button = styled.button`
+margin: 0 0 2rem 0;
+`;
+
+const ErrorMessage = styled.p`
+color: red;
 `;
 
 export default ProductDetail;

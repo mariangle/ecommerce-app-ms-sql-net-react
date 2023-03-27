@@ -5,30 +5,31 @@ import Home from "./pages/HomePage";
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import CartPage from "./pages/CartPage"
+import CheckoutPage from './pages/CheckoutPage';
+
 import { useState, useEffect } from 'react';
-
-
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 function App() {
   const [cart, setCart] = useState([]);
+  const location = useLocation();
 
   function addToCart(product) {
     setCart((prevCart) => [...prevCart, product]);
   }
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+  const showHeaderFooter = location.pathname !== '/checkout';
+
   return (
     <>
       <GlobalStyles />
-      <Header key={cart.length} cart={cart}></Header>
+      {showHeaderFooter && <Header key={cart.length} cart={cart}></Header>}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<ProductPage addToCart={addToCart} />} />
         <Route path="/cart" element={<CartPage cart={cart}/>} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
-      <Footer />
+      {showHeaderFooter && <Footer />}
     </>
   );
 }

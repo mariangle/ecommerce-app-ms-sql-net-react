@@ -2,6 +2,7 @@ import React,{ useEffect} from 'react'
 import { Container, About } from '../styles/styles.js';
 import styled from 'styled-components';
 import CartItem from "../components/CartItem";
+import { Link } from 'react-router-dom';
 
 function CartPage({cart}) {
   const cartObject = Object.values(cart).reduce((acc, product) => {
@@ -50,7 +51,7 @@ function CartPage({cart}) {
         <p>Total Price</p>
         <p>{totalSum + deliveryPrice} kr.</p>
         </Cost>
-        <CheckoutButton>Checkout</CheckoutButton>
+        <Link to="/checkout"><CheckoutButton>Checkout</CheckoutButton></Link>
       </Overview>
     </StyledCart>
   )
@@ -68,6 +69,9 @@ flex: 2;
 `
 const Overview = styled(About)`
   flex: 1;
+  a{
+    width: 100%;
+  }
 `
 
 const Cost = styled.div`
