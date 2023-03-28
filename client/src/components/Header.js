@@ -12,7 +12,7 @@ function Header(props) {
     <StyledHeader>
       <StyledNav>
         <h1>
-          <Link to="/">Sneakery</Link>
+          <Link to="/">STORE</Link>
         </h1>
         <NavLinks>
           <li>

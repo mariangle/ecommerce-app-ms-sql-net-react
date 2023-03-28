@@ -10,6 +10,9 @@ import CheckoutPage from './pages/CheckoutPage';
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 function App() {
   const [cart, setCart] = useState([]);
   const location = useLocation();
@@ -27,7 +30,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/:id" element={<ProductPage addToCart={addToCart} />} />
         <Route path="/cart" element={<CartPage cart={cart}/>} />
-        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
       </Routes>
       {showHeaderFooter && <Footer />}
     </>

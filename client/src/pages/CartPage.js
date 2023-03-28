@@ -16,10 +16,18 @@ function CartPage({cart}) {
 
   const cartArray = Object.values(cartObject);
 
-  const totalSum = cartArray.reduce((acc, product) => {
+  const subtotal = cartArray.reduce((acc, product) => {
     return acc + (product.price * product.quantity);
   }, 0);
   const deliveryPrice = 0 ;
+  const totalPrice = subtotal + deliveryPrice;
+
+  function saveItems() {
+    localStorage.setItem('subtotal', subtotal);
+    localStorage.setItem('deliveryPrice', deliveryPrice);
+    localStorage.setItem('totalPrice', totalPrice);
+  }
+
 
   return (
     <StyledCart>
@@ -41,17 +49,17 @@ function CartPage({cart}) {
         <h4>Overview</h4>
         <Cost>
           Subtotal
-          <p>{totalSum} kr.</p>
+          <p>{subtotal} kr.</p>
         </Cost>
         <Cost>
           <p>Delivery</p>
-          <p>{deliveryPrice ? deliveryPrice + " kr." : "Gratis"}</p>
+          <p>{deliveryPrice ? deliveryPrice + " kr." : "Free"}</p>
         </Cost>
         <Cost>
         <p>Total Price</p>
-        <p>{totalSum + deliveryPrice} kr.</p>
+        <p>{totalPrice} kr.</p>
         </Cost>
-        <Link to="/checkout"><CheckoutButton>Checkout</CheckoutButton></Link>
+        <Link to="/checkout"><CheckoutButton onClick={() => saveItems()}>Checkout</CheckoutButton></Link>
       </Overview>
     </StyledCart>
   )
