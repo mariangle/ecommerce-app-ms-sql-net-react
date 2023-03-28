@@ -57,7 +57,7 @@ function ProductPage(props ) {
               })}
             </SizesGrid>
             {sizeError && <ErrorMessage>Please select a size.</ErrorMessage>}
-            <Button onClick={props.addToCart}>Add to Basket</Button>
+            <Button onClick={() => props.addToCart(product)}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
         </StyledProductPage>
@@ -134,12 +134,13 @@ const ErrorMessage = styled.p`
 color: red;
 `;
 const mapStateToProps = state => ({
-  cartItems: state.cart.items
+  cartItems: state.cart ? state.cart.items : []
 });
 
 const mapDispatchToProps = dispatch => ({
-  addToCart: item => dispatch(addToCart(item))
+  onAddToCart: product => dispatch(addToCart(product))
 });  
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

@@ -11,11 +11,12 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './store/store';
 
 function App() {
   const [cart, setCart] = useState([]);
   const location = useLocation();
+  
 
   function addToCart(product) {
     setCart((prevCart) => [...prevCart, product]);

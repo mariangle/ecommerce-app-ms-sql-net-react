@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Image } from '../styles/styles';
+import { useSelector } from 'react-redux';
+import { setProduct } from '../slices/productSlice';
 
-function Product(props) {
-  const { model, price, images, brand, material, color, id} = props;
+function Product({id, brand, model, color, material, price, images}) {
+
+
+  const product = useSelector(state => state.product.products.find(p => p.id === id));
+  const productSat = setProduct(product);
   const mainImg = Array.isArray(images) && images.length > 0 ? images[0] : '';
 
   return (
