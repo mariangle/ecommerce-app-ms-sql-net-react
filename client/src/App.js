@@ -24,7 +24,8 @@ function App() {
 
   return (
     <>
-      <GlobalStyles />
+    <Provider store={store}>
+    <GlobalStyles />
       {showHeaderFooter && <Header key={cart.length} cart={cart}></Header>}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,6 +34,7 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
       </Routes>
       {showHeaderFooter && <Footer />}
+    </Provider>
     </>
   );
 }

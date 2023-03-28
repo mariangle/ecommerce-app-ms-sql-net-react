@@ -4,7 +4,11 @@ import { useParams } from 'react-router-dom';
 import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
 
-function ProductDetail(props ) {
+// connect to store
+import { connect } from 'react-redux';
+import { addToCart } from '../actions/cartActions';
+
+function ProductPage(props ) {
   const { id } = useParams();
   const [products, setProducts] = useState(generateProductData);
   const [product, setProduct] = useState(null);
@@ -20,15 +24,6 @@ function ProductDetail(props ) {
   function handleSizeChange(event) {
     setSelectedSize(event.target.value);
     setSizeError(false);
-  }
-
-  function handleAddToCart() {
-    if (selectedSize) {
-      const productToAdd = { ...product, selectedSize };
-      props.addToCart(productToAdd);
-    } else {
-      setSizeError(true); 
-    }
   }
 
   return (
@@ -62,7 +57,7 @@ function ProductDetail(props ) {
               })}
             </SizesGrid>
             {sizeError && <ErrorMessage>Please select a size.</ErrorMessage>}
-            <Button onClick={handleAddToCart}>Add to Basket</Button>
+            <Button onClick={props.addToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
         </StyledProductPage>
@@ -138,5 +133,14 @@ margin: 0 0 2rem 0;
 const ErrorMessage = styled.p`
 color: red;
 `;
+const mapStateToProps = state => ({
+  cartItems: state.cart.items
+});
 
-export default ProductDetail;
+const mapDispatchToProps = dispatch => ({
+  addToCart: item => dispatch(addToCart(item))
+});  
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductPage);

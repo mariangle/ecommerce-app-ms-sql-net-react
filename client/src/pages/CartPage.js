@@ -22,13 +22,6 @@ function CartPage({cart}) {
   const deliveryPrice = 0 ;
   const totalPrice = subtotal + deliveryPrice;
 
-  function saveItems() {
-    localStorage.setItem('subtotal', subtotal);
-    localStorage.setItem('deliveryPrice', deliveryPrice);
-    localStorage.setItem('totalPrice', totalPrice);
-  }
-
-
   return (
     <StyledCart>
       <Basket>
@@ -59,7 +52,7 @@ function CartPage({cart}) {
         <p>Total Price</p>
         <p>{totalPrice} kr.</p>
         </Cost>
-        <Link to="/checkout"><CheckoutButton onClick={() => saveItems()}>Checkout</CheckoutButton></Link>
+        <Link to="/checkout"><CheckoutButton>Checkout</CheckoutButton></Link>
       </Overview>
     </StyledCart>
   )
