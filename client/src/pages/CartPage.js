@@ -1,22 +1,13 @@
 import React,{ useEffect} from 'react'
 import { Container, About } from '../styles/styles.js';
 import styled from 'styled-components';
-import CartItem from "../components/CartItem";
+import CartItems from "../components/CartItem";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function CartPage({cart}) {
-  const cartObject = Object.values(cart).reduce((acc, product) => {
-    const key = `${product.id}-${product.selectedSize}`;
-    if (!acc[key]) {
-      acc[key] = {...product, quantity: 0};
-    }
-    acc[key].quantity += 1;
-    return acc;
-  }, {});
-
-  const cartArray = Object.values(cartObject);
-
-  const subtotal = cartArray.reduce((acc, product) => {
+function CartPage() {
+  const cartItems = useSelector(state => state.cart.items);
+  const subtotal = cartItems.reduce((acc, product) => {
     return acc + (product.price * product.quantity);
   }, 0);
   const deliveryPrice = 0 ;
@@ -26,17 +17,10 @@ function CartPage({cart}) {
     <StyledCart>
       <Basket>
         <h4>Basket</h4>
-        {cartArray.length === 0 ? (
-          <p>You have no items in your basket.</p>
-          ) : (
-          <ul>
-              {cartArray.map((product, index) => (
-            <li key={index}>
-                <CartItem product={product} />
-              </li>
-            ))}
-          </ul>
-        )}
+        {cartItems.length === 0 ? (
+        <p>You have no items in your cart.</p>
+         ) : 
+         ( <CartItems />)}
       </Basket>
       <Overview>
         <h4>Overview</h4>

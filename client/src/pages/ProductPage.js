@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { generateProductData } from '../productData.js';
-import { useParams } from 'react-router-dom';
+  import { useParams } from 'react-router-dom';
 import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
+import { addToCart } from '../reducers/cartReducer';
+import { useDispatch, useSelector } from 'react-redux';
 
-// connect to store
-import { connect } from 'react-redux';
-import { addToCart } from '../actions/cartActions';
-
-function ProductPage(props ) {
+function ProductPage() {
   const { id } = useParams();
-  const [products, setProducts] = useState(generateProductData);
+  const products = useSelector(state => state.product.products);
+  const currentProduct = products.find((product) => product.id === Number(id));
+  // const product = useSelector(state => state.product.products.find(p => p.id === id));
   const [product, setProduct] = useState(null);
+  const dispatch = useDispatch();
   const [selectedSize, setSelectedSize] = useState(null);
-  const [sizeError, setSizeError] = useState(false);
-
 
   useEffect(() => {
-    const currentProduct = products.find((product) => product.id === Number(id));
     setProduct(currentProduct); 
   }, [products, id]);
 
-  function handleSizeChange(event) {
-    setSelectedSize(event.target.value);
-    setSizeError(false);
+  function handleAddToCart() {
+    if (!selectedSize) {
+      alert('Please select a size');
+      return;
+    }
+    dispatch(addToCart({ product: currentProduct, size: selectedSize }));
   }
 
   return (
@@ -49,15 +49,14 @@ function ProductPage(props ) {
                       name="size"
                       value={size}
                       checked={selectedSize === size}
-                      onChange={handleSizeChange}
+                      onChange={() => setSelectedSize(size)}
                       />
                     <label>{size}</label>
                   </Size>
                 );
               })}
             </SizesGrid>
-            {sizeError && <ErrorMessage>Please select a size.</ErrorMessage>}
-            <Button onClick={() => props.addToCart(product)}>Add to Basket</Button>
+            <Button onClick={handleAddToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
         </StyledProductPage>
@@ -130,18 +129,4 @@ const Button = styled.button`
 margin: 0 0 2rem 0;
 `;
 
-const ErrorMessage = styled.p`
-color: red;
-`;
-const mapStateToProps = state => ({
-  cartItems: state.cart ? state.cart.items : []
-});
-
-const mapDispatchToProps = dispatch => ({
-  onAddToCart: product => dispatch(addToCart(product))
-});  
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductPage);
+export default ProductPage;

@@ -1,26 +1,38 @@
 import React from 'react'
 import styled from 'styled-components';
+import { removeFromCart } from '../reducers/cartReducer';
+import { useDispatch, useSelector } from 'react-redux';
 
-function CartItem({product}) {
-  const mainImg = Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : '';
+function CartItem() {
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.items);
+
+  const handleRemoveFromCart = (item) => {
+    dispatch(removeFromCart(item.id));
+  };
+
   return (
-    <StyledCartItem>
-      <ItemImage>
-        <img src={mainImg} alt={product.model} />
-      </ItemImage>
-      <ItemInfo>
-        <ItemDetails>
-          <h3>{product.brand} {product.model}</h3>
-          <p>Color: {product.color}</p>
-          <p>Size: {product.selectedSize}</p>
-          <p>Quantity: {product.quantity}</p>
-        </ItemDetails>
-        <ItemPrice>
-          <p>{product.price} kr.</p>
-        </ItemPrice>
-      </ItemInfo>
-    </StyledCartItem>
-  )
+    <>
+      {cartItems.map((item, index) => (
+        <StyledCartItem key={`${item.product.id}-${index}`}>
+          <ItemImage>
+            <img src={item.product.images[0]} alt={item.product.model} />
+          </ItemImage>
+          <ItemInfo>
+            <ItemDetails>
+              <h3>{item.product.brand} {item.product.model}</h3>
+              <p>Size: {item.size}</p>
+              <p>Quantity: {item.quantity}</p>
+              <button onClick={() => handleRemoveFromCart(item)}>Remove</button>
+            </ItemDetails>
+            <ItemPrice>
+              <p>{item.product.price} kr.</p>
+            </ItemPrice>
+          </ItemInfo>
+        </StyledCartItem>
+      ))}
+    </>
+  );
 }
 
 const StyledCartItem = styled.div`
@@ -63,4 +75,4 @@ p{
 `
 
 
-export default CartItem
+export default CartItem;

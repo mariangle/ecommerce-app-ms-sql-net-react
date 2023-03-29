@@ -8,9 +8,11 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       state.items.push(action.payload);
+      console.log("ADDED: " + action.payload.product.id + " - " + action.payload.product.model + " (size: " + action.payload.size + ")");
+
     },
     removeFromCart: (state, action) => {
-      state.items = state.items.filter(item => item.id !== action.payload.id);
+      state.items = state.items.filter(item => item.product.id !== action.payload.product.id);
     }
   }
 });

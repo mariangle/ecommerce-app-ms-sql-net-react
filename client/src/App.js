@@ -30,7 +30,7 @@ function App() {
       {showHeaderFooter && <Header key={cart.length} cart={cart}></Header>}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<ProductPage addToCart={addToCart} />} />
+        <Route path="/:id" element={<ProductPage addToCart={addToCart} />} /> 
         <Route path="/cart" element={<CartPage cart={cart}/>} />
         <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
       </Routes>

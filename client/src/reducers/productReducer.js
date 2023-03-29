@@ -11,7 +11,6 @@ const productSlice = createSlice({
     initialState,
     reducers: {
       setProduct: (state, action) => {
-          console.log('Selected Product ID:', action.payload);
           state.selectedProduct = state.products.find(product => product.id === action.payload) || null;
         },
     },

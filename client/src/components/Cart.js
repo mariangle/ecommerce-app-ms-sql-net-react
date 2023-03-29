@@ -1,10 +1,14 @@
 import React from 'react'
-import Basket from "../assets/images/basket.png"
+import { useSelector } from 'react-redux';
 
-function Cart({ cart, setCart }) {
+
+function Cart() {
+  const cartItems = useSelector(state => state.cart.items);
+  const cartItemCount = cartItems.length;
+
     return (
       <div>
-        <span>cart: {cart.length}</span>
+        <span>cart: {cartItemCount} </span>
       </div>
     );
   }

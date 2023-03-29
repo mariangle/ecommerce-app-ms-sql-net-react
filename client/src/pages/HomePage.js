@@ -1,10 +1,10 @@
 import React from 'react';
-import ProductGrid from '../components/ProductGrid';
+import ProductList from '../components/ProductList';
 
 function Home() {
   return (
     <div>
-      <ProductGrid />
+      <ProductList />
     </div>
   );
 }

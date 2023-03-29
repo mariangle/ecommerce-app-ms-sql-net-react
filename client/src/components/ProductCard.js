@@ -2,36 +2,31 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Image } from '../styles/styles';
-import { useSelector } from 'react-redux';
-import { setProduct } from '../slices/productSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { setProduct } from '../reducers/productReducer';
 
-function Product({id, brand, model, color, material, price, images}) {
-
-
+function ProductCard({id}) {
+  const dispatch = useDispatch();
   const product = useSelector(state => state.product.products.find(p => p.id === id));
-  const productSat = setProduct(product);
-  const mainImg = Array.isArray(images) && images.length > 0 ? images[0] : '';
 
   return (
-    <Link to={`/${id}`}>
-      <ProductCard>
+    <Link to={`/${id}` }>
+      <StyledProductCard onClick={() => dispatch(setProduct(id))}>
         <ProductImg>
-          <img src={mainImg} alt="" />
+          <img src={product.images} alt="" />
         </ProductImg>
         <ProductInfo>
-          <h3>{brand} {model} <span>{color} - {material}</span></h3>
-          <Price>{price} kr.</Price>
+          <h3>{product.brand} {product.model} <span>{product.color} - {product.material}</span></h3>
+          <p>{product.price} kr.</p>
         </ProductInfo>
-      </ProductCard>
+      </StyledProductCard>
     </Link>
   );
 }
 
-const ProductCard = styled.div`
+const StyledProductCard = styled.div`
   width: 100%;
-  //  position: relative;
 `
-
 const ProductImg = styled(Image)`
   height: 300px;
 `
@@ -52,9 +47,5 @@ const ProductInfo = styled.div`
   }
 `
 
-const Price = styled.p`
-`
 
-
-
-export default Product;
+export default ProductCard;
