@@ -4,7 +4,7 @@ import { Container } from '../styles/styles.js';
 import { useSelector } from 'react-redux';
 
 function ProductList() {
-  const Product = lazy(() => import('./ProductCard.js'));
+  const Product = lazy(() => import('./Product.js'));
   const products = useSelector(state => state.product.products);
 
   return (

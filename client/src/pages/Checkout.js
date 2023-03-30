@@ -1,31 +1,20 @@
 import React, {useState} from 'react'
-import { Container, About, Image } from '../styles/styles'
+import { Container, About } from '../styles/styles'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import CartItem from "../components/CartItem";
 import { Link } from 'react-router-dom';
+import { useCartData } from '../hooks/useCartData';
 
 
-function CheckoutPage({cart}) {
-  const subtotal = localStorage.getItem('subtotal');
-const deliveryPrice = localStorage.getItem('deliveryPrice');
-const totalPrice = localStorage.getItem('totalPrice');
-
+function CheckoutPage() {
+  const { cartItems, subtotal, delivery, total } = useCartData();
   const { register, handleSubmit } = useForm();
-  const cartObject = Object.values(cart).reduce((acc, product) => {
-    const key = `${product.id}-${product.selectedSize}`;
-    if (!acc[key]) {
-      acc[key] = {...product, quantity: 0};
-    }
-    acc[key].quantity += 1;
-    return acc;
-  }, {}); 
-  const cartArray = Object.values(cartObject);
-
 
   const onSubmit = (data) => {
     console.log(data);
   };
+
   return (
     <StyledCheckout>
         <Transaction>
@@ -123,24 +112,23 @@ const totalPrice = localStorage.getItem('totalPrice');
         <Cart>
           <CartSection>
             <h4>Order Summary</h4>
-            <h4>Overview</h4>
             <Cost>
               Subtotal
               <p>{subtotal} kr.</p>
             </Cost>
             <Cost>
               <p>Delivery</p>
-              <p>{deliveryPrice ? deliveryPrice + " kr." : "Free"}</p>
+              <p>{delivery} kr</p>
             </Cost>
             <Cost>
             <p>Total Price</p>
-            <p>{totalPrice} kr.</p>
+            <p>{total} kr.</p>
             </Cost>
             <button type="submit">Place Order</button>
           </CartSection>
           <CartSection>
             <h4>Your Order</h4>
-              {cartArray.map((product, index) => (
+              {cartItems.map((product, index) => (
               <li key={index}>
                   <CartItem product={product} />
                 </li>
@@ -192,6 +180,8 @@ label{
 `
 
 const Cost = styled.div`
+display: flex;
+justify-content: space-between;
 `
 
 export default CheckoutPage

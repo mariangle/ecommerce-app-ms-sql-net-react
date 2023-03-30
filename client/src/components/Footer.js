@@ -1,51 +1,50 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import Facebook from "../assets/icons/facebook.svg"
-import Instagram from "../assets/icons/instagram.svg"
-import Twitter from "../assets/icons/twitter.svg"
 import { Container } from '../styles/styles.js';
 
-
+import { Link } from 'react-router-dom';
+import FacebookIcon from "../assets/icons/facebook.svg"
+import InstagramIcon from "../assets/icons/instagram.svg"
+import TwitterIcon from "../assets/icons/twitter.svg"
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <StyledFooterContainer>
+      <FooterContainer>
         <FooterSection>
           <FooterTitle>SHOP</FooterTitle>
           <FooterLinks>
             <li><Link to="#">Men's sneakers</Link></li>
-            <li><Link href="#">Women's sneakers</Link></li>
-            <li><Link href="#">Kid's sneakers</Link></li>
-            <li><Link href="#">Sale items</Link></li>
+            <li><Link to="#">Women's sneakers</Link></li>
+            <li><Link to="#">Kid's sneakers</Link></li>
+            <li><Link to="#">Sale items</Link></li>
           </FooterLinks>
         </FooterSection>
         <FooterSection>
           <FooterTitle>ABOUT US</FooterTitle>
           <FooterLinks>
-            <li><Link href="#">Our story</Link></li>
-            <li><Link href="#">Our team</Link></li>
-            <li><Link href="#">Press</Link></li>
+            <li><Link to="#">Our story</Link></li>
+            <li><Link to="#">Our team</Link></li>
+            <li><Link to="#">Press</Link></li>
           </FooterLinks>
         </FooterSection>
         <FooterSection>
           <FooterTitle>CUSTOMER SERVICE</FooterTitle>
           <FooterLinks>
-            <li><Link href="#">Shipping & Delivery</Link></li>
-            <li><Link href="#">Returns & Exchanges</Link></li>
-            <li><Link href="#">FAQs</Link></li>
-            <li><Link href="#">Contact Us</Link></li>
+            <li><Link to="#">Shipping & Delivery</Link></li>
+            <li><Link to="#">Returns & Exchanges</Link></li>
+            <li><Link to="#">FAQs</Link></li>
+            <li><Link to="#">Contact Us</Link></li>
           </FooterLinks>
         </FooterSection>
         <SocialSection>
           <SocialLinks>
-            <SocialContainer><Link href="#"><img src={Facebook} alt="" /></Link></SocialContainer>
-            <SocialContainer><Link href="#"><img src={Instagram} alt="" /></Link></SocialContainer>
-            <SocialContainer><Link href="#"><img src={Twitter} alt="" /></Link></SocialContainer>
+            <SocialIconContainer><Link to="#"><img src={FacebookIcon} alt="Facebook" /></Link></SocialIconContainer>
+            <SocialIconContainer><Link to="#"><img src={InstagramIcon} alt="Instagram" /></Link></SocialIconContainer>
+            <SocialIconContainer><Link to="#"><img src={TwitterIcon} alt="Twitter" /></Link></SocialIconContainer>
           </SocialLinks>
         </SocialSection>
-      </StyledFooterContainer>
+      </FooterContainer>
     </StyledFooter>
   );
 };
@@ -60,7 +59,7 @@ const StyledFooter = styled.nav`
 }
 `;
 
-const StyledFooterContainer = styled(Container)`
+const FooterContainer = styled(Container)`
 min-height: 20vh;
 align-items: flex-start;
 padding: 5rem 1rem;
@@ -102,7 +101,7 @@ const SocialLinks = styled.div`
   gap: 1rem;
 `;
 
-const SocialContainer = styled.div`
+const SocialIconContainer = styled.div`
   height: 30px;
   width: 32px;
   background: #7e7e7e;

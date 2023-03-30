@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+// external libaries 
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+// local components and styles
 import Cart from './Cart';
 import { Container } from '../styles/styles';
 
-
-function Header(props) {
-  const { cart, setCart } = props;
-
+function Header() {
   return (
     <StyledHeader>
       <StyledNav>
@@ -19,7 +18,7 @@ function Header(props) {
             <input type="search" placeholder="Search" />
           </li>
           <Link to="/cart">
-            <Cart cart={cart} setCart={setCart} key={cart.length} />
+            <Cart/>
           </Link>
         </NavLinks>
       </StyledNav>
@@ -48,6 +47,5 @@ li input{
   padding: 0.5rem;
 }
 `
-
 
 export default Header

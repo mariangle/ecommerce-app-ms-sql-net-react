@@ -3,15 +3,10 @@ import { Container, About } from '../styles/styles.js';
 import styled from 'styled-components';
 import CartItems from "../components/CartItem";
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useCartData } from '../hooks/useCartData';
 
 function CartPage() {
-  const cartItems = useSelector(state => state.cart.items);
-  const subtotal = cartItems.reduce((acc, product) => {
-    return acc + (product.price * product.quantity);
-  }, 0);
-  const deliveryPrice = 0 ;
-  const totalPrice = subtotal + deliveryPrice;
+  const { cartItems, subtotal, delivery, total } = useCartData();
 
   return (
     <StyledCart>
@@ -26,15 +21,15 @@ function CartPage() {
         <h4>Overview</h4>
         <Cost>
           Subtotal
-          <p>{subtotal} kr.</p>
+          <p>{subtotal ? subtotal :0} kr.</p>
         </Cost>
         <Cost>
           <p>Delivery</p>
-          <p>{deliveryPrice ? deliveryPrice + " kr." : "Free"}</p>
+          <p>{delivery ? delivery + " kr" : "Free"}</p>
         </Cost>
         <Cost>
         <p>Total Price</p>
-        <p>{totalPrice} kr.</p>
+        <p>{total ? total : 0} kr.</p>
         </Cost>
         <Link to="/checkout"><CheckoutButton>Checkout</CheckoutButton></Link>
       </Overview>

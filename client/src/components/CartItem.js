@@ -1,14 +1,21 @@
 import React from 'react'
 import styled from 'styled-components';
-import { removeFromCart } from '../reducers/cartReducer';
+import { removeFromCart, updateQuantity } from '../store/reducers/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 
 function CartItem() {
   const dispatch = useDispatch();
-  const cartItems = useSelector(state => state.cart.items);
+  const { items: cartItems } = useSelector(state => state.cart);
 
-  const handleRemoveFromCart = (item) => {
-    dispatch(removeFromCart(item.id));
+  const handleRemoveFromCart = (itemId, size) => {
+    const item = cartItems.find((item) => item.product.id === itemId && item.size === size);
+    dispatch(removeFromCart({ product: item.product, size }));
+  };
+  
+  const handleUpdateQuantity = (productId, size, newQuantity) => {
+    console.log('handleUpdateQuantity called with', productId, size, newQuantity);
+
+    dispatch(updateQuantity({ productId, size, quantity: newQuantity }));
   };
 
   return (
@@ -23,10 +30,15 @@ function CartItem() {
               <h3>{item.product.brand} {item.product.model}</h3>
               <p>Size: {item.size}</p>
               <p>Quantity: {item.quantity}</p>
-              <button onClick={() => handleRemoveFromCart(item)}>Remove</button>
+              <button onClick={() => handleRemoveFromCart(item.product.id, item.size)}>Remove</button>
+              <Quantity>
+                <button onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity - 1)}>-</button>
+                <button>{item.quantity}</button>
+                <button onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity + 1)}>+</button>
+              </Quantity>
             </ItemDetails>
             <ItemPrice>
-              <p>{item.product.price} kr.</p>
+              <p>{item.product.price * item.quantity} kr.</p>
             </ItemPrice>
           </ItemInfo>
         </StyledCartItem>
@@ -68,6 +80,10 @@ p{
 
 const ItemDetails = styled.div`
 `
+const Quantity = styled.div`
+display: flex;
+`
+
 const ItemPrice = styled.div`
 p{
   color: black;

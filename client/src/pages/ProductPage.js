@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
   import { useParams } from 'react-router-dom';
 import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
-import { addToCart } from '../reducers/cartReducer';
+import { addToCart } from '../store/reducers/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 
 function ProductPage() {
+  const cart = useSelector(state => state.cart);
   const { id } = useParams();
   const products = useSelector(state => state.product.products);
   const currentProduct = products.find((product) => product.id === Number(id));
@@ -23,7 +24,7 @@ function ProductPage() {
       alert('Please select a size');
       return;
     }
-    dispatch(addToCart({ product: currentProduct, size: selectedSize }));
+    dispatch(addToCart({ product: product, size: selectedSize }));
   }
 
   return (

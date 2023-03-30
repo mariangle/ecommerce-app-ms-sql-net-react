@@ -4,10 +4,10 @@ import Header from './components/Header';
 import Home from "./pages/HomePage";
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
-import CartPage from "./pages/CartPage"
-import CheckoutPage from './pages/CheckoutPage';
+import CartPage from "./pages/Cart"
+import CheckoutPage from './pages/Checkout';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { Provider } from 'react-redux';

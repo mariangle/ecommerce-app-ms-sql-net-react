@@ -3,20 +3,20 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Image } from '../styles/styles';
 import { useSelector, useDispatch } from 'react-redux';
-import { setProduct } from '../reducers/productReducer';
 
 function ProductCard({id}) {
   const dispatch = useDispatch();
   const product = useSelector(state => state.product.products.find(p => p.id === id));
 
   return (
-    <Link to={`/${id}` }>
-      <StyledProductCard onClick={() => dispatch(setProduct(id))}>
+    <Link to={`/${id}`}>
+      <StyledProductCard>
         <ProductImg>
           <img src={product.images} alt="" />
         </ProductImg>
         <ProductInfo>
-          <h3>{product.brand} {product.model} <span>{product.color} - {product.material}</span></h3>
+          <h3>{product.brand} {product.model} 
+          <span>{product.color} - {product.material}</span></h3>
           <p>{product.price} kr.</p>
         </ProductInfo>
       </StyledProductCard>
@@ -36,16 +36,13 @@ const ProductInfo = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0.5rem 0rem 1rem 0rem;
-  }
-  h3{
-    font-size: 1rem;
-    font-weight: lighter;
-  }
-  h3 span{
+  font-size: 1rem;
+  font-weight: lighter;
+  span{
     display: block;
     color: var(--color-text)
+    }
   }
 `
-
 
 export default ProductCard;
