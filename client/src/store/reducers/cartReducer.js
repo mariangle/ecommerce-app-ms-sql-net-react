@@ -12,7 +12,7 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const { product, size, quantity = 1 } = action.payload; // set default quantity property
       const existingItem = state.items.find(item => item.product.id === product.id && item.size === size);
-      if (existingItem) {
+      if (existingItem) { 
         existingItem.quantity += quantity;
       } else {
         state.items.push({ product, size, quantity }); 
@@ -25,17 +25,13 @@ const cartSlice = createSlice({
     updateQuantity: (state, action) => {
       const { productId, size, quantity } = action.payload;
       const cartItemIndex = state.items.findIndex(item => item.product.id === productId && item.size === size);
-      if (cartItemIndex !== -1) {
-        console.log('Before update:', state.items);
-
+      if (cartItemIndex !== -1) { 
         state.items[cartItemIndex].quantity = quantity;
-        console.log('After update:', state.items);
-
       }
     },  
     calculateSubtotal: (state) => {
       let subtotal = 0;
-      state.items.forEach((item) => {
+      state.items.forEach((item) => { 
         subtotal += item.product.price * item.quantity;
       });
       state.subtotal = subtotal;

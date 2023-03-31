@@ -43,17 +43,26 @@ const GlobalStyles = createGlobalStyle`
     margin-bottom: 2rem;
   }
   p{
-    font-size: 1rem; // clamp(1rem, 1vw + 1rem, 3rem)
+    font-size: 1rem; 
   }
   a{
     text-decoration: none;
     color: black;
+    cursor: pointer;
   }
   ul{
     list-style: none;
   }
   li{
     list-style: none;
+  }
+  input[type=number] {
+  -moz-appearance: textfield;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 

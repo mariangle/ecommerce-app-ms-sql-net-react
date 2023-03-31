@@ -127,12 +127,8 @@ function CheckoutPage() {
             <button type="submit">Place Order</button>
           </CartSection>
           <CartSection>
-            <h4>Your Order</h4>
-              {cartItems.map((product, index) => (
-              <li key={index}>
-                  <CartItem product={product} />
-                </li>
-              ))}
+            <h4>In Your Bag</h4>
+            <CartItem/>
           </CartSection>
         </Cart>
     </StyledCheckout>
@@ -142,20 +138,19 @@ function CheckoutPage() {
 const StyledCheckout = styled(Container)`
 justify-content: center;
 flex-wrap: wrap;
-@media (max-width: 768px) {
-    flex-direction: column;
-  }
+
 `
 
 const Transaction = styled(About)`
 margin-left: 0rem;
-flex-basis: 50%;
 `
 const Cart = styled(About)`
 flex-basis: 4 0%;`
 
 const TransactionSection = styled.div`
 margin-bottom: 2rem;
+width: 100%;
+
 `
 
 const Form = styled.form`

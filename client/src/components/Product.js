@@ -1,12 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Image } from '../styles/styles';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function ProductCard({id}) {
-  const dispatch = useDispatch();
-  const product = useSelector(state => state.product.products.find(p => p.id === id));
+  const product = useSelector(state => state.product.products.find(p => p.id === id));   // retrieve product data from Redux store using useSelector
 
   return (
     <Link to={`/${id}`}>

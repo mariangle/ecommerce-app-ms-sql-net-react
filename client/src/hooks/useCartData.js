@@ -10,7 +10,7 @@ export const useCartData = () => {
   const total = useSelector(state => state.cart.total);
 
   useEffect(() => {
-    const deliveryCost = 50;
+    const deliveryCost = 49;
     dispatch(updateDeliveryCost({ deliveryCost }));
     dispatch(calculateSubtotal());
   }, [cartItems, dispatch]);

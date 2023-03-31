@@ -10,32 +10,37 @@ function Header() {
   return (
     <StyledHeader>
       <StyledNav>
-        <h1>
-          <Link to="/">STORE</Link>
-        </h1>
+        <Link to="/"><h1>STORE</h1></Link>
         <NavLinks>
           <li>
             <input type="search" placeholder="Search" />
           </li>
-          <Link to="/cart">
-            <Cart/>
-          </Link>
+          <li>
+            <Link to="/cart">
+              <Cart/>
+            </Link>
+          </li>
         </NavLinks>
       </StyledNav>
     </StyledHeader>
   );
 }
 const StyledHeader = styled.nav`  
+background: black;
 border-bottom: 1px solid grey;
 position: sticky;
 @media (max-width: 850px) {
   display: flex;
+}
+h1{
+  color: white;
 }
 `
 const StyledNav = styled(Container)`
 min-height: 5vh;
 padding: 1.5rem 1rem;
 justify-content: space-between;
+align-items: center;
 `;
 
 const NavLinks = styled.ul` 
