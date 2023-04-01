@@ -20,13 +20,21 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-
-
         //Enable CORS
         services.AddCors(c =>
         {
             c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         });
+
+            /*services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });*/
 
         //JSON Serializer
         services.AddControllersWithViews().AddNewtonsoftJson(options =>
@@ -49,7 +57,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseCors("AllowAnyOrigin");
+        app.UseCors();
 
         app.UseHttpsRedirection();
 
@@ -57,8 +65,12 @@ public class Startup
 
         app.UseAuthorization();
 
-        var userRepository = app.ApplicationServices.GetService<IUserRepository>();
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
 
+        var userRepository = app.ApplicationServices.GetService<IUserRepository>();
 
         app.UseEndpoints(endpoints =>
         {

@@ -6,9 +6,12 @@ import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
+import AdminPage from "./pages/AdminPanel"
+
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import Authentication from './pages/Authentication';
 
 function App() {
   const location = useLocation();
@@ -25,6 +28,8 @@ function App() {
         <Route path="/:id" element={<ProductPage />} /> 
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/authentication" element={<Authentication />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
       {showHeaderFooter && <Footer />}
     </Provider>

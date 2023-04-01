@@ -1,5 +1,6 @@
 ﻿using backend.Models;
 using backend.Repositories;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -12,6 +13,8 @@ namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("_myAllowSpecificOrigins")]
+
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;

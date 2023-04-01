@@ -3,10 +3,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 // local components and styles
-import Cart from './Cart';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Container } from '../styles/styles';
+import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 
 function Header() {
+
+  const cartItems = useSelector(state => state.cart.items);
+  const cartItemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   return (
     <StyledHeader>
       <StyledNav>
@@ -16,8 +22,16 @@ function Header() {
             <input type="search" placeholder="Search" />
           </li>
           <li>
+            <Link to="/authentication">
+              <FontAwesomeIcon className="icon" icon={faUser} style={{ color: "white" }} />
+            </Link>
+          </li>
+          <li>
             <Link to="/cart">
-              <Cart/>
+              <Cart>
+                <span>{cartItemCount > 9 ? "9+": cartItemCount } </span>
+                <FontAwesomeIcon className="icon" icon={faBasketShopping} style={{ color: 'white'}} />
+              </Cart>
             </Link>
           </li>
         </NavLinks>
@@ -26,7 +40,7 @@ function Header() {
   );
 }
 const StyledHeader = styled.nav`  
-background: black;
+background: var(--color-black);
 border-bottom: 1px solid grey;
 position: sticky;
 @media (max-width: 850px) {
@@ -50,6 +64,29 @@ align-items: center;
 gap: 1rem;
 li input{
   padding: 0.5rem;
+}
+`
+
+
+const Cart = styled.div`
+height: 35px;
+width: 35px;
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+span{
+  z-index: 9999;
+  top: 0;
+  right: 0;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
+  background: #b80000;
+  color: white;
+  font-size: 0.8rem;
+  position: absolute;
 }
 `
 

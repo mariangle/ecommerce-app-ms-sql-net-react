@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
   :root {
     --color-text: #777777;
+    --color-black: #141414;
   }
   *{
     margin: 0;
@@ -21,12 +22,12 @@ const GlobalStyles = createGlobalStyle`
     padding: 1rem 2rem;
     cursor: pointer;
     margin: 2rem 0rem;
-    background: #141414;
+    background: var(--color-black);
     font-weight: bold;
     color: white;
     width: 100%;
     &:hover{
-      background: #444444;
+      background: #252525;
     }
   }
   input{

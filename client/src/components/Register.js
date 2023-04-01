@@ -1,9 +1,20 @@
 import React from 'react'
+import styled from 'styled-components'
+import { About, Image} from '../styles/styles';
+import { useForm } from 'react-hook-form';
+
 
 function Register() {
+
   return (
-    <div>Register</div>
-  )
+    <StyledRegister>
+      Register
+    </StyledRegister>
+  );
 }
+
+const StyledRegister = styled(About)`
+
+`
 
 export default Register

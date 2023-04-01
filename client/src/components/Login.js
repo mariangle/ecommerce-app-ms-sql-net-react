@@ -1,9 +1,14 @@
 import React from 'react'
+import styled from 'styled-components'
+import { About, Image} from '../styles/styles';
+import { useForm } from 'react-hook-form';
 
 function Login() {
   return (
-    <div>Login</div>
+    <StyledLogin>Login</StyledLogin>
   )
 }
+
+const StyledLogin = styled(About)``
 
 export default Login

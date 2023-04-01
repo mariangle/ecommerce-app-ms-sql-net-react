@@ -3,7 +3,7 @@ import { Container, About } from '../styles/styles.js';
 import styled from 'styled-components';
 import CartItems from "../components/CartItem";
 import { Link } from 'react-router-dom';
-import { useCartData } from '../hooks/useCartData';
+import { useCartData } from '../utils/hooks/useCartData';
 
 function CartPage() {
   const { cartItems, subtotal, delivery, total } = useCartData();

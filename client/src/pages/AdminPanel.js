@@ -1,8 +1,9 @@
 import React from 'react'
+import UserTable from '../components/UserTable'
 
 function AdminPanel() {
   return (
-    <div>AdminPanel</div>
+    <UserTable></UserTable>
   )
 }
 

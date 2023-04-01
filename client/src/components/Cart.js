@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import CartSvg from "../assets/icons/cart.svg"
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 
 function Cart() {
   const cartItems = useSelector(state => state.cart.items);
@@ -10,7 +11,7 @@ function Cart() {
   return (
     <StyledCart>
       <span>{cartItemCount > 9 ? "9+": cartItemCount } </span>
-      <img src={CartSvg} alt="" />
+      <FontAwesomeIcon className="icon" icon={faBasketShopping} style={{ color: 'white'}} />
     </StyledCart>
   );
 }
@@ -22,7 +23,7 @@ position: relative;
 display: flex;
 align-items: center;
 justify-content: center;
-img{
+.icon{
   height: 100%;
   width: 100%;
   position: absolute;
@@ -35,7 +36,7 @@ span{
   width: 20px;
   text-align: center;
   border-radius: 50%;
-  background: red;
+  background: #b80000;
   color: white;
   font-size: 0.8rem;
   position: absolute;

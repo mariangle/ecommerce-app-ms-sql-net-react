@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import CartItem from "../components/CartItem";
 import { Link } from 'react-router-dom';
-import { useCartData } from '../hooks/useCartData';
+import { useCartData } from '../utils/hooks/useCartData';
 
 
 function CheckoutPage() {
