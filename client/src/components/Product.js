@@ -2,13 +2,37 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Image } from '../styles/styles';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import productApi from '../utils/api/productApi';
 
-function ProductCard({id}) {
-  const product = useSelector(state => state.product.products.find(p => p.id === id));   // retrieve product data from Redux store using useSelector
+
+function ProductCard() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const products = await productApi.getProducts();
+      setData(products);
+    };
+    fetchData();
+  }, []);
 
   return (
-    <Link to={`/${id}`}>
+    <>
+            {data.map((product, index) => (
+              <StyledProductCard key={index}>
+                <Link to={`/${product.productID}`} >
+                <ProductImg>
+                  <img src={product.imageURL} alt="" />
+                </ProductImg>
+                <ProductInfo>
+                  <h3>{product.brand} {product.name} </h3>
+                  <p>priceplaceholder kr.</p>
+                </ProductInfo>
+                </Link>
+              </StyledProductCard>
+        ))}
+    {/*    <Link to={`/${id}`}>
       <StyledProductCard>
         <ProductImg>
           <img src={product.images} alt="" />
@@ -19,7 +43,9 @@ function ProductCard({id}) {
           <p>{product.price} kr.</p>
         </ProductInfo>
       </StyledProductCard>
-    </Link>
+    </Link>*/}
+    </>
+
   );
 }
 

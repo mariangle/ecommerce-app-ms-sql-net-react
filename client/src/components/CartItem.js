@@ -42,7 +42,7 @@ function CartItem() {
          <StyledCartItem key={`${item.product.id}-${item.size}`}>
           <Link to={`/${item.product.id}`}>
             <ItemImage>
-              <img src={item.product.images[0]} alt={item.product.model} />
+              <img src={item.product.imageURL} alt={item.product.brand} />
             </ItemImage>
           </Link>
           <ItemInfo>

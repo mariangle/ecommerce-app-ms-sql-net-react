@@ -4,59 +4,37 @@ import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
 import { addToCart } from '../store/reducers/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../store/reducers/productReducer';
+
 
 function ProductPage() {
-  const cart = useSelector(state => state.cart);
-  const { id } = useParams();
-  const products = useSelector(state => state.product.products);
-  const currentProduct = products.find((product) => product.id === Number(id));
-  // const product = useSelector(state => state.product.products.find(p => p.id === id));
-  const [product, setProduct] = useState(null);
   const dispatch = useDispatch();
-  const [selectedSize, setSelectedSize] = useState(null);
+  const { id } = useParams();
+  const { products } = useSelector((state) => state.product);
+  const product = products.find((product) => product.productID === Number(id));
 
   useEffect(() => {
-    setProduct(currentProduct); 
-  }, [products, id]);
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   function handleAddToCart() {
-    if (!selectedSize) {
-      alert('Please select a size');
-      return;
-    }
-    dispatch(addToCart({ product: product, size: selectedSize }));
+    dispatch(addToCart({ product: product, size: 38 }));
   }
 
   return (
     <>
-      {product && (
+      { product && (
         <StyledProductPage>
           <ProductImages>
-            <img src={product.images} alt="" />
+            <img src={product.imageURL} alt="" />
           </ProductImages>
           <ProductInfo>
             <h3>
               {product.brand}
-              <span>{product.model}</span>
+              <span>{product.name}</span>
             </h3>
-            <Price>{product.price} kr.</Price>
+            <Price>{product.price ? product.price : "0"} kr.</Price>
             <p>Available sizes: </p>
-            <SizesGrid>
-              {product.availableSizes.map((size, index) => {
-                return (
-                  <Size className="size" key={index}>
-                    <input
-                      type="radio"
-                      name="size"
-                      value={size}
-                      checked={selectedSize === size}
-                      onChange={() => setSelectedSize(size)}
-                      />
-                    <label>{size}</label>
-                  </Size>
-                );
-              })}
-            </SizesGrid>
             <Button onClick={handleAddToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>

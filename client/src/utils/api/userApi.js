@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { variables } from './variables.js';
 
-const API_URL = variables.API_URL+"/User"
+const API_URL = variables.BASE_URL+"User"
 
 const getUsers = async () => {
   const response = await axios.get(API_URL);

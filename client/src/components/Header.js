@@ -19,9 +19,6 @@ function Header() {
         <Link to="/"><h1>STORE</h1></Link>
         <NavLinks>
           <li>
-            <input type="search" placeholder="Search" />
-          </li>
-          <li>
             <Link to="/authentication">
               <FontAwesomeIcon className="icon" icon={faUser} style={{ color: "white" }} />
             </Link>
