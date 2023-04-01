@@ -5,6 +5,7 @@ using backend;
 using Newtonsoft.Json.Serialization;
 using System.Text.Json.Serialization;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 
 public class Startup
 {
@@ -34,7 +35,7 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()); 
+        app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -51,6 +52,13 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
+        });
+
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(
+                Path.Combine(Directory.GetCurrentDirectory(), "Photos")),
+            RequestPath = "/Photos"
         });
     }
 }

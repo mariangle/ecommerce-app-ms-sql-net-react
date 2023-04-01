@@ -1,32 +1,53 @@
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace backend.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
-        private readonly ILogger<ProductController> _logger;
-
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(IConfiguration configuration, IWebHostEnvironment env)
         {
-            _logger = logger;
+            _configuration = configuration;
+            _env = env;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<Product> Get()
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> SaveFile(IFormFile file)
         {
-            return Enumerable.Range(1, 5).Select(index => new Product
+            try
             {
-                ID = 10,
-            })
-            .ToArray();
+                if (file == null || file.Length == 0)
+                {
+                    return BadRequest("File not found");
+                }
+
+                string filename = file.FileName;
+                var physicalPath = Path.Combine(_env.ContentRootPath, "Photos", filename);
+
+                using (var stream = new FileStream(physicalPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+
+                return Ok(filename);
+            }
+            catch (Exception)
+            {
+                return Ok("notfound.png"); // return BadRequest("Error saving file");
+            }
         }
+
     }
 }

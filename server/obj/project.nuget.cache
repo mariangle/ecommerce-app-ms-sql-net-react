@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G0aY8/HVBy6gWJ9ZIw9++lFQ8N9hSvOa7ZiI3lbqZReDCaGFqWkVBmCtNQR6QdZpnRq1k37pwbTV0juHeWg6OQ==",
+  "dgSpecHash": "zqkLcTnK13VQlkI+UZlWHnVmfcBFV5YJLFx2UOHtFlHj0Tf+RftC2LoiNWkX/nNeMn+aY9dqEU+1FkpODsfKXg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\backend\\backend.csproj",
+  "projectFilePath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\server\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\45313\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.15\\microsoft.aspnetcore.jsonpatch.6.0.15.nupkg.sha512",
     "C:\\Users\\45313\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.15\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.15.nupkg.sha512",

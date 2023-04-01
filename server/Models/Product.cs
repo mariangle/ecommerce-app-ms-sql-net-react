@@ -7,6 +7,6 @@ namespace backend.Models
         public string Description { get; set; }
         public string Brand { get; set; }
         public string Color { get; set; }
-        public string ProductImgURL { get; set; }  
+        public string ImageFileName { get; set; }  
     }
 }

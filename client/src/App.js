@@ -6,33 +6,25 @@ import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
-
-import { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-
 import { Provider } from 'react-redux';
 import store from './store/store';
 
 function App() {
-  const [cart, setCart] = useState([]);
   const location = useLocation();
-  
 
-  function addToCart(product) {
-    setCart((prevCart) => [...prevCart, product]);
-  }
   const showHeaderFooter = location.pathname !== '/checkout';
 
   return (
     <>
     <Provider store={store}>
     <GlobalStyles />
-      {showHeaderFooter && <Header key={cart.length} cart={cart}></Header>}
+      {showHeaderFooter && <Header></Header>}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<ProductPage addToCart={addToCart} />} /> 
-        <Route path="/cart" element={<CartPage cart={cart}/>} />
-        <Route path="/checkout" element={<CheckoutPage cart={cart} />} />
+        <Route path="/:id" element={<ProductPage />} /> 
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
       {showHeaderFooter && <Footer />}
     </Provider>

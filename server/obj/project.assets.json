@@ -916,11 +916,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\backend\\backend.csproj",
+      "projectUniqueName": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\server\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\backend\\backend.csproj",
+      "projectPath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\server\\backend.csproj",
       "packagesPath": "C:\\Users\\45313\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\backend\\obj\\",
+      "outputPath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\45313\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -22,7 +22,7 @@ namespace backend.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            string query = @"SELECT UserID, UserFirstName, UserLastName, UserPhone, UserEmail, DateJoined FROM dbo.[USER]";
+            string query = @"SELECT UserID, FirstName, LastName, Phone, Email FROM dbo.[USER]";
 
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("UserAppCon");
@@ -53,8 +53,9 @@ namespace backend.Controllers
         [HttpPost]
         public IActionResult Post(User user)
         {
-            string query = @"INSERT INTO dbo.[USER] (UserFirstName, UserLastName, UserPhone, UserEmail, IsAdmin, DateJoined, Password) 
-                     VALUES (@UserFirstName, @UserLastName, @UserPhone, @UserEmail, @IsAdmin, @DateJoined, @Password)";
+            string query = @"INSERT INTO dbo.[USER] 
+                           (FirstName, LastName, Phone, Email, Password) 
+                           VALUES (@FirstName, @LastName, @Phone, @Email, @Password)";
 
             string sqlDataSource = _configuration.GetConnectionString("UserAppCon");
 
@@ -63,14 +64,11 @@ namespace backend.Controllers
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@UserFirstName", user.FirstName);
-                    myCommand.Parameters.AddWithValue("@UserLastName", user.LastName);
-                    myCommand.Parameters.AddWithValue("@UserPhone", user.Phone);
-                    myCommand.Parameters.AddWithValue("@UserEmail", user.Email);
-                    myCommand.Parameters.AddWithValue("@IsAdmin", user.IsAdmin);
-                    myCommand.Parameters.AddWithValue("@DateJoined", user.DateJoined);
+                    myCommand.Parameters.AddWithValue("@FirstName", user.FirstName);
+                    myCommand.Parameters.AddWithValue("@LastName", user.LastName);
+                    myCommand.Parameters.AddWithValue("@Phone", user.Phone);
+                    myCommand.Parameters.AddWithValue("@Email", user.Email);
                     myCommand.Parameters.AddWithValue("@Password", user.Password);
-
                     myCommand.ExecuteNonQuery();
                     myCon.Close();
                 }
@@ -83,14 +81,12 @@ namespace backend.Controllers
         public IActionResult Put(int id, User user)
         {
             string query = @"UPDATE dbo.[USER] 
-                     SET UserFirstName = @UserFirstName,
-                         UserLastName = @UserLastName,
-                         UserPhone = @UserPhone,
-                         UserEmail = @UserEmail,
-                         IsAdmin = @IsAdmin,
-                         DateJoined = @DateJoined,
-                         Password = @Password
-                         WHERE UserID = @UserID";
+                             SET FirstName = @FirstName,
+                             LastName = @LastName,
+                             Phone = @Phone,
+                             Email = @Email,
+                             Password = @Password
+                             WHERE UserID = @UserID";
 
             string sqlDataSource = _configuration.GetConnectionString("UserAppCon");
 
@@ -100,12 +96,10 @@ namespace backend.Controllers
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myCommand.Parameters.AddWithValue("@UserID", id);
-                    myCommand.Parameters.AddWithValue("@UserFirstName", user.FirstName);
-                    myCommand.Parameters.AddWithValue("@UserLastName", user.LastName);
-                    myCommand.Parameters.AddWithValue("@UserPhone", user.Phone);
-                    myCommand.Parameters.AddWithValue("@UserEmail", user.Email);
-                    myCommand.Parameters.AddWithValue("@IsAdmin", user.IsAdmin);
-                    myCommand.Parameters.AddWithValue("@DateJoined", user.DateJoined);
+                    myCommand.Parameters.AddWithValue("@FirstName", user.FirstName);
+                    myCommand.Parameters.AddWithValue("@LastName", user.LastName);
+                    myCommand.Parameters.AddWithValue("@Phone", user.Phone);
+                    myCommand.Parameters.AddWithValue("@Email", user.Email);
                     myCommand.Parameters.AddWithValue("@Password", user.Password);
 
                     myCommand.ExecuteNonQuery();
