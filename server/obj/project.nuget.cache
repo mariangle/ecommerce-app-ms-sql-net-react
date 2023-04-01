@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zqkLcTnK13VQlkI+UZlWHnVmfcBFV5YJLFx2UOHtFlHj0Tf+RftC2LoiNWkX/nNeMn+aY9dqEU+1FkpODsfKXg==",
+  "dgSpecHash": "94Jrh4Xthxc/hOGfSW1WvUu/8qKnbXY7PP8LcpEAnn9DP8I1ScHnElFf2ITDHCby+6xBcJTL03EcgVnnaof7DQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\server\\backend.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,7 @@
     "C:\\Users\\45313\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\45313\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\45313\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\45313\\.nuget\\packages\\serilog\\2.12.0\\serilog.2.12.0.nupkg.sha512",
     "C:\\Users\\45313\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\45313\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\45313\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

@@ -82,3 +82,4 @@ C:\Users\45313\Documents\GitHub\Ecommerce\server\obj\Debug\net6.0\refint\backend
 C:\Users\45313\Documents\GitHub\Ecommerce\server\obj\Debug\net6.0\backend.pdb
 C:\Users\45313\Documents\GitHub\Ecommerce\server\obj\Debug\net6.0\backend.genruntimeconfig.cache
 C:\Users\45313\Documents\GitHub\Ecommerce\server\obj\Debug\net6.0\ref\backend.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\server\bin\Debug\net6.0\Serilog.dll
