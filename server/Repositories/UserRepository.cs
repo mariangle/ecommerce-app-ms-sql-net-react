@@ -87,28 +87,35 @@ namespace backend.Repositories
             return user;
         }
 
-        public void AddUser(User user)
+        public bool AddUser(User user)
         {
             string query = @"INSERT INTO dbo.[USER] 
-                           (FirstName, LastName, Phone, Email, Password) 
-                           VALUES (@FirstName, @LastName, @Phone, @Email, @Password)";
+                             (FirstName, LastName, Phone, Email, Password) 
+                             VALUES (@FirstName, @LastName, @Phone, @Email, @Password)";
 
-            using (SqlConnection myCon = new SqlConnection(_connectionString))
+            try
             {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                using (SqlConnection myCon = new SqlConnection(_connectionString))
                 {
-                    myCommand.Parameters.AddWithValue("@FirstName", user.FirstName);
-                    myCommand.Parameters.AddWithValue("@LastName", user.LastName);
-                    myCommand.Parameters.AddWithValue("@Phone", user.Phone);
-                    myCommand.Parameters.AddWithValue("@Email", user.Email);
-                    myCommand.Parameters.AddWithValue("@Password", user.Password);
-                    myCommand.ExecuteNonQuery();
-                    myCon.Close();
+                    myCon.Open();
+                    using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                    {
+                        myCommand.Parameters.AddWithValue("@FirstName", user.FirstName);
+                        myCommand.Parameters.AddWithValue("@LastName", user.LastName);
+                        myCommand.Parameters.AddWithValue("@Phone", user.Phone);
+                        myCommand.Parameters.AddWithValue("@Email", user.Email);
+                        myCommand.Parameters.AddWithValue("@Password", user.Password);
+                        myCommand.ExecuteNonQuery();
+                        myCon.Close();
+                    }
                 }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
-
         public bool UpdateUser(User user)
         {
             string query = @"UPDATE dbo.[USER] 
@@ -143,7 +150,7 @@ namespace backend.Repositories
         public bool DeleteUser(int id)
         {
             string query = @"DELETE FROM dbo.[USER] 
-                     WHERE UserID = @UserID";
+                             WHERE UserID = @UserID";
 
             using (SqlConnection myCon = new SqlConnection(_connectionString))
             {
@@ -160,3 +167,4 @@ namespace backend.Repositories
         }
     }
 }
+

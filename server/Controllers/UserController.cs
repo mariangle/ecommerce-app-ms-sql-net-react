@@ -2,12 +2,6 @@
 using backend.Repositories;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-
 
 namespace backend.Controllers
 {
@@ -45,12 +39,17 @@ namespace backend.Controllers
         [HttpPost]
         public IActionResult Post(User user)
         {
-            _userRepository.AddUser(user);
+            bool added = _userRepository.AddUser(user);
+            if (!added)
+            {
+                return BadRequest("Failed to add user");
+            }
+
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] User updatedUser)
+        public IActionResult Put(int id, User updatedUser)
         {
             bool updated = _userRepository.UpdateUser(updatedUser);
             if (updated)
