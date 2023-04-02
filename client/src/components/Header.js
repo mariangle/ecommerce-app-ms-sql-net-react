@@ -45,11 +45,12 @@ position: sticky;
 }
 h1{
   color: white;
+  font-size: 1.2rem;
 }
 `
 const StyledNav = styled(Container)`
 min-height: 5vh;
-padding: 1.5rem 1rem;
+padding: 1rem 1rem;
 justify-content: space-between;
 align-items: center;
 `;

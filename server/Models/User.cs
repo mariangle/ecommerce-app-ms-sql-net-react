@@ -1,4 +1,6 @@
-﻿namespace backend.Models
+﻿using System.Net;
+
+namespace backend.Models
 {
     public class User
     {
@@ -9,7 +11,11 @@
         public string Phone { get; set; }
         public string Password { get; set; }
 
-        public User(int userId, string firstName, string lastName, string email, string phone, string password)
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string PostalCode { get; set; }
+
+        public User(int userId, string firstName, string lastName, string email, string phone, string password, string address = null, string city = null, string postalCode = null)
         {
             UserID = userId;
             FirstName = firstName;
@@ -17,6 +23,9 @@
             Email = email;
             Phone = phone;
             Password = password;
+            Address = address;
+            City = city;
+            PostalCode = postalCode;
         }
     }
 }

@@ -7,6 +7,9 @@ import { Container, Panel } from '../styles/styles'
 function AdminPanel() {
   return (
     <StyledAdminPanel>
+      <button>Users</button>
+      <button>Products</button>
+      <button>Orders</button>
       <Users />
       <Products />
     </StyledAdminPanel>

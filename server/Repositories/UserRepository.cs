@@ -19,7 +19,7 @@ namespace backend.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            string query = @"SELECT UserID, FirstName, LastName, Phone, Email, Password FROM dbo.[USER]";
+            string query = @"SELECT UserID, FirstName, LastName, Phone, Email, Password, Address, City, PostalCode FROM dbo.[USER]";
 
             DataTable table = new DataTable();
             SqlDataReader myReader;
@@ -44,7 +44,10 @@ namespace backend.Repositories
                     row["LastName"].ToString(),
                     row["Phone"].ToString(),
                     row["Email"].ToString(),
-                    row["Password"].ToString() 
+                    row["Password"].ToString(),
+                    row["Address"] != DBNull.Value ? row["Address"].ToString() : null,
+                    row["City"] != DBNull.Value ? row["City"].ToString() : null,
+                    row["PostalCode"] != DBNull.Value ? row["PostalCode"].ToString() : null
                 ));
             }
             return users;
@@ -52,7 +55,7 @@ namespace backend.Repositories
 
         public User GetById(int userId)
         {
-            string query = @"SELECT UserID, FirstName, LastName, Phone, Email FROM dbo.[USER] WHERE UserID = @UserID";
+            string query = @"SELECT UserID, FirstName, LastName, Phone, Email, Password, Address, City, PostalCode FROM dbo.[USER] WHERE UserID = @UserID";
 
             User user = null;
 
@@ -74,7 +77,10 @@ namespace backend.Repositories
                          reader.GetString(2),
                          reader.GetString(3),
                          reader.GetString(4),
-                         ""
+                         reader.GetString(5),
+                         reader["Address"] != DBNull.Value ? reader.GetString(6) : null,
+                         reader["City"] != DBNull.Value ? reader.GetString(7) : null,
+                         reader["PostalCode"] != DBNull.Value ? reader.GetString(8) : null
                      );
                     }
 
@@ -90,8 +96,8 @@ namespace backend.Repositories
         public bool Add(User user)
         {
             string query = @"INSERT INTO dbo.[USER] 
-                             (FirstName, LastName, Phone, Email, Password) 
-                             VALUES (@FirstName, @LastName, @Phone, @Email, @Password)";
+                             (FirstName, LastName, Phone, Email, Password, Address, City, PostalCode) 
+                             VALUES (@FirstName, @LastName, @Phone, @Email, @Password, @Address, @City, @PostalCode)";
 
             try
             {
@@ -105,6 +111,9 @@ namespace backend.Repositories
                         myCommand.Parameters.AddWithValue("@Email", user.Email);
                         myCommand.Parameters.AddWithValue("@Phone", user.Phone);
                         myCommand.Parameters.AddWithValue("@Password", user.Password);
+                        myCommand.Parameters.AddWithValue("@Address", user.Address);
+                        myCommand.Parameters.AddWithValue("@City", user.City);
+                        myCommand.Parameters.AddWithValue("@PostalCode", user.PostalCode);
                         myCommand.ExecuteNonQuery();
                         myCon.Close();
                     }
@@ -123,7 +132,10 @@ namespace backend.Repositories
                              LastName = @LastName,
                              Phone = @Phone,
                              Email = @Email,
-                             Password = @Password
+                             Password = @Password,
+                             Address = @Address,
+                             City = @City,
+                             PostalCode = @PostalCode
                              WHERE UserID = @UserID";
 
             using (SqlConnection myCon = new SqlConnection(_connectionString))
@@ -137,6 +149,9 @@ namespace backend.Repositories
                     myCommand.Parameters.AddWithValue("@Phone", user.Phone);
                     myCommand.Parameters.AddWithValue("@Email", user.Email);
                     myCommand.Parameters.AddWithValue("@Password", user.Password);
+                    myCommand.Parameters.AddWithValue("@Address", user.Address);
+                    myCommand.Parameters.AddWithValue("@City", user.City);
+                    myCommand.Parameters.AddWithValue("@PostalCode", user.PostalCode);
 
                     int rowsAffected = myCommand.ExecuteNonQuery();
                     myCon.Close();

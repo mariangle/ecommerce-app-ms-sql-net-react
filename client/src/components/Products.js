@@ -6,7 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
   import { fetchProducts } from '../store/reducers/productSlice';
-import { createProduct, updateExistingProduct } from '../store/reducers/productSlice';
+import { createProduct, updateExistingProduct, removeProduct } from '../store/reducers/productSlice';
 
 function Products() {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function Products() {
     fetchData();
   }, [dispatch]);
 
-  const handleProductClick = (productId) => {
+  const handleEditProduct = (productId) => {
     const product = data.find((p) => p.productID === productId);
     setLocalProduct(product);
   };
@@ -54,24 +54,34 @@ function Products() {
       })
   };
 
+  const handleDeleteProduct = (productId) => {
+    setLocalProduct(data.find(product => product.productID === productId));
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      dispatch(removeProduct(productId))
+      .then(() => {
+        window.location.reload();
+        alert("Product has been deleted.")
+      })
+    }
+  };
+
   return (
     <StyledProducts>
         <ProductTable>
             <thead>
                 <tr>
-                <th>ProductID</th>
+                <th>ID</th>
                 <th>Model</th>
                 <th>Options</th>
                 </tr>
             </thead>
             <tbody>
                 {data.map((product, index) => (
-                <tr key={index}>
+                <tr key={index}  onClick={() => handleEditProduct(product.productID)}>
                     <td>{product.productID}</td>
                     <td>{product.brand} {product.name}</td>
                     <td>
-                      <FontAwesomeIcon icon={faTrash} />
-                      <FontAwesomeIcon icon={faPenToSquare}  onClick={() => handleProductClick(product.productID)}/>                    
+                      <FontAwesomeIcon icon={faTrash} onClick={() => handleDeleteProduct(product.productID)}/>
                     </td>
                 </tr>
                 ))}
@@ -83,25 +93,18 @@ function Products() {
             <label htmlFor="">Image</label>
             <Image src={localProduct?.imageURL}></Image>
             <label htmlFor="">ID</label>
-            <input value={localProduct?.productID} readOnly></input>
-
+            <input value={localProduct?.productID} readOnly />
             <label htmlFor="">Model</label>
             <input id="productName" name="name" maxLength="100" value={localProduct?.name || ''} onChange={handleInputChange}/>
-
             <label htmlFor="">Brand</label>
             <input id="productBrand" name="brand" maxLength="50" value={localProduct?.brand || ''} onChange={handleInputChange} />
-
             <label htmlFor="">Description</label>
             <input id="productDescription" name="description" maxLength="500" value={localProduct?.description || ''} onChange={handleInputChange}/>
-
             <label htmlFor="">Image URL</label>
-            <input id="productImageURL" name="imageURL" maxLength="300" value={localProduct?.imageURL || ''} onChange={handleInputChange}></input>
+            <input id="productImageURL" name="imageURL" maxLength="300" value={localProduct?.imageURL || ''} onChange={handleInputChange} />
 
             <button onClick={handleSaveChangesClick}>Save Changes</button>
             <button onClick={handleAddProductClick}>Add Product</button>
-
-
-
 
             <label htmlFor="">Size</label>
             <input value={localProduct?.size}></input>
