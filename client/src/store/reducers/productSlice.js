@@ -9,6 +9,34 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const fetchProductById = createAsyncThunk('products/fetchProductById', async (productId) => {
+  const product = await productApi.getProduct(productId);
+  return product;
+});
+
+export const createProduct = createAsyncThunk('products/createProduct', async (product) => {
+  const createdProduct = await productApi.addProduct(product);
+  return createdProduct;
+});
+
+export const updateExistingProduct = createAsyncThunk(
+  'products/updateExistingProduct',
+  async ({ productId, product }) => {
+    try {
+      const updatedProduct = await productApi.updateProduct(productId, product);
+      return updatedProduct;
+    } catch (error) {
+      console.error('Error updating product: ', error);
+      throw error;
+    }
+  }
+);
+
+export const removeProduct = createAsyncThunk('products/removeProduct', async (productId) => {
+  const deletedProduct = await productApi.deleteProduct(productId);
+  return deletedProduct;
+});
+
 const initialState = {
   products: [], 
   loading: false,
@@ -46,6 +74,7 @@ const productSlice = createSlice({
       state.selectedProduct = state.products.find(
         (product) => product.productID === action.payload
         );
+        console.log(state.selectedProduct)
     },
   },
   extraReducers: (builder) => {

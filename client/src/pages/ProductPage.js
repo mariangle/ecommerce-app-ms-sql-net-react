@@ -30,8 +30,7 @@ function ProductPage() {
           </ProductImages>
           <ProductInfo>
             <h3>
-              {product.brand}
-              <span>{product.name}</span>
+              <span>{product.brand} {product.name}</span>
             </h3>
             <Price>{product.price ? product.price : "0"} kr.</Price>
             <p>Available sizes: </p>
