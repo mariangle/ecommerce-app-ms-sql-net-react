@@ -4,7 +4,7 @@ import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
 import { addToCart } from '../store/reducers/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../store/reducers/productReducer';
+import { fetchProducts } from '../store/reducers/productSlice';
 
 
 function ProductPage() {

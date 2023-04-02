@@ -66,19 +66,16 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
   table{
-    width: 100%;
   }
   th, td {
-    padding: 8px;
+    padding:8px;
   }
   tr{
     th{
+      font-weight: lighter;
       background: var(--color-black);
       text-align: left;
       color: white;
-      th:first-child{
-        width: 20px;
-      } 
     }
     :nth-child(2n){
       background: #f3f3f3;
@@ -88,14 +85,9 @@ const GlobalStyles = createGlobalStyle`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    img{
-      width: 80px;
-      height: 50px;
-    }
   }
 
   td:last-child{
-    padding: 1.5rem;
     height: 100%;
     display: flex;
     align-items: center;

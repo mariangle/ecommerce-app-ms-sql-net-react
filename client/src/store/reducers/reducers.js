@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import cartReducer from './cartReducer';
-import productReducer from './productReducer';
+import productReducer from './productSlice';
 
 const rootReducer = combineReducers({
   cart: cartReducer,

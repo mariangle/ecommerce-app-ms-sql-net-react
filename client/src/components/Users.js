@@ -5,6 +5,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 function Users() {
+
   const [data, setData] = useState([]);
 
   useEffect(() => {

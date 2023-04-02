@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import productApi from '../../utils/api/productApi';
-// import { generateProductData } from '../../productData'
-;
+
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
@@ -11,9 +10,10 @@ export const fetchProducts = createAsyncThunk(
 );
 
 const initialState = {
-  products: [], //generateProductData();
+  products: [], 
   loading: false,
   error: null,
+  status: 'idle',
 };
 
 const productSlice = createSlice({
@@ -44,8 +44,8 @@ const productSlice = createSlice({
     },
     setProduct: (state, action) => {
       state.selectedProduct = state.products.find(
-        (product) => product.id === action.payload
-      );
+        (product) => product.productID === action.payload
+        );
     },
   },
   extraReducers: (builder) => {
@@ -69,6 +69,7 @@ export const {
   setLoad,
   setError,
   removeSelectedProduct,
+  selectedProduct,
   setProduct,
 } = productSlice.actions;
 
