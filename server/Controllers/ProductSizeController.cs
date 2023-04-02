@@ -1,58 +1,56 @@
-using backend.Models;
+﻿using backend.Models;
 using backend.Repositories;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-
 
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("_myAllowSpecificOrigins")]
-
-    public class ProductController : ControllerBase
+    public class ProductSizeController : ControllerBase
     {
-        private readonly IRepository<Product> _productRepository;
+        private readonly IProductSizeRepository<ProductSize> _psRepository;
 
-        public ProductController(IRepository<Product> productRepository)
+        public ProductSizeController(IProductSizeRepository<ProductSize> productSizeRepo)
         {
-            _productRepository = productRepository;
+            _psRepository = productSizeRepo;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Product> products = _productRepository.GetAll();
-            return Ok(products);
+            IEnumerable<ProductSize> productSizes = _psRepository.GetAll();
+            return Ok(productSizes);
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var product = _productRepository.GetById(id);
-            if (product == null)
+            var productSizes = _psRepository.GetById(id);
+            if (productSizes == null)
             {
                 return NotFound();
             }
-            return Ok(product);
+            return Ok(productSizes);
         }
 
         [HttpPost]
-        public IActionResult Post(Product product)
+        public IActionResult Post(ProductSize ps)
         {
-            _productRepository.Add(product);
+            bool added = _psRepository.Add(ps);
+            if (!added)
+            {
+                return BadRequest("Failed to add Product Size");
+            }
+
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Product updatedProduct)
+        public IActionResult Put(ProductSize ps)
         {
-            bool updated = _productRepository.Update(updatedProduct);
+            bool updated = _psRepository.Update(ps);
             if (updated)
             {
                 return Ok();
@@ -66,7 +64,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            bool deleted = _productRepository.Delete(id);
+            bool deleted = _psRepository.Delete(id);
             if (deleted)
             {
                 return Ok();

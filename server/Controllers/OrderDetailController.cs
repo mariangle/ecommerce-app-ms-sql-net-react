@@ -1,6 +1,6 @@
 ﻿namespace backend.Controllers
 {
-    public class ShippingController
+    public class OrderDetailController
     {
     }
 }

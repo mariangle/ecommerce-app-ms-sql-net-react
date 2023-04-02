@@ -47,6 +47,7 @@ public class Startup
         services.AddScoped<UserController>();
         services.AddScoped(typeof(IRepository<>), typeof(UserRepository));
         services.AddScoped(typeof(IRepository<>), typeof(ProductRepository));
+        services.AddScoped(typeof(IProductSizeRepository<>), typeof(ProductSizeRepository));
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

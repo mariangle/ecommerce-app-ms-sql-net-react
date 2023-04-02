@@ -109,9 +109,9 @@ function Products() {
                 <textarea id="productDescription" name="description" maxLength="500" rows="6" value={localProduct?.description || ''} onChange={handleInputChange}></textarea>
               </label>
               <Divider>
-                <button onClick={() => setLocalProduct(null) }>Close</button>
-                <button onClick={handleSaveChangesClick}>Save Changes</button>
-                <button onClick={handleAddProductClick}>Add Product</button>
+                <Button onClick={() => setLocalProduct(null) }>Close</Button>
+                <Button onClick={handleSaveChangesClick}>Save Changes</Button>
+                <Button onClick={handleAddProductClick}>Add Product</Button>
               </Divider>
               </ProductInfo>
               <ProductImage>
@@ -122,49 +122,62 @@ function Products() {
               </ProductImage>
             </ProductDetails>
             <ProductSize>
-              <label>Sizes avaliable</label>
-              <label for="size-select">Add size</label>
-              <select id="size-select">
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
-                <option value="41">41</option>
-                <option value="42">42</option>
-                <option value="43">43</option>
-                <option value="44">44</option>
-                <option value="45">45</option>
-                <option value="46">46</option>
-                <option value="47">47</option>
-                <option value="48">48</option>
-                <option value="49">49</option>
-                <option value="50">50</option>
-              </select>
-              <label htmlFor="">Quantity</label>
-              <input value={localProduct?.quantity}></input>
-              <label htmlFor="">Price</label>
-              <input value={localProduct?.price}></input>
-              <button>Save Changes</button>
-              <button>Add Size</button>
+              <Divider>
+                <label htmlFor="">
+                  select
+                  <select id="size-select">
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                  </select>
+                </label>
+                <label>
+                  Quantity
+                  <input value={localProduct?.quantity}></input>
+                </label>
+                <label>
+                  Price
+                  <input value={localProduct?.price}></input>
+                </label>       
+              </Divider>
+              <Divider>
+                <Button>Save Changes</Button>
+                <Button>Add Size</Button>
+              </Divider>
             </ProductSize>
           </ProductPanel> 
           }
     </StyledProducts>
   );
 }
+
+const Button = styled.button`
+width: 8rem;
+`
 const StyledProducts = styled.div`
 width: 100%;
 display: flex;
-flex-wrap: wrap;
+flex-wrap: wrap-reverse;
 `
 const ProductTable = styled.table`
 flex: 2 1 30rem;
 `
 const ProductPanel = styled.div`
 flex: 3 1 30rem;
-
+margin-left: 2rem;
 `;
 
 
@@ -174,24 +187,26 @@ margin: 0 auto;
 `
 
 const ProductInfo = styled.div`
-flex: 3;
+flex: 1 30rem;
 .label{
   width: 10rem;
 }
 `
 const ProductImage = styled.div`
 height: 100%;
-flex: 2;
+flex: 2 2 30rem;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
 align-items: center;
+margin-left: 1rem;
 `
 
 const Image = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
+  background: #f0f0f0;
 `
 
 const ProductSize = styled.div`
