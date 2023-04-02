@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
   button{
     padding: 1rem 2rem;
     cursor: pointer;
-    margin: 2rem 0rem;
+    margin-top: 2rem;
     background: var(--color-black);
     font-weight: bold;
     color: white;
@@ -30,10 +30,11 @@ const GlobalStyles = createGlobalStyle`
       background: #252525;
     }
   }
-  input{
+  input, textarea{
+    font-family: 'Montserrat', sans-serif;
     width: 100%;
     padding: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   h3{
     font-size: 1.6rem;
@@ -66,6 +67,8 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
   table{
+    width: 100%;
+    box-sizing: border-box;
   }
   th, td {
     padding:8px;
@@ -82,16 +85,16 @@ const GlobalStyles = createGlobalStyle`
     }
   }
   td{
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   td:last-child{
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     text-align: right:
       background: #f3f3f3;
     }

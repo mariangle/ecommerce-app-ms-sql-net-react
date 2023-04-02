@@ -1,17 +1,17 @@
 import productApi from '../utils/api/productApi';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Divider, Container } from '../styles/styles'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
-  import { fetchProducts } from '../store/reducers/productSlice';
+import { fetchProducts } from '../store/reducers/productSlice';
 import { createProduct, updateExistingProduct, removeProduct } from '../store/reducers/productSlice';
 
 function Products() {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
-  const [localProduct, setLocalProduct] = useState({});
+  const [localProduct, setLocalProduct] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -87,52 +87,119 @@ function Products() {
                 ))}
             </tbody>
         </ProductTable>
-        <ProductPanel>
-          
-          {true && <div>
-            <label htmlFor="">Image</label>
-            <Image src={localProduct?.imageURL}></Image>
-            <label htmlFor="">ID</label>
-            <input value={localProduct?.productID} readOnly />
-            <label htmlFor="">Model</label>
-            <input id="productName" name="name" maxLength="100" value={localProduct?.name || ''} onChange={handleInputChange}/>
-            <label htmlFor="">Brand</label>
-            <input id="productBrand" name="brand" maxLength="50" value={localProduct?.brand || ''} onChange={handleInputChange} />
-            <label htmlFor="">Description</label>
-            <input id="productDescription" name="description" maxLength="500" value={localProduct?.description || ''} onChange={handleInputChange}/>
-            <label htmlFor="">Image URL</label>
-            <input id="productImageURL" name="imageURL" maxLength="300" value={localProduct?.imageURL || ''} onChange={handleInputChange} />
-
-            <button onClick={handleSaveChangesClick}>Save Changes</button>
-            <button onClick={handleAddProductClick}>Add Product</button>
-
-            <label htmlFor="">Size</label>
-            <input value={localProduct?.size}></input>
-            <label htmlFor="">Quantity</label>
-            <input value={localProduct?.quantity}></input>
-            <label htmlFor="">Price</label>
-            <label htmlFor="">{localProduct?.brand}</label>
-            <input value={localProduct?.price}></input>
-          </div> 
+          {localProduct && <ProductPanel>
+            <ProductDetails>
+              <ProductInfo>
+                <Divider>
+                <label className="label">
+                  ID
+                  <input value={localProduct?.productID} readOnly />
+                </label>
+                <label>
+                  Brand
+                  <input id="productBrand" name="brand" maxLength="50" value={localProduct?.brand || ''} onChange={handleInputChange} />
+                </label>
+                <label>
+                  Model
+                  <input id="productName" name="name" maxLength="100" value={localProduct?.name || ''} onChange={handleInputChange}/>
+                </label>
+              </Divider>
+              <label htmlFor="">
+                Description
+                <textarea id="productDescription" name="description" maxLength="500" rows="6" value={localProduct?.description || ''} onChange={handleInputChange}></textarea>
+              </label>
+              <Divider>
+                <button onClick={() => setLocalProduct(null) }>Close</button>
+                <button onClick={handleSaveChangesClick}>Save Changes</button>
+                <button onClick={handleAddProductClick}>Add Product</button>
+              </Divider>
+              </ProductInfo>
+              <ProductImage>
+                <Image src={localProduct?.imageURL}/>
+                <label>Image URL
+                  <input id="productImageURL" name="imageURL" maxLength="300" value={localProduct?.imageURL || ''} onChange={handleInputChange} />
+                </label>
+              </ProductImage>
+            </ProductDetails>
+            <ProductSize>
+              <label>Sizes avaliable</label>
+              <label for="size-select">Add size</label>
+              <select id="size-select">
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+                <option value="43">43</option>
+                <option value="44">44</option>
+                <option value="45">45</option>
+                <option value="46">46</option>
+                <option value="47">47</option>
+                <option value="48">48</option>
+                <option value="49">49</option>
+                <option value="50">50</option>
+              </select>
+              <label htmlFor="">Quantity</label>
+              <input value={localProduct?.quantity}></input>
+              <label htmlFor="">Price</label>
+              <input value={localProduct?.price}></input>
+              <button>Save Changes</button>
+              <button>Add Size</button>
+            </ProductSize>
+          </ProductPanel> 
           }
-        </ProductPanel>
     </StyledProducts>
   );
 }
-
 const StyledProducts = styled.div`
 width: 100%;
+display: flex;
+flex-wrap: wrap;
 `
-
 const ProductTable = styled.table`
-
+flex: 2 1 30rem;
 `
 const ProductPanel = styled.div`
+flex: 3 1 30rem;
 
+`;
+
+
+const ProductDetails = styled.div`
+display: flex;
+margin: 0 auto;
 `
+
+const ProductInfo = styled.div`
+flex: 3;
+.label{
+  width: 10rem;
+}
+`
+const ProductImage = styled.div`
+height: 100%;
+flex: 2;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+`
+
 const Image = styled.img`
-height: 200px;
-width: 320px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 `
+
+const ProductSize = styled.div`
+display: flex;
+flex-direction: column;
+`
+
+
+
 
 export default Products;

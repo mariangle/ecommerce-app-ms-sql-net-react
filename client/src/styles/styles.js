@@ -41,5 +41,14 @@ export const About = styled.div`
   }
 `;
 
+export const Divider = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+gap: 1rem;
+label{
+  width: 100%;
+}
+`
 
 

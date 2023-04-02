@@ -24,6 +24,9 @@ function Users() {
           <th>Full Name</th>
           <th>Email</th>
           <th>Phone</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>PostalCode</th>
           <th>Options</th>
         </tr>
       </thead>
@@ -34,6 +37,9 @@ function Users() {
             <td>{user.firstName} {user.lastName}</td>
             <td>{user.email}</td>
             <td>{user.phone}</td>
+            <td>{user.address}</td>
+            <td>{user.city}</td>
+            <td>{user.postalCode}</td>
             <td>
               <FontAwesomeIcon icon={faTrash} />
               <FontAwesomeIcon icon={faPenToSquare} />                    

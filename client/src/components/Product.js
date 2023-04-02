@@ -19,31 +19,19 @@ function ProductCard() {
 
   return (
     <>
-            {data.map((product, index) => (
-              <StyledProductCard key={index}>
-                <Link to={`/${product.productID}`} >
-                <ProductImg>
+        {data.map((product, index) => (
+          <StyledProductCard key={index}>
+            <Link to={`/${product.productID}`} >
+              <ProductImg>
                   <img src={product.imageURL} alt="" />
-                </ProductImg>
-                <ProductInfo>
-                  <h3>{product.brand} {product.name} </h3>
-                  <p>priceplaceholder kr.</p>
-                </ProductInfo>
-                </Link>
-              </StyledProductCard>
+              </ProductImg>
+              <ProductInfo>
+                <h3>{product.brand} {product.name} </h3>
+                <p>priceplaceholder kr.</p>
+              </ProductInfo>
+            </Link>
+          </StyledProductCard>
         ))}
-    {/*    <Link to={`/${id}`}>
-      <StyledProductCard>
-        <ProductImg>
-          <img src={product.images} alt="" />
-        </ProductImg>
-        <ProductInfo>
-          <h3>{product.brand} {product.model} 
-          <span>{product.color} - {product.material}</span></h3>
-          <p>{product.price} kr.</p>
-        </ProductInfo>
-      </StyledProductCard>
-    </Link>*/}
     </>
 
   );

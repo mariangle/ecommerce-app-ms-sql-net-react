@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Container, About } from '../styles/styles'
+import { Container, About, Divider } from '../styles/styles'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import CartItem from "../components/CartItem";
@@ -8,7 +8,7 @@ import { useCartData } from '../utils/hooks/useCartData';
 
 
 function CheckoutPage() {
-  const { cartItems, subtotal, delivery, total } = useCartData();
+  const { subtotal, delivery, total } = useCartData();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
@@ -162,16 +162,6 @@ margin: 1rem 0rem;
 `
 const CartSection = styled.div`
 width: 100%;
-`
-
-const Divider = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-gap: 1rem;
-label{
-  width: 100%;
-}
 `
 
 const Cost = styled.div`
