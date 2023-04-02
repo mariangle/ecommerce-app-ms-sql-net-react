@@ -19,7 +19,7 @@ namespace backend.Repositories
 
         public IEnumerable<User> GetAllUsers()
         {
-            string query = @"SELECT UserID, FirstName, LastName, Phone, Email FROM dbo.[USER]";
+            string query = @"SELECT UserID, FirstName, LastName, Phone, Email, Password FROM dbo.[USER]";
 
             DataTable table = new DataTable();
             SqlDataReader myReader;
@@ -38,14 +38,14 @@ namespace backend.Repositories
             var users = new List<User>();
             foreach (DataRow row in table.Rows)
             {
-                users.Add(new User
-                {
-                    UserID = (int)row["UserID"],
-                    FirstName = row["FirstName"].ToString(),
-                    LastName = row["LastName"].ToString(),
-                    Phone = row["Phone"].ToString(),
-                    Email = row["Email"].ToString()
-                });
+                users.Add(new User(
+                    (int)row["UserID"],
+                    row["FirstName"].ToString(),
+                    row["LastName"].ToString(),
+                    row["Phone"].ToString(),
+                    row["Email"].ToString(),
+                    row["Password"].ToString() 
+                ));
             }
             return users;
         }
@@ -68,14 +68,14 @@ namespace backend.Repositories
 
                     if (reader.Read())
                     {
-                        user = new User
-                        {
-                            UserID = reader.GetInt32(0),
-                            FirstName = reader.GetString(1),
-                            LastName = reader.GetString(2),
-                            Phone = reader.GetString(3),
-                            Email = reader.GetString(4)
-                        };
+                        user = new User(
+                         reader.GetInt32(0),
+                         reader.GetString(1),
+                         reader.GetString(2),
+                         reader.GetString(3),
+                         reader.GetString(4),
+                         ""
+                     );
                     }
 
                     reader.Close();
@@ -102,8 +102,8 @@ namespace backend.Repositories
                     {
                         myCommand.Parameters.AddWithValue("@FirstName", user.FirstName);
                         myCommand.Parameters.AddWithValue("@LastName", user.LastName);
-                        myCommand.Parameters.AddWithValue("@Phone", user.Phone);
                         myCommand.Parameters.AddWithValue("@Email", user.Email);
+                        myCommand.Parameters.AddWithValue("@Phone", user.Phone);
                         myCommand.Parameters.AddWithValue("@Password", user.Password);
                         myCommand.ExecuteNonQuery();
                         myCon.Close();
@@ -141,7 +141,7 @@ namespace backend.Repositories
                     int rowsAffected = myCommand.ExecuteNonQuery();
                     myCon.Close();
 
-                    return rowsAffected > 0; // Return true if rowsAffected is greater than 0
+                    return rowsAffected > 0; 
 
                 }
             }

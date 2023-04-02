@@ -38,14 +38,13 @@ namespace backend.Repositories
             var products = new List<Product>();
             foreach (DataRow row in table.Rows)
             {
-                products.Add(new Product
-                {
-                    ProductID = (int)row["ProductID"],
-                    Name = row["Name"].ToString(),
-                    Brand = row["Brand"].ToString(),
-                    Description = row["Description"].ToString(),
-                    ImageURL = row["ImageURL"].ToString()
-                });
+                products.Add(new Product(
+                    (int)row["ProductID"],
+                    row["Name"].ToString(),
+                    row["Brand"].ToString(),
+                    row["Description"].ToString(),
+                    row["ImageURL"].ToString()
+                ));
             }
             return products;
         }
@@ -68,14 +67,13 @@ namespace backend.Repositories
 
                     if (reader.Read())
                     {
-                        product = new Product
-                        {
-                            ProductID = reader.GetInt32(0),
-                            Name = reader.GetString(1),
-                            Brand = reader.GetString(2),
-                            Description = reader.GetString(3),
-                            ImageURL = reader.GetString(4)
-                        };
+                        product = new Product(
+                         reader.GetInt32(0),
+                         reader.GetString(1),
+                         reader.GetString(2),
+                         reader.GetString(3),
+                         reader.GetString(4)
+                     );
                     }
 
                     reader.Close();

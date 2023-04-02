@@ -7,5 +7,14 @@ namespace backend.Models
         public string Brand { get; set; }
         public string Description { get; set; }
         public string ImageURL { get; set; }  
+
+        public Product(int productID, string name, string brand, string description, string imageURL)
+        {
+            ProductID = productID;
+            Name = name;
+            Brand = brand;
+            Description = description;
+            ImageURL = imageURL;
+        }
     }
 }

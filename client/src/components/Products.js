@@ -55,19 +55,23 @@ function Products() {
         </ProductTable>
         <ProductPanel>
           <h3>Edit Product</h3>
-          <label htmlFor=""></label>
-          <textarea >{}</textarea>
+          <label htmlFor="">Brand</label>
+          <input placeholder={selectedProduct?.productID}></input>
+          <label htmlFor="">Brand</label>
+          <input placeholder={selectedProduct?.brand}></input>
           <label htmlFor="">Model</label>
-          <textarea></textarea>
+          <input placeholder={selectedProduct?.name}></input>
           <label htmlFor="">Description</label>
-          <textarea />
+          <input placeholder={selectedProduct?.description}></input>
           <label htmlFor="">Image URL</label>
-          <textarea />
-          <label htmlFor="">SizeID</label>
-          <textarea />
+          <input placeholder={selectedProduct?.imageURL}></input>
+          <button>Save Changes</button>
+          <label htmlFor="">Size</label>
+          <input placeholder={selectedProduct?.price}></input>
           <label htmlFor="">Quantity</label>
-          <textarea />
-          <label htmlFor="">{selectedProduct?.brand}</label>
+          <input placeholder={selectedProduct?.price}></input>
+          <label htmlFor="">Price</label>
+          <input type="date"></input>
 
         </ProductPanel>
     </StyledProducts>
