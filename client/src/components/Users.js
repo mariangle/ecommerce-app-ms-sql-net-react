@@ -1,7 +1,10 @@
 import userApi from '../utils/api/userApi';
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
-function UserTable() {
+function Users() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -16,21 +19,24 @@ function UserTable() {
     <table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
+          <th>UserID</th>
+          <th>Full Name</th>
           <th>Email</th>
           <th>Phone</th>
+          <th>Options</th>
         </tr>
       </thead>
       <tbody>
         {data.map((user, index) => (
           <tr key={index}>
             <td>{user.userID}</td>
-            <td>{user.firstName}</td>
-            <td>{user.lastName}</td>
+            <td>{user.firstName} {user.lastName}</td>
             <td>{user.email}</td>
             <td>{user.phone}</td>
+            <td>
+              <FontAwesomeIcon icon={faTrash} />
+              <FontAwesomeIcon icon={faPenToSquare} />                    
+            </td>
           </tr>
         ))}
       </tbody>
@@ -38,4 +44,4 @@ function UserTable() {
   );
 }
 
-export default UserTable;
+export default Users;

@@ -65,6 +65,44 @@ const GlobalStyles = createGlobalStyle`
     -webkit-appearance: none;
     margin: 0;
   }
+  table{
+    width: 100%;
+  }
+  th, td {
+    padding: 8px;
+  }
+  tr{
+    th{
+      background: var(--color-black);
+      text-align: left;
+      color: white;
+      th:first-child{
+        width: 20px;
+      } 
+    }
+    :nth-child(2n){
+      background: #f3f3f3;
+    }
+  }
+  td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    img{
+      width: 80px;
+      height: 50px;
+    }
+  }
+
+  td:last-child{
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right:
+      background: #f3f3f3;
+    }
 `;
 
 export default GlobalStyles;

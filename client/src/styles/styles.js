@@ -40,3 +40,6 @@ export const About = styled.div`
   margin-left: 0rem;
   }
 `;
+
+
+
