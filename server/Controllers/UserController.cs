@@ -11,9 +11,9 @@ namespace backend.Controllers
 
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IRepository<User> _userRepository;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
         }
@@ -21,14 +21,14 @@ namespace backend.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<User> users = _userRepository.GetAllUsers();
+            IEnumerable<User> users = _userRepository.GetAll();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var user = _userRepository.GetUserById(id);
+            var user = _userRepository.GetById(id);
             if (user == null)
             {
                 return NotFound();
@@ -39,7 +39,7 @@ namespace backend.Controllers
         [HttpPost]
         public IActionResult Post(User user)
         {
-            bool added = _userRepository.AddUser(user);
+            bool added = _userRepository.Add(user);
             if (!added)
             {
                 return BadRequest("Failed to add user");
@@ -51,7 +51,7 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, User updatedUser)
         {
-            bool updated = _userRepository.UpdateUser(updatedUser);
+            bool updated = _userRepository.Update(updatedUser);
             if (updated)
             {
                 return Ok();
@@ -65,7 +65,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            bool deleted = _userRepository.DeleteUser(id);
+            bool deleted = _userRepository.Delete(id);
             if (deleted)
             {
                 return Ok();

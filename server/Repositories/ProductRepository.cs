@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace backend.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : IRepository<Product>
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
@@ -17,7 +17,7 @@ namespace backend.Repositories
             _connectionString = _configuration.GetConnectionString("UserAppCon");
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> GetAll()
         {
             string query = @"SELECT ProductID, Name, Brand, Description, ImageURL FROM dbo.PRODUCT";
 
@@ -49,7 +49,7 @@ namespace backend.Repositories
             return products;
         }
 
-        public Product GetProductById(int productId)
+        public Product GetById(int productId)
         {
             string query = @"SELECT ProductID, Name, Brand, Description, ImageURL FROM dbo.PRODUCT WHERE ProductID = @ProductID";
 
@@ -85,7 +85,7 @@ namespace backend.Repositories
             return product;
         }
 
-        public bool AddProduct(Product product)
+        public bool Add(Product product)
         {
             string query = @"INSERT INTO dbo.PRODUCT 
                              (Name, Brand, Description, ImageURL) 
@@ -113,7 +113,7 @@ namespace backend.Repositories
                 return false;
             }
         }
-        public bool UpdateProduct(Product product)
+        public bool Update(Product product)
         {
             string query = @"UPDATE dbo.[PRODUCT] 
                              SET Name = @Name,
@@ -136,13 +136,13 @@ namespace backend.Repositories
                     int rowsAffected = myCommand.ExecuteNonQuery();
                     myCon.Close();
 
-                    return rowsAffected > 0; // Return true if rowsAffected is greater than 0
+                    return rowsAffected > 0; 
 
                 }
             }
         }
 
-        public bool DeleteProduct(int productId)
+        public bool Delete(int productId)
         {
             string query = @"DELETE FROM dbo.PRODUCT 
                      WHERE ProductID = @ProductID";

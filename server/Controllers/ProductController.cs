@@ -17,9 +17,9 @@ namespace backend.Controllers
 
     public class ProductController : ControllerBase
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IRepository<Product> _productRepository;
 
-        public ProductController(IProductRepository userRepository)
+        public ProductController(IRepository<Product> userRepository)
         {
             _productRepository = userRepository;
         }
@@ -27,14 +27,14 @@ namespace backend.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Product> products = _productRepository.GetAllProducts();
+            IEnumerable<Product> products = _productRepository.GetAll();
             return Ok(products);
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var product = _productRepository.GetProductById(id);
+            var product = _productRepository.GetById(id);
             if (product == null)
             {
                 return NotFound();
@@ -45,14 +45,14 @@ namespace backend.Controllers
         [HttpPost]
         public IActionResult Post(Product product)
         {
-            _productRepository.AddProduct(product);
+            _productRepository.Add(product);
             return Ok();
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, Product updatedProduct)
         {
-            bool updated = _productRepository.UpdateProduct(updatedProduct);
+            bool updated = _productRepository.Update(updatedProduct);
             if (updated)
             {
                 return Ok();
@@ -66,7 +66,7 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            bool deleted = _productRepository.DeleteProduct(id);
+            bool deleted = _productRepository.Delete(id);
             if (deleted)
             {
                 return Ok();

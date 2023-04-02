@@ -45,8 +45,8 @@ public class Startup
 
         services.AddControllers();
         services.AddScoped<UserController>();
-        services.AddScoped<IUserRepository, UserRepository>();
-
+        services.AddScoped(typeof(IRepository<>), typeof(UserRepository));
+        services.AddScoped(typeof(IRepository<>), typeof(ProductRepository));
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -70,7 +70,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        var userRepository = app.ApplicationServices.GetService<IUserRepository>();
+        // var userRepository = app.ApplicationServices.GetService<IUserRepository>();
 
         app.UseEndpoints(endpoints =>
         {

@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace backend.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : IRepository<User>
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
@@ -17,7 +17,7 @@ namespace backend.Repositories
             _connectionString = _configuration.GetConnectionString("UserAppCon");
         }
 
-        public IEnumerable<User> GetAllUsers()
+        public IEnumerable<User> GetAll()
         {
             string query = @"SELECT UserID, FirstName, LastName, Phone, Email, Password FROM dbo.[USER]";
 
@@ -50,7 +50,7 @@ namespace backend.Repositories
             return users;
         }
 
-        public User GetUserById(int userId)
+        public User GetById(int userId)
         {
             string query = @"SELECT UserID, FirstName, LastName, Phone, Email FROM dbo.[USER] WHERE UserID = @UserID";
 
@@ -87,7 +87,7 @@ namespace backend.Repositories
             return user;
         }
 
-        public bool AddUser(User user)
+        public bool Add(User user)
         {
             string query = @"INSERT INTO dbo.[USER] 
                              (FirstName, LastName, Phone, Email, Password) 
@@ -116,7 +116,7 @@ namespace backend.Repositories
                 return false;
             }
         }
-        public bool UpdateUser(User user)
+        public bool Update(User user)
         {
             string query = @"UPDATE dbo.[USER] 
                              SET FirstName = @FirstName,
@@ -147,7 +147,7 @@ namespace backend.Repositories
             }
         }
 
-        public bool DeleteUser(int id)
+        public bool Delete(int id)
         {
             string query = @"DELETE FROM dbo.[USER] 
                              WHERE UserID = @UserID";
