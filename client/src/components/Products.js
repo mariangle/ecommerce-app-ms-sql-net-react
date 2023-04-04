@@ -35,7 +35,7 @@ function Products() {
     };
     dispatch(createProduct(newProduct))
     .then(() => {
-      window.location.reload();
+      setData([...data, newProduct]);
       alert("Product has been added.")
     })
   };
@@ -48,7 +48,7 @@ function Products() {
   const handleSaveChanges = () => {
     dispatch(updateExistingProduct({ productId: localProduct.productID, product: localProduct }))
       .then(() => {
-        window.location.reload();
+        setData(data.map(p => p.productID === localProduct.productID ? localProduct : p));
         alert("Changes have been saved.")
       })
   };
@@ -58,7 +58,7 @@ function Products() {
     if (window.confirm("Are you sure you want to delete this product?")) {
       dispatch(removeProduct(productId))
       .then(() => {
-        window.location.reload();
+        setData(data.filter(p => p.productID !== productId));
         alert("Product has been deleted.")
       })
     }

@@ -28,7 +28,6 @@ function ProductSizes({localProduct}) {
       };
       await dispatch(createProductSize(newSize));
       setAvailableSizes([...availableSizes, newSize]);
-      console.log(newSize)
       alert('Size has been added.');
     };
   
@@ -65,12 +64,11 @@ function ProductSizes({localProduct}) {
       setAvailableSizes(updatedSizes);
     }
 
-    const handeDeleteProductSize = (productSizeId) => {
-      console.log(productSizeId)
+    const handeDeleteProductSize = (productSizeId, event) => {
+      event.preventDefault()
       if (window.confirm("Are you sure you want to delete this size?")) {
         dispatch(deleteSize(productSizeId))
           .then(() => {
-            window.location.reload();
             alert("Product size has been deleted.")
           })
       }
