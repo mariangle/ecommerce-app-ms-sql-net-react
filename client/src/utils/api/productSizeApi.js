@@ -14,12 +14,13 @@ export const getProductSizesByProductId = async (productId) => {
 };
 
 const addProductSize = async (productSizeData) => {
+  console.log("API" + productSizeData)
   const response = await axios.post(`${API_URL}`, productSizeData);
   return response.data;
 };
 
-const updateProductSize = async (productId, productSize) => {
-  const response = await axios.put(`${API_URL}/${productId}`, productSize);
+const updateProductSize = async (productSizeId, productSizeData) => {
+  const response = await axios.put(`${API_URL}/${productSizeId}`, productSizeData);
   return response.data;
 };
 

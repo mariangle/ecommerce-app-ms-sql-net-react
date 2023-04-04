@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { removeFromCart, updateQuantity } from '../store/reducers/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { setPrice } from '../store/reducers/productSlice';
 
 function CartItem() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { items: cartItems } = useSelector(state => state.cart);
+
+  
 
   let modify = false;
 
@@ -59,7 +62,7 @@ function CartItem() {
               }
             </ItemDetails>
               <ItemPrice>
-                <p>{item.product.price * item.quantity} kr.</p>
+                <p>{item.price} kr.</p>
                 { modify && 
                 <a onClick={() => handleRemoveFromCart(item.product.id, item.size)}>x</a>
                 }

@@ -10,12 +10,13 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      const { product, size, quantity = 1 } = action.payload; // set default quantity property
+      const { product, size, quantity = 1, price } = action.payload; // set default quantity property
+      console.log(price)
       const existingItem = state.items.find(item => item.product.id === product.id && item.size === size);
       if (existingItem) { 
         existingItem.quantity += quantity;
       } else {
-        state.items.push({ product, size, quantity }); 
+        state.items.push({ product, size, quantity, price }); 
       }
     },
     removeFromCart: (state, action) => {
@@ -32,7 +33,7 @@ const cartSlice = createSlice({
     calculateSubtotal: (state) => {
       let subtotal = 0;
       state.items.forEach((item) => { 
-        subtotal += item.product.price * item.quantity;
+        subtotal += item.price * item.quantity;
       });
       state.subtotal = subtotal;
     },

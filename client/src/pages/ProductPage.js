@@ -34,7 +34,7 @@ function ProductPage() {
   }, [product]);
 
   function handleAddToCart() {
-    dispatch(addToCart({ product: product, size: selectedSize.size }));
+    dispatch(addToCart({ product: product, size: selectedSize.size, price: selectedSize.price }));
   }
 
   return (
@@ -55,7 +55,7 @@ function ProductPage() {
             </Price>
             <p>Avaliable Sizes:</p>
             <SizesGrid>
-              {availableSizes.map((productSize, index) => {
+              {availableSizes.sort((a, b) => a.size - b.size).map((productSize, index) => {
                 return (
                   <Size className="size" key={index}>
                     <input
@@ -65,7 +65,7 @@ function ProductPage() {
                       value={productSize}
                       onChange={() => setSelectedSize(productSize)}
                     />
-                    <label htmlFor={`size-${index}`}>{productSize.size}</label>
+                    <label htmlFor={`size-${index}`}>EU {productSize.size}</label>
                   </Size>
                 );
               })}

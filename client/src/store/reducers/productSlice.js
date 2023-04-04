@@ -49,6 +49,12 @@ const productSlice = createSlice({
   status: "idle",
   initialState,
   reducers: {
+    setPrice: (state, action) => {
+      const { id, size, price } = action.payload;
+      state[id] = state[id] || {};
+      state[id][size] = price;
+    },
+  },
     loadProducts: async (state) => {
       state.loading = true;
       try {
@@ -76,8 +82,7 @@ const productSlice = createSlice({
         );
         console.log(state.selectedProduct)
     },
-  },
-  extraReducers: (builder) => {
+    extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
         state.status = 'loading';
@@ -100,6 +105,7 @@ export const {
   removeSelectedProduct,
   selectedProduct,
   setProduct,
+  setPrice
 } = productSlice.actions;
 
 export default productSlice.reducer;

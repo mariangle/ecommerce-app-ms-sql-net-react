@@ -6,128 +6,151 @@ import { useEffect, useState } from 'react';
 import productSizeApi from '../utils/api/productSizeApi';
 import { deleteSize, createProductSize, updateExistingSize } from '../store/reducers/productSizeSlice';
 
-function ProductSizes({localProduct}) {
-    const dispatch = useDispatch();
-    const [availableSizes, setAvailableSizes] = useState([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        const productSizes = await productSizeApi.getProductSizesByProductId(localProduct.productID);
-        setAvailableSizes(productSizes);
-      };
-      fetchData();
-    }, [localProduct.productID]);
-  
-    const handleAddProductSize = async (event) => {
-      event.preventDefault()
-      const newSize = {
-        size: document.getElementById('size').value,
-        price: document.getElementById('price').value,
-        quantity: document.getElementById('quantity').value,
-        productId: localProduct.productID,
-      };
-      await dispatch(createProductSize(newSize));
-      setAvailableSizes([...availableSizes, newSize]);
-      alert('Size has been added.');
-    };
-  
-    const handleEditProductSize = async (updatedProductSize) => {
-      try {
-        const updatedSize = await dispatch(updateExistingSize({
-          productId: localProduct.productID,
-          product: updatedProductSize,
-        }));
-        const updatedAvailableSizes = availableSizes.map((size) => {
-          if (size.id === updatedSize.id) {
-            return updatedSize;
-          } else {
-            return size;
-          }
-        });
-        setAvailableSizes(updatedAvailableSizes);
-        alert('Size has been updated.');
-      } catch (error) {
-        console.error('Error updating size: ', error);
-        alert('Error updating size. Please try again.');
-      }
-    };
-  
-    const handlePriceChange = (index, value) => {
-      const updatedSizes = [...availableSizes];
-      updatedSizes[index].price = value;
-      setAvailableSizes(updatedSizes);
-    }
-  
-    const handleQuantityChange = (index, value) => {
-      const updatedSizes = [...availableSizes];
-      updatedSizes[index].quantity = value;
-      setAvailableSizes(updatedSizes);
-    }
+function ProductSizes({ localProduct }) {
+  const dispatch = useDispatch();
+  const [availableSizes, setAvailableSizes] = useState([]);
+  const [newSize, setNewSize] = useState({
+    size: "",
+    price: "",
+    quantity: "",
+  });
 
-    const handeDeleteProductSize = (productSizeId, event) => {
-      event.preventDefault()
-      if (window.confirm("Are you sure you want to delete this size?")) {
-        dispatch(deleteSize(productSizeId))
-          .then(() => {
-            alert("Product size has been deleted.")
-          })
-      }
+  useEffect(() => {
+    const fetchData = async () => {
+      const productSizes = await productSizeApi.getProductSizesByProductId(
+        localProduct.productID
+      );
+      setAvailableSizes(productSizes);
     };
-  
-  
-    return (
-      <div>
-        <AvaliableSizes>
-          <table>
-            <thead>
-              <tr>
-                <th>Size</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Options</th>
+    fetchData();
+  }, [localProduct.productID]);
+
+  const handleAddProductSize = async (event) => {
+    event.preventDefault();
+    const createdSize = await dispatch(createProductSize({
+      ...newSize,
+      productId: localProduct.productID,
+    }));    
+    console.log(localProduct.productID)
+    setAvailableSizes([...availableSizes, createdSize]);
+    setNewSize({
+      size: "",
+      price: "",
+      quantity: "",
+    });
+    alert("Size has been added.");
+  };
+
+  const handleEditProductSize = async (productSizeId, updatedProductSize) => {
+    try {
+      const updatedSize = await dispatch(
+        updateExistingSize({
+          productSizeId: productSizeId,
+          productSize: updatedProductSize,
+        })
+      );
+      const updatedAvailableSizes = availableSizes.map((size) =>
+        size.id === updatedSize.id ? updatedSize : size
+      );
+      setAvailableSizes(updatedAvailableSizes);
+      alert("Size has been updated.");
+    } catch (error) {
+      console.error("Error updating size: ", error);
+      alert("Error updating size. Please try again.");
+    }
+  };
+
+  const handlePriceChange = (index, value) => {
+    const updatedSizes = [...availableSizes];
+    updatedSizes[index].price = value;
+    setAvailableSizes(updatedSizes);
+  };
+
+  const handleQuantityChange = (index, value) => {
+    const updatedSizes = [...availableSizes];
+    updatedSizes[index].quantity = value;
+    setAvailableSizes(updatedSizes);
+  };
+
+  const handleDeleteProductSize = (productSizeId, event) => {
+    event.preventDefault();
+    if (window.confirm("Are you sure you want to delete this size?")) {
+      dispatch(deleteSize(productSizeId)).then(() => {
+        alert("Product size has been deleted.");
+      });
+    }
+  };
+
+  const handleNewSizeChange = (event) => {
+    setNewSize({
+      ...newSize,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  return (
+    <div>
+      <AvaliableSizes>
+        <table>
+          <thead>
+            <tr>
+              <th>Size</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <select id="size" value={newSize.size} onChange={(e) => setNewSize({ ...newSize, size: e.target.value })}>
+                  <option disabled value="">Select a size</option>
+                  {Array.from({ length: 16 }, (_, i) => i + 35)
+                    .filter((size) => !availableSizes.find((ps) => ps.size === size))
+                    .map((size, index) => (
+                      <option key={index} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                </select>
+              </td>
+              <td>
+                <input id="price" value={newSize.price} onChange={(e) => setNewSize({ ...newSize, price: e.target.value })} />
+              </td>
+              <td>
+                <input id="quantity" value={newSize.quantity} onChange={(e) => setNewSize({ ...newSize, quantity: e.target.value })} />
+              </td>
+              <td>
+                <button onClick={handleAddProductSize}>Add</button>
+              </td>
+            </tr>
+            {availableSizes.sort((a, b) => a.size - b.size).map((productSize, index) => (
+              <tr key={index}>
+                <td>{productSize.size}</td>
+                <td>
+                  <input
+                    value={productSize.price}
+                    onChange={(e) => handlePriceChange(index, e.target.value)}
+                  />
+                </td>
+                <td>
+                  <input
+                    value={productSize.quantity}
+                    onChange={(e) => handleQuantityChange(index, e.target.value)}
+                  />
+                </td>
+                <td>
+                  <a onClick={() => handleDeleteProductSize(productSize.productSizeID)}>Delete</a>
+                  <a onClick={() => handleEditProductSize(productSize.productSizeID, productSize)}>Save</a>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {availableSizes.map((productSize, index) => (
-                <tr key={index}>
-                  <td>{productSize.size}</td>
-                  <td>
-                    <input
-                      value={productSize.price}
-                      onChange={(e) => handlePriceChange(index, e.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      value={productSize.quantity}
-                      onChange={(e) => handleQuantityChange(index, e.target.value)}
-                    />
-                  </td>
-                  <td>
-                    <a href="#" onClick={() => handeDeleteProductSize(productSize.productSizeID)}>delete</a>
-                    <a href="#" onClick={() => handleEditProductSize(productSize.productID)}>save</a>
-                  </td>
-                </tr>
-              ))}
-                <tr>
-                    <td>
-                        <select id="size">
-                            {Array.from({length: 16}, (_, i) => i + 35)
-                                .filter(size => !availableSizes.find(ps => ps.size === size))
-                                .map((size, index) => (
-                                <option key={index} value={size}>{size}</option>
-                            ))}
-                        </select>   
-                    </td>
-                    <td><input id="price"></input></td>
-                    <td><input id="quantity"></input></td>
-                    <td><a href="" onClick={handleAddProductSize}>add</a></td>
-                </tr>
-                </tbody>
-            </table>
-        </AvaliableSizes>
+            ))}
+          </tbody>
+        </table>
+      </AvaliableSizes>
     </div>
-  )
+  );
+  
 }
 
 const AvaliableSizes = styled.div`

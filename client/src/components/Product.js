@@ -13,27 +13,24 @@ function ProductCard() {
     async function fetchProducts() {
       try {
         const products = await productApi.getProducts();
-        const productsWithSizes = await Promise.all(
-          products.map(async (product) => {
-            const productSizes = await getProductSizesByProductId(product.productID);
-            const lowestPrice = productSizes.reduce((minPrice, productSize) => {
-              return productSize.price < minPrice ? productSize.price : minPrice;
-            }, Infinity);
-            return { ...product, lowestPrice, productSizes };
-          })
-        );
+        const productsWithSizes = await Promise.all(products.map(async (product) => {
+          const productSizes = await getProductSizesByProductId(product.productID);
+          const lowestPrice = Math.min(...productSizes.map((size) => size.price));
+          return { ...product, lowestPrice, productSizes };
+        }));
         setProducts(productsWithSizes);
       } catch (error) {
         console.error(error);
       }
     }
+  
     fetchProducts();
   }, []);
 
   function renderProductCard(product, index) {
-    if (!product.productSizes) {
+    /*if (!product.productSizes) {
       return null;
-    }
+    }*/
     const productSize = product.productSizes.find((ps) => ps.quantity > 0);
     if (!productSize) {
       return null;
@@ -47,7 +44,7 @@ function ProductCard() {
           </ProductImg>
           <ProductInfo>
             <h3>{product.brand} {product.name}</h3>
-            <p>{price} kr.</p>
+            <p>{price} kr</p>
           </ProductInfo>
         </Link>
       </StyledProductCard>
