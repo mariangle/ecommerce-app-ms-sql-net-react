@@ -1,7 +1,7 @@
 import productApi from '../utils/api/productApi';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Divider, Container } from '../styles/styles'; 
+import { Divider, Container, Image, About } from '../styles/styles'; 
 import ProductSizes from './ProductSizes';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from '../store/reducers/productSlice';
@@ -66,6 +66,7 @@ function Products() {
 
   return (
     <StyledProducts>
+
         <ProductTable>
             <thead>
                 <tr>
@@ -86,9 +87,8 @@ function Products() {
             <ProductDetails>
               <ProductInfo>
                 <Divider>
-                <label className="label">
-                  ID
-                  <input value={localProduct?.productID} readOnly />
+                <label>
+                  ID: {localProduct?.productID}
                 </label>
                 <label>
                   Brand
@@ -105,17 +105,12 @@ function Products() {
               </label>
               <Divider>
                 <button onClick={() => setLocalProduct(null) }>Close</button>
-                <button onClick={handleSaveChanges}>Save Changes</button>
-                <button onClick={handleAddProduct}>Add Product</button>
-                <button onClick={() => handleDeleteProduct(localProduct?.productID)}>Delete Product</button>
+                <button onClick={handleSaveChanges}>Save</button>
+                <button onClick={handleAddProduct}>Add</button>
+                <button onClick={() => handleDeleteProduct(localProduct?.productID)}>Delete</button>
               </Divider>
               </ProductInfo>
-              <ProductImage>
-                <Image src={localProduct?.imageURL}/>
-                <label>Image URL
-                  <input id="productImageURL" name="imageURL" maxLength="300" value={localProduct?.imageURL || ''} onChange={handleInputChange} />
-                </label>
-              </ProductImage>
+
             </ProductDetails>
             <ProductSizes localProduct={localProduct} />
           </ProductPanel> 
@@ -127,43 +122,19 @@ function Products() {
 
 const StyledProducts = styled.div`
 width: 100%;
-display: flex;
-flex-wrap: wrap-reverse;
 `
 const ProductTable = styled.table`
-flex: 2 1 30rem;
 `
 const ProductPanel = styled.div`
-flex: 3 1 30rem;
-`;
-
+position: fixed;
+top: 50%;
+right: 0;
+`
 
 const ProductDetails = styled.div`
-display: flex;
-margin: 0 auto;
 `
 
 const ProductInfo = styled.div`
-flex: 1 30rem;
-.label{
-  width: 10rem;
-}
-`
-const ProductImage = styled.div`
-height: 100%;
-flex: 2 2 30rem;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-align-items: center;
-margin-left: 1rem;
-`
-
-const Image = styled.img`
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  background: #f0f0f0;
 `
 
 

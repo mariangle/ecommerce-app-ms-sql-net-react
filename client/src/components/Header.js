@@ -19,7 +19,7 @@ function Header() {
         <Link to="/"><h1>STORE</h1></Link>
         <NavLinks>
           <li>
-            <Link to="/authentication">
+            <Link to="/admin">
               <FontAwesomeIcon className="icon" icon={faUser} style={{ color: "white" }} />
             </Link>
           </li>

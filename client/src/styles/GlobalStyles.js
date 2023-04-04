@@ -81,7 +81,7 @@ const GlobalStyles = createGlobalStyle`
       color: white;
     }
     :nth-child(2n){
-      background: #a2d2f0;
+      background: #e7e7e7;
     }
   }
   td{
@@ -89,6 +89,31 @@ const GlobalStyles = createGlobalStyle`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  @media only screen and (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  th {
+    text-align: center;
+  }
+
+  td {
+    border-bottom: none;
+  }
+
+  td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+}
 `;
 
 export default GlobalStyles;

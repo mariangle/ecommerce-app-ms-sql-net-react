@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { removeFromCart, updateQuantity } from '../store/reducers/cartReducer';
+import { removeFromCart, updateQuantity } from '../store/reducers/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { setPrice } from '../store/reducers/productSlice';

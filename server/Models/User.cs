@@ -27,5 +27,9 @@ namespace backend.Models
             City = city;
             PostalCode = postalCode;
         }
+        public bool CheckPassword(string password)
+        {
+            return Password == password; // temporary
+        }
     }
 }

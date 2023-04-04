@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateSubtotal, getTotal, updateDeliveryCost } from '../../store/reducers/cartReducer';
+import { calculateSubtotal, getTotal, updateDeliveryCost } from '../../store/reducers/cartSlice';
 
 export const useCartData = () => {
   const dispatch = useDispatch();

@@ -81,15 +81,8 @@ function ProductSizes({ localProduct }) {
     }
   };
 
-  const handleNewSizeChange = (event) => {
-    setNewSize({
-      ...newSize,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   return (
-    <div>
+    <>
       <AvaliableSizes>
         <table>
           <thead>
@@ -104,7 +97,7 @@ function ProductSizes({ localProduct }) {
             <tr>
               <td>
                 <select id="size" value={newSize.size} onChange={(e) => setNewSize({ ...newSize, size: e.target.value })}>
-                  <option disabled value="">Select a size</option>
+                  <option disabled value="">Add size</option>
                   {Array.from({ length: 16 }, (_, i) => i + 35)
                     .filter((size) => !availableSizes.find((ps) => ps.size === size))
                     .map((size, index) => (
@@ -115,13 +108,13 @@ function ProductSizes({ localProduct }) {
                 </select>
               </td>
               <td>
-                <input id="price" value={newSize.price} onChange={(e) => setNewSize({ ...newSize, price: e.target.value })} />
+                <input id="price" type="number" value={newSize.price} onChange={(e) => setNewSize({ ...newSize, price: e.target.value })} />
               </td>
               <td>
-                <input id="quantity" value={newSize.quantity} onChange={(e) => setNewSize({ ...newSize, quantity: e.target.value })} />
+                <input id="quantity" type="number" value={newSize.quantity} onChange={(e) => setNewSize({ ...newSize, quantity: e.target.value })} />
               </td>
               <td>
-                <button onClick={handleAddProductSize}>Add</button>
+                <a onClick={handleAddProductSize}>+</a>
               </td>
             </tr>
             {availableSizes.sort((a, b) => a.size - b.size).map((productSize, index) => (
@@ -148,7 +141,7 @@ function ProductSizes({ localProduct }) {
           </tbody>
         </table>
       </AvaliableSizes>
-    </div>
+    </>
   );
   
 }

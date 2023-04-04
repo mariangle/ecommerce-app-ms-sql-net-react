@@ -36,7 +36,7 @@ span{
   width: 20px;
   text-align: center;
   border-radius: 50%;
-  background: #b80000;
+  background: #d30000;
   color: white;
   font-size: 0.8rem;
   position: absolute;

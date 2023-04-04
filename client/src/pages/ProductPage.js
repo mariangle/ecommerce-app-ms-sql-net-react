@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
-import { addToCart } from '../store/reducers/cartReducer';
+import { addToCart } from '../store/reducers/cartSlice.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/reducers/productSlice';
 import { getProductSizesByProductId } from '../utils/api/productSizeApi';
