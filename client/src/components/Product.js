@@ -4,38 +4,59 @@ import { Link } from 'react-router-dom';
 import { Image } from '../styles/styles';
 import { useEffect, useState } from 'react';
 import productApi from '../utils/api/productApi';
-
+import { getProductSizesByProductId } from '../utils/api/productSizeApi';
 
 function ProductCard() {
-  const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const products = await productApi.getProducts();
-      setData(products);
-    };
-    fetchData();
+    async function fetchProducts() {
+      try {
+        const products = await productApi.getProducts();
+        const productsWithSizes = await Promise.all(
+          products.map(async (product) => {
+            const productSizes = await getProductSizesByProductId(product.productID);
+            const lowestPrice = productSizes.reduce((minPrice, productSize) => {
+              return productSize.price < minPrice ? productSize.price : minPrice;
+            }, Infinity);
+            return { ...product, lowestPrice, productSizes };
+          })
+        );
+        setProducts(productsWithSizes);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchProducts();
   }, []);
 
-  return (
-    <>
-        {data.map((product, index) => (
-          <StyledProductCard key={index}>
-            <Link to={`/${product.productID}`} >
-              <ProductImg>
-                  <img src={product.imageURL} alt="" />
-              </ProductImg>
-              <ProductInfo>
-                <h3>{product.brand} {product.name} </h3>
-                <p>priceplaceholder kr.</p>
-              </ProductInfo>
-            </Link>
-          </StyledProductCard>
-        ))}
-    </>
+  function renderProductCard(product, index) {
+    if (!product.productSizes) {
+      return null;
+    }
+    const productSize = product.productSizes.find((ps) => ps.quantity > 0);
+    if (!productSize) {
+      return null;
+    }
+    const { price } = productSize;
+    return (
+      <StyledProductCard key={index}>
+        <Link to={`/${product.productID}`}>
+          <ProductImg>
+            <img src={product.imageURL} alt="" />
+          </ProductImg>
+          <ProductInfo>
+            <h3>{product.brand} {product.name}</h3>
+            <p>{price} kr.</p>
+          </ProductInfo>
+        </Link>
+      </StyledProductCard>
+    );
+  }
 
-  );
+  return <>{products.map(renderProductCard)}</>;
 }
+
 
 const StyledProductCard = styled.div`
   width: 100%;

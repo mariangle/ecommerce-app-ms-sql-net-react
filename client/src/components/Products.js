@@ -2,8 +2,7 @@ import productApi from '../utils/api/productApi';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Divider, Container } from '../styles/styles'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import ProductSizes from './ProductSizes';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from '../store/reducers/productSlice';
 import { createProduct, updateExistingProduct, removeProduct } from '../store/reducers/productSlice';
@@ -27,7 +26,7 @@ function Products() {
     setLocalProduct(product);
   };
 
-  const handleAddProductClick = () => {
+  const handleAddProduct = () => {
     const newProduct = {
       name: document.getElementById('productName').value,
       brand: document.getElementById('productBrand').value,
@@ -46,7 +45,7 @@ function Products() {
     setLocalProduct(prevState => ({ ...prevState, [name]: value }));
   };
 
-  const handleSaveChangesClick = () => {
+  const handleSaveChanges = () => {
     dispatch(updateExistingProduct({ productId: localProduct.productID, product: localProduct }))
       .then(() => {
         window.location.reload();
@@ -72,7 +71,6 @@ function Products() {
                 <tr>
                 <th>ID</th>
                 <th>Model</th>
-                <th>Options</th>
                 </tr>
             </thead>
             <tbody>
@@ -80,9 +78,6 @@ function Products() {
                 <tr key={index}  onClick={() => handleEditProduct(product.productID)}>
                     <td>{product.productID}</td>
                     <td>{product.brand} {product.name}</td>
-                    <td>
-                      <FontAwesomeIcon icon={faTrash} onClick={() => handleDeleteProduct(product.productID)}/>
-                    </td>
                 </tr>
                 ))}
             </tbody>
@@ -109,9 +104,10 @@ function Products() {
                 <textarea id="productDescription" name="description" maxLength="500" rows="6" value={localProduct?.description || ''} onChange={handleInputChange}></textarea>
               </label>
               <Divider>
-                <Button onClick={() => setLocalProduct(null) }>Close</Button>
-                <Button onClick={handleSaveChangesClick}>Save Changes</Button>
-                <Button onClick={handleAddProductClick}>Add Product</Button>
+                <button onClick={() => setLocalProduct(null) }>Close</button>
+                <button onClick={handleSaveChanges}>Save Changes</button>
+                <button onClick={handleAddProduct}>Add Product</button>
+                <button onClick={() => handleDeleteProduct(localProduct?.productID)}>Delete Product</button>
               </Divider>
               </ProductInfo>
               <ProductImage>
@@ -121,52 +117,14 @@ function Products() {
                 </label>
               </ProductImage>
             </ProductDetails>
-            <ProductSize>
-              <Divider>
-                <label htmlFor="">
-                  select
-                  <select id="size-select">
-                    <option value="35">35</option>
-                    <option value="36">36</option>
-                    <option value="37">37</option>
-                    <option value="38">38</option>
-                    <option value="39">39</option>
-                    <option value="40">40</option>
-                    <option value="41">41</option>
-                    <option value="42">42</option>
-                    <option value="43">43</option>
-                    <option value="44">44</option>
-                    <option value="45">45</option>
-                    <option value="46">46</option>
-                    <option value="47">47</option>
-                    <option value="48">48</option>
-                    <option value="49">49</option>
-                    <option value="50">50</option>
-                  </select>
-                </label>
-                <label>
-                  Quantity
-                  <input value={localProduct?.quantity}></input>
-                </label>
-                <label>
-                  Price
-                  <input value={localProduct?.price}></input>
-                </label>       
-              </Divider>
-              <Divider>
-                <Button>Save Changes</Button>
-                <Button>Add Size</Button>
-              </Divider>
-            </ProductSize>
+            <ProductSizes localProduct={localProduct} />
           </ProductPanel> 
           }
     </StyledProducts>
   );
 }
 
-const Button = styled.button`
-width: 8rem;
-`
+
 const StyledProducts = styled.div`
 width: 100%;
 display: flex;
@@ -177,7 +135,6 @@ flex: 2 1 30rem;
 `
 const ProductPanel = styled.div`
 flex: 3 1 30rem;
-margin-left: 2rem;
 `;
 
 
@@ -207,11 +164,6 @@ const Image = styled.img`
   width: 100%;
   object-fit: cover;
   background: #f0f0f0;
-`
-
-const ProductSize = styled.div`
-display: flex;
-flex-direction: column;
 `
 
 

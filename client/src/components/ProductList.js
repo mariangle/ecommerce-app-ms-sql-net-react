@@ -6,7 +6,7 @@ import ProductCard from './Product.js';
 function ProductList() {
   return (
     <Grid>
-      <ProductCard></ProductCard>
+      <ProductCard />
     </Grid>
   )
 }

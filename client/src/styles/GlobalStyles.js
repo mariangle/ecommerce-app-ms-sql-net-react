@@ -81,7 +81,7 @@ const GlobalStyles = createGlobalStyle`
       color: white;
     }
     :nth-child(2n){
-      background: #f3f3f3;
+      background: #a2d2f0;
     }
   }
   td{
@@ -89,15 +89,6 @@ const GlobalStyles = createGlobalStyle`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
-  td:last-child{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: right:
-      background: #f3f3f3;
-    }
 `;
 
 export default GlobalStyles;

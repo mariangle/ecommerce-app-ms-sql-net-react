@@ -1,39 +1,75 @@
 import React, { useState, useEffect } from 'react';
-  import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Container, Image, About } from '../styles/styles.js';
 import styled from 'styled-components';
 import { addToCart } from '../store/reducers/cartReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/reducers/productSlice';
-
+import { getProductSizesByProductId } from '../utils/api/productSizeApi';
 
 function ProductPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { products } = useSelector((state) => state.product);
   const product = products.find((product) => product.productID === Number(id));
+  const [availableSizes, setAvailableSizes] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [defaultPrice, setDefaultPrice] = useState(null);
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (product) {
+        const productSizes = await getProductSizesByProductId(product.productID);
+        setAvailableSizes(productSizes);
+
+        const minPrice = Math.min(...productSizes.map((size) => size.price));
+        setDefaultPrice(minPrice);
+      }
+    };
+    fetchData();
+  }, [product]);
+
   function handleAddToCart() {
-    dispatch(addToCart({ product: product, size: 38 }));
+    dispatch(addToCart({ product: product, size: selectedSize.size }));
   }
 
   return (
     <>
-      { product && (
+      {product && (
         <StyledProductPage>
           <ProductImages>
             <img src={product.imageURL} alt="" />
           </ProductImages>
           <ProductInfo>
             <h3>
-              <span>{product.brand} {product.name}</span>
+              <span>
+                {product.brand} {product.name}
+              </span>
             </h3>
-            <Price>{product.price ? product.price : "0"} kr.</Price>
-            <p>Available sizes: </p>
+            <Price>
+              {selectedSize ? selectedSize.price : defaultPrice} kr.
+            </Price>
+            <p>Avaliable Sizes:</p>
+            <SizesGrid>
+              {availableSizes.map((productSize, index) => {
+                return (
+                  <Size className="size" key={index}>
+                    <input
+                      type="radio"
+                      id={`size-${index}`}
+                      name="size"
+                      value={productSize}
+                      onChange={() => setSelectedSize(productSize)}
+                    />
+                    <label htmlFor={`size-${index}`}>{productSize.size}</label>
+                  </Size>
+                );
+              })}
+            </SizesGrid>
             <Button onClick={handleAddToCart}>Add to Basket</Button>
             <p>{product.description}</p>
           </ProductInfo>
@@ -42,6 +78,8 @@ function ProductPage() {
     </>
   );
 }
+
+
 
 const StyledProductPage = styled(Container)`
   @media (max-width: 850px) {
