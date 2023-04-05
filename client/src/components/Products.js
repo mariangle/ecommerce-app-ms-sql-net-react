@@ -66,7 +66,6 @@ function Products() {
 
   return (
     <StyledProducts>
-
         <ProductTable>
             <thead>
                 <tr>
@@ -136,8 +135,5 @@ const ProductDetails = styled.div`
 
 const ProductInfo = styled.div`
 `
-
-
-
 
 export default Products;

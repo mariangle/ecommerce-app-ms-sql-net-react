@@ -28,9 +28,6 @@ function ProductCard() {
   }, []);
 
   function renderProductCard(product, index) {
-    /*if (!product.productSizes) {
-      return null;
-    }*/
     const productSize = product.productSizes.find((ps) => ps.quantity > 0);
     if (!productSize) {
       return null;
@@ -50,10 +47,8 @@ function ProductCard() {
       </StyledProductCard>
     );
   }
-
   return <>{products.map(renderProductCard)}</>;
 }
-
 
 const StyledProductCard = styled.div`
   width: 100%;

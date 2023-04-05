@@ -19,7 +19,7 @@ function Header() {
         <Link to="/"><h1>STORE</h1></Link>
         <NavLinks>
           <li>
-            <Link to="/admin">
+            <Link to="/authentication">
               <FontAwesomeIcon className="icon" icon={faUser} style={{ color: "white" }} />
             </Link>
           </li>
@@ -37,7 +37,7 @@ function Header() {
   );
 }
 const StyledHeader = styled.nav`  
-background: var(--color-black);
+background: #172134;
 border-bottom: 1px solid grey;
 position: sticky;
 @media (max-width: 850px) {

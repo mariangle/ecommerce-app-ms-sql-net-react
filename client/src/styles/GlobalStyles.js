@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 1rem 2rem;
     cursor: pointer;
     margin-top: 2rem;
-    background: var(--color-black);
+    background: #172134;
     font-weight: bold;
     color: white;
     width: 100%;

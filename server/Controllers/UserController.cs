@@ -84,26 +84,22 @@ namespace backend.Controllers
             }
         }
 
-        [HttpPost("login")]
-        public IActionResult Login(UserLoginRequest loginRequest)
-        {
-            // Find the user with the provided username
-            var user = _userRepository.GetAll().FirstOrDefault(u => u.Email == loginRequest.Email);
-
-            // Check if the user exists and the password matches
-            if (user == null || !user.CheckPassword(loginRequest.Password))
+            [HttpPost("login")]
+            public IActionResult Login(UserLoginRequest loginRequest)
             {
-                return Unauthorized("Invalid username or password");
+                var user = _userRepository.GetAll().FirstOrDefault(u => u.Email == loginRequest.Email);
+
+                if (user == null || !user.CheckPassword(loginRequest.Password))
+                {
+                    return Unauthorized("Invalid username or password");
+                }
+
+                var jwtService = new JwtService(_configuration);
+                var token = jwtService.GenerateJwtToken(user);
+
+                return Ok(new { Token = token });
             }
 
-            // Generate a JWT token for the authenticated user
-            var jwtService = new JwtService(_configuration);
-            var token = jwtService.GenerateJwtToken(user);
-
-            // Return the token to the client
-            return Ok(new { Token = token });
         }
-
-    }
 }
     

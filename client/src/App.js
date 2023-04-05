@@ -7,6 +7,7 @@ import ProductPage from './pages/ProductPage';
 import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
 import AdminPage from "./pages/AdminPanel"
+import Profile from './pages/Profile';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       {showHeaderFooter && <Footer />}
     </Provider>

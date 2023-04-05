@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { variables } from './variables.js';
+import jwtDecode from 'jwt-decode';
 
 const API_URL = variables.BASE_URL+"User"
 
@@ -10,6 +11,7 @@ const getUsers = async () => {
 
 const getUser = async (userId) => {
   const response = await axios.get(`${API_URL}/${userId}`);
+  console.log("get user in api")
   return response.data;
 }
 
@@ -28,7 +30,32 @@ const deleteUser = async (userId) => {
   return response.data;
 }
 
+const login = async (loginData) => {
+  try {
+    const response = await axios.post(`${API_URL}/login`, loginData);
+    if (response.data.token) {
+      localStorage.setItem('user', JSON.stringify(response.data));
+      const token = response.data.token;
+      const decodedToken = jwtDecode(token);
+      console.log("in api:" + decodedToken.nameid) // Check if this logs the correct value
+      return decodedToken.nameid;
+    }
+    return { token: null };
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      alert('Invalid email or password');
+    } else {
+      alert('An error occurred');
+    }
+    return { token: null };
+  }
+  
+};
+
+
+
 export default {
+  login,
   getUser,
   getUsers,
   createUser,
