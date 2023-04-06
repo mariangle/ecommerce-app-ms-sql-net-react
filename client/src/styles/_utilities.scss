@@ -1,0 +1,72 @@
+.container{
+    min-height: 90vh;
+    width: 100%;
+    margin: auto;
+    max-width: 1480px;
+    padding: 5rem 1rem;
+}
+
+.flex{
+    @include flex(center, flex-start, row);
+    @media (max-width: 850px) {
+        display: block;
+    }
+}
+
+.side-container{
+    flex: 1;
+}
+
+.flex-1{
+    margin-left: 3rem;
+    min-width: 20rem;
+    flex: 1;
+    @media (max-width: 850px) {
+        margin: 2rem 0 0 0;
+    }
+}
+
+.flex-2{
+    flex: 2;
+}
+
+.divider{
+    width: 100%;
+    display: flex;
+    label:first-child{
+        margin-right: 1rem;
+    }
+    button:first-child{
+        margin-right:1rem;
+    }
+}
+
+.line{
+    margin: 1.5rem 0;
+    height: 1px;
+    width: 100%;
+    background: $color-grey;
+}
+
+.space-between{
+    margin-bottom: 0.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.second-button{
+    max-width: 10rem;
+    background: none;
+    color: $color-dark;
+    gap: 1rem;
+    flex-grow: 0;
+    flex-shrink: 1;
+    @include flex(center, center, row);
+    @media (max-width: 1000px) {
+        span{
+            display: none;
+        }
+
+    }
+}

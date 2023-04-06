@@ -1,10 +1,9 @@
 import React from 'react'
-import { Divider, Container } from '../styles/styles'; 
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import productSizeApi from '../utils/api/productSizeApi';
-import { deleteSize, createProductSize, updateExistingSize } from '../store/reducers/productSizeSlice';
+import productSizeApi from '../../utils/api/productSizeApi';
+import { deleteSize, createProductSize, updateExistingSize } from '../../store/reducers/productSizeSlice';
 
 function ProductSizes({ localProduct }) {
   const dispatch = useDispatch();

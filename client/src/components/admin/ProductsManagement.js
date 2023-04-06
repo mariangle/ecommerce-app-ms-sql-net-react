@@ -1,11 +1,11 @@
-import productApi from '../utils/api/productApi';
+import productApi from '../../utils/api/productApi';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Divider, Container, Image, About } from '../styles/styles'; 
-import ProductSizes from './ProductSizes';
+import { Divider} from '../../styles/styles'; 
+import ProductSizes from './SizesManagement';
 import { useDispatch } from 'react-redux';
-import { fetchProducts } from '../store/reducers/productSlice';
-import { createProduct, updateExistingProduct, removeProduct } from '../store/reducers/productSlice';
+import { fetchProducts } from '../../store/reducers/productSlice';
+import { createProduct, updateExistingProduct, removeProduct } from '../../store/reducers/productSlice';
 
 function Products() {
   const dispatch = useDispatch();
@@ -109,7 +109,6 @@ function Products() {
                 <button onClick={() => handleDeleteProduct(localProduct?.productID)}>Delete</button>
               </Divider>
               </ProductInfo>
-
             </ProductDetails>
             <ProductSizes localProduct={localProduct} />
           </ProductPanel> 

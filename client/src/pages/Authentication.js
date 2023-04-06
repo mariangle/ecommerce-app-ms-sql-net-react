@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Container } from '../styles/styles'
 
-import Register from "../components/Register"
-import Login from "../components/Login"
+import Register from "../components/auth/RegisterForm"
+import Login from "../components/auth/LoginForm"
 
 
 function Authentication() {

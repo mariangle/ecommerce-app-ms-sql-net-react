@@ -1,0 +1,22 @@
+$color-main: #0964aa;
+$color-dark: #222;
+$color-grey: #7e7e7e;
+$color-smoke: #f6f6f6;
+
+@mixin flex($justify, $align, $direction){
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
+@import "global";
+@import "utilities";
+@import "../components/layout/header";
+@import "../components/layout/footer";
+
+@import "./pages/productDetail";
+@import "./pages/cart"; // cart page and cart item
+
+
+@import "profile";
+

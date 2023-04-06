@@ -19,36 +19,49 @@ function Profile() {
   }
 
   return (
-    <div className="profile-container">
-      <h1>Profile</h1>
-      <label>
-        First Name
-        <input value={user.firstName} />
-      </label>
-      <label>
-        First Name
-        <input value={user.lastName} />
-      </label>
-      <label>
-        Email
-        <input value={user.email} />
-      </label>
-      <label>
-        Phone Number
-        <input value={user.phone} />
-      </label>
-      <label>
-        Address
-        <input value={user.address} />
-      </label>
-      <label>
-        Postal Code
-        <input value={user.postalCode} />
-      </label>
-      <label>
-        City
-        <input value={user.city} />
-      </label>
+    <div className="profile-container container">
+      <h1>Edit Profile</h1>
+      <div className="profile-info">
+        <div className="divider">
+          <label>
+            First Name
+            <input value={user.firstName} />
+          </label>
+          <label>
+            First Name
+            <input value={user.lastName} />
+          </label>
+        </div>
+        <label>
+          Email
+          <input value={user.email} />
+        </label>
+        <label>
+          Phone Number
+          <input value={user.phone} />
+        </label>
+      </div>
+      <div className="profile-info">
+        <h2>Shipping Details</h2>
+        <label>
+          Address
+          <input value={user.address} />
+        </label>
+        <div className="divider">
+          <label>
+            Postal Code
+            <input value={user.postalCode} />
+          </label>
+          <label>
+            City
+            <input value={user.city} />
+          </label>
+        </div>
+      </div>
+      <div className='divider'>
+        <button>Cancel</button>
+        <button>Save</button>
+      </div>
     </div>
   );
 }

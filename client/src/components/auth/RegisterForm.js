@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { About, Image} from '../styles/styles';
-import { useForm } from 'react-hook-form';
-
+import { About} from '../../styles/styles';
 
 function Register() {
 

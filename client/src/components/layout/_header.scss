@@ -1,0 +1,56 @@
+.header-container{
+    padding: 2rem 1rem 1.5rem;
+    @include flex(center, center, row);
+    width: 100%;
+    max-width: 1480px;
+    margin: auto;
+    border-bottom: 1px solid $color-grey;
+    flex: 1;
+    @include flex(space-between, center, row);
+    ul{
+        @include flex(space-between, center, row);
+        gap: 1.5rem;
+        @media (max-width: 850px) {
+            display: none;
+        }
+    }
+}
+
+.burger{
+    margin-left: 1rem;
+    display: none;
+    @media (max-width: 850px) {
+        font-size: 2rem;
+        display: block;
+    }
+}
+
+.header-tools{
+    @include flex(space-between, center, row);
+    svg{
+        padding: 0.8rem;
+    }
+}
+
+.cart-icon{
+    height: 40px;
+    width: 35px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span{
+        z-index: 9999;
+        top: 0;
+        right: 0;
+        height: 20px;
+        width: 20px;
+        text-align: center;
+        border-radius: 50%;
+        background: $color-main;
+        color: white;
+        font-size: 0.8rem;
+        position: absolute;
+    }
+}
+

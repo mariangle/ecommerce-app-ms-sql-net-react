@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Users from '../components/Users';
-import Products from '../components/Products';
+import Users from '../components/admin/UsersManagement';
+import Products from '../components/admin/ProductsManagement';
 import styled from 'styled-components';
 import { Container } from '../styles/styles';
 

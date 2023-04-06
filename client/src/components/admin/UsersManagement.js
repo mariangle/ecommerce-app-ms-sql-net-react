@@ -1,4 +1,4 @@
-import userApi from '../utils/api/userApi';
+import userApi from '../../utils/api/userApi';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';

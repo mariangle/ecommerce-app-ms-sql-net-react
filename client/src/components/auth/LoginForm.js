@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { About } from '../styles/styles';
+import { About } from '../../styles/styles';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { login, getUserById, setUser } from '../store/reducers/userSlice'; // actions
+import { login, getUserById, setUser } from '../../store/reducers/userSlice'; // actions
 import { useNavigate } from 'react-router-dom';
 
 
@@ -17,7 +17,7 @@ function Login() {
     const { payload: userId } = await dispatch(login(loginData));
     const { payload: user } = await dispatch(getUserById(userId));
     dispatch(setUser(user));
-    navigate('/profile');
+    navigate('/');
 
   };
   

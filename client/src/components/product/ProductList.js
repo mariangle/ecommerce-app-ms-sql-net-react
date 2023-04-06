@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react'
 import styled from 'styled-components';
-import { Container } from '../styles/styles.js';
-import ProductCard from './Product.js';
+import { Container } from '../../styles/styles.js';
+import ProductCard from './ProductItem.js';
 
 function ProductList() {
   return (

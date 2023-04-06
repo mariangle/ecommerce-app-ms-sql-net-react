@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Image } from '../styles/styles';
+import { Image } from '../../styles/styles';
 import { useEffect, useState } from 'react';
-import productApi from '../utils/api/productApi';
-import { getProductSizesByProductId } from '../utils/api/productSizeApi';
+import productApi from '../../utils/api/productApi';
+import { getProductSizesByProductId } from '../../utils/api/productSizeApi';
 
 function ProductCard() {
   const [products, setProducts] = useState([]);

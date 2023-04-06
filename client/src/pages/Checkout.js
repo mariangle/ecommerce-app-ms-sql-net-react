@@ -2,14 +2,16 @@ import React, {useState} from 'react'
 import { Container, About, Divider } from '../styles/styles'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
-import CartItem from "../components/CartItem";
+import CartItem from "../components/cart/CartItem";
 import { Link } from 'react-router-dom';
 import { useCartData } from '../utils/hooks/useCartData';
+import { useSelector } from 'react-redux';
 
 
 function CheckoutPage() {
   const { subtotal, delivery, total } = useCartData();
   const { register, handleSubmit } = useForm();
+  const user = useSelector((state) => state.user.user);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -23,7 +25,7 @@ function CheckoutPage() {
               <h2>Contact information</h2>
               <label>
                 Email
-                <input {...register('email', { required: true })} />
+                <input value={user?.email}{...register('email', { required: true })} />
               </label>
             </TransactionSection>
             <TransactionSection>
@@ -31,29 +33,29 @@ function CheckoutPage() {
               <Divider>
                 <label>
                   First Name
-                  <input {...register('firstName', { required: true })} />
+                  <input value={user?.firstName}{...register('firstName', { required: true })} />
                 </label>
                 <label>
                   Last Name
-                  <input {...register('lastName', { required: true })} />
+                  <input value={user?.lastName}{...register('lastName', { required: true })} />
                 </label>
               </Divider>
               <label>
                 Phone Number
-                <input {...register('phone', { required: true })} />
+                <input value={user?.phone}{...register('phone', { required: true })} />
               </label>
               <label>
                 Address
-                <input {...register('address', { required: true })} />
+                <input value={user?.address}{...register('address', { required: true })} />
               </label>
               <Divider>
                 <label>
                   City
-                  <input {...register('city', { required: true })} />
+                  <input value={user?.city}{...register('city', { required: true })} />
                 </label>
                 <label>
                   Postal Code
-                  <input {...register('zipCode', { required: true })} />
+                  <input value={user?.postalCode}{...register('zipCode', { required: true })} />
                 </label>
               </Divider>
             </TransactionSection>
