@@ -12,6 +12,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import Authentication from './pages/Authentication';
+import './styles/style.scss';
 
 
 function App() {

@@ -11,7 +11,6 @@ const getUsers = async () => {
 
 const getUser = async (userId) => {
   const response = await axios.get(`${API_URL}/${userId}`);
-  console.log("get user in api")
   return response.data;
 }
 

@@ -24,7 +24,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to="/cart">
+            <Link to="/profile">
               <Cart>
                 <span>{cartItemCount > 9 ? "9+": cartItemCount } </span>
                 <FontAwesomeIcon className="icon" icon={faBasketShopping} style={{ color: 'white'}} />

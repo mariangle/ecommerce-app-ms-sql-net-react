@@ -9,7 +9,6 @@ const initialState = {
 };
 
 export const getUserById = createAsyncThunk("user/login", async (userId) => {
-  console.log("gettiong user in slice")
   const user = await userApi.getUser(userId);
   return user;
 
@@ -17,7 +16,6 @@ export const getUserById = createAsyncThunk("user/login", async (userId) => {
 
 export const login = createAsyncThunk("user/login", async (loginData) => {
   const userId = await userApi.login(loginData);
-  console.log("userslice login id" +userId)
   return userId;
 
 });
@@ -30,6 +28,15 @@ export const userSlice = createSlice({
       localStorage.removeItem("token");
       state.currentUser = null;
       state.token = "";
+    },
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -59,5 +66,8 @@ export const selectToken = (state) => state.user.token;
 export const selectCurrentUser = (state) => state.user.currentUser;
 export const selectIsLoading = (state) => state.user.isLoading;
 export const selectError = (state) => state.user.error;
+
+export const { setUser, setLoading, setError } = userSlice.actions;
+
 
 export default userSlice.reducer;

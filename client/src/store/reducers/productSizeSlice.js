@@ -15,7 +15,6 @@ export const fetchProductSizesByProductId = createAsyncThunk( 'productSizes/fetc
 
 export const createProductSize = createAsyncThunk('productSizes/createProductSize', async ({ size, price, quantity, productId }) => {
     const productSize = { size, price, quantity, productId };
-    console.log("productSizE SLICE" + size, price, quantity, productId)
     const createdProductSize = await productSizeApi.addProductSize(productSize);
     return createdProductSize;
   }
@@ -35,7 +34,6 @@ export const updateExistingSize = createAsyncThunk(
 );
 
 export const deleteSize = createAsyncThunk('products/deleteSize', async (productSizeId) => {
-  console.log("hi from slice: " + productSizeId)
   const deletedSize = await productSizeApi.deleteProductSize(productSizeId);
   return deletedSize;
 });

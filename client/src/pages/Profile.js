@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
 function Profile() {
   const dispatch = useDispatch();
@@ -18,11 +19,36 @@ function Profile() {
   }
 
   return (
-    <div>
+    <div className="profile-container">
       <h1>Profile</h1>
-      <p>Email: {user.email}</p>
-      <p>Name: {user.name}</p>
-      <button>Edit</button>
+      <label>
+        First Name
+        <input value={user.firstName} />
+      </label>
+      <label>
+        First Name
+        <input value={user.lastName} />
+      </label>
+      <label>
+        Email
+        <input value={user.email} />
+      </label>
+      <label>
+        Phone Number
+        <input value={user.phone} />
+      </label>
+      <label>
+        Address
+        <input value={user.address} />
+      </label>
+      <label>
+        Postal Code
+        <input value={user.postalCode} />
+      </label>
+      <label>
+        City
+        <input value={user.city} />
+      </label>
     </div>
   );
 }
