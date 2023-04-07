@@ -9,7 +9,7 @@ import ProductPage from './pages/ProductDetail';
 import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
 import AdminPage from "./pages/AdminDashboard"
-import Profile from './pages/Profile';
+import Account from './pages/MyAccount';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -26,15 +26,15 @@ function App() {
     <>
     <Provider store={store}>
     <GlobalStyles />
-      {showHeaderFooter && <Header></Header>}
+      {showHeaderFooter && <Header/>}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home location={location} />} />
         <Route path="/:id" element={<ProductPage />} /> 
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/account" element={<Account />} />
         <Route path="/shop" element={<Shop />} />
       </Routes>
       {showHeaderFooter && <Footer />}

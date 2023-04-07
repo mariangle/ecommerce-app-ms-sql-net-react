@@ -7,10 +7,14 @@
     margin: auto;
     min-height: 10vh;
     border-top: 1px solid $color-grey;
+    @media (max-width: 700px) {
+      display: block;
+  }
 }
 
 .footer-section{
     flex: 1 1 12rem;
+    margin-right: 2rem;
     h3{
         font-size: 1rem;
         margin-bottom: 1rem;
@@ -24,6 +28,10 @@
           font-size: 0.8rem;
         }
     }
+    @media (max-width: 850px) {
+      margin-top: 1rem;
+  }
+
 }
 
 .footer-socials{
@@ -33,6 +41,9 @@
     align-items: flex-start;
     justify-content: flex-end;
     gap: 1rem;
+    @media (max-width: 1000px) {
+      flex: 1 1 20rem;
+    }
 }
 
 .social-icon-container{

@@ -5,12 +5,6 @@ const GlobalStyles = createGlobalStyle`
     --color-text: #777777;
     --color-black: #141414;
   }
-  input, textarea{
-    font-family: 'Montserrat', sans-serif;
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
   p{
     font-size: 1rem; 
   }

@@ -15,16 +15,14 @@
         }
     }
 }
-
 .burger{
+    font-size: 2rem;
     margin-left: 1rem;
     display: none;
     @media (max-width: 850px) {
-        font-size: 2rem;
         display: block;
     }
 }
-
 .header-tools{
     @include flex(space-between, center, row);
     svg{
@@ -54,3 +52,17 @@
     }
 }
 
+.header-container.home{
+    border-bottom: none;
+    a h1{
+        color: white;
+    }
+    ul li a{
+        color: white;
+    }
+}
+.header-tools.home{
+    svg{
+        color: white;
+    }
+}

@@ -37,31 +37,27 @@
 }
 
 .cart-item-details{
-    display: flex;
-    flex-direction: column;
+    @include flex(space-between, flex-start, column);
     a:nth-child(4){
   text-decoration: underline;
 }
 }
 
 .cart-item-quantity{
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: flex-start;
-    margin-right: 2rem;
+    @include flex(center, center, row);
+    margin-top: 2rem;
+    border: 1px solid $color-grey;
     input{
         text-align: center;
-        height: 25px;
-        width: 40px;
-        border: 1px solid black;
+        width: 30px;
         font-size: 1rem;
+        border: none;
+        padding: 0rem;
     }
     a{
-        width: 20px;
-        height: 25px;
+        padding: 0rem 0.5rem;
         text-align: center;
-        color: white;
-        background: black;
+        font-weight: bold;
     }
 }
 

@@ -8,19 +8,15 @@ import Login from "../components/auth/LoginForm"
 
 function Authentication() {
   return (
-    <StyledAuthenticaton>
+    <div className='auth container'>
+      <h1>Welcome Back</h1>
       <Login></Login>
+      <div className='line'></div>
+      <h1>New?</h1>
       <Register></Register>
-    </StyledAuthenticaton>
+    </div>
   )
 }
 
-const StyledAuthenticaton = styled(Container)`
-  @media (max-width: 850px) {
-    display: block;
-    padding: 0rem;
-  }
-
-`
 
 export default Authentication

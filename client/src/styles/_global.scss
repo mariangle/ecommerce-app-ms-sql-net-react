@@ -7,6 +7,8 @@ body {
     line-height: 150%;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
+    letter-spacing: 1px;
+    color: $color-dark;
 }
 h2{
     font-size: 1.6rem;
@@ -16,6 +18,13 @@ h3{
 }
 h4{
     font-size: 1.6rem;
+}
+input{
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 button{
     padding: 1rem;
@@ -28,12 +37,11 @@ button{
     border-radius: 10px;
     flex-grow: 1;
     flex-shrink: 0;
-}
-input{
-    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
 }
 label{
     width: 100%;
+    
 }
 svg.svg-inline--fa{
     height: 1.2rem;
@@ -48,4 +56,11 @@ select{
     font-size: 1rem;
     padding: 1rem;
     border-radius: 10px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
 }

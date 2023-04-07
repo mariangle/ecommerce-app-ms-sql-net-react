@@ -1,10 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Image } from '../../styles/styles';
 import { useEffect, useState } from 'react';
 import productApi from '../../utils/api/productApi';
 import { getProductSizesByProductId } from '../../utils/api/productSizeApi';
+import { icons } from '../../assets/icons/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ProductCard() {
   const [products, setProducts] = useState([]);
@@ -34,41 +34,22 @@ function ProductCard() {
     }
     const { price } = productSize;
     return (
-      <StyledProductCard key={index}>
+      <div className='product-card' key={index}>
         <Link to={`/${product.productID}`}>
-          <ProductImg>
+          <div className='product-img'>
             <img src={product.imageURL} alt="" />
-          </ProductImg>
-          <ProductInfo>
+            <FontAwesomeIcon icon={icons.heart}></FontAwesomeIcon>
+          </div>
+          <div className='product-info'>
             <h3>{product.brand} {product.name}</h3>
             <p>{price} kr</p>
-          </ProductInfo>
+          </div>
         </Link>
-      </StyledProductCard>
+      </div>
     );
   }
   return <>{products.map(renderProductCard)}</>;
 }
 
-const StyledProductCard = styled.div`
-  width: 100%;
-`
-const ProductImg = styled(Image)`
-  height: 300px;
-`
-const ProductInfo = styled.div`
-  h3{
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0.5rem 0rem 1rem 0rem;
-  font-size: 1rem;
-  font-weight: lighter;
-  span{
-    display: block;
-    color: var(--color-text)
-    }
-  }
-`
 
 export default ProductCard;

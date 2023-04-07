@@ -27,7 +27,7 @@ function CartItem() {
   const handleUpdateQuantity = (productId, size, newQuantity) => {
     const item = cartItems.find((item) => item.product.id === productId && item.size === size);
 
-    if (newQuantity > 0 && item) { 
+    if (10 >= newQuantity > 0  && item) { 
       dispatch(updateQuantity({ productId, size, quantity: newQuantity }));
     } 
     if (newQuantity === 0 && item) { 
@@ -46,15 +46,15 @@ function CartItem() {
           </Link>
           <div className='cart-item-about'>
             <div className='cart-item-details'>
-              <Link to={`/${item.product.id}`}><h3>{item.product.brand} {item.product.model}</h3></Link>
+              <Link to={`/${item.product.id}`}><h3>{item.product.brand} {item.product.name}</h3></Link>
               <p>Size: {item.size}</p>
               { modify && <p>Quantity: {item.quantity}</p>}
               { modify && 
-              <div className='cart-item-quantity'>
-              <a onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity - 1)}>-</a>
-              <input type="number" value={item.quantity} onChange={(e) => handleUpdateQuantity(item.product.id, item.size, parseInt(e.target.value))} />
-              <a onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity + 1)}>+</a>  
-              </div>
+                <div className='cart-item-quantity'>
+                  <a onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity - 1)}>-</a>
+                  <input type="number" value={item.quantity} onChange={(e) => handleUpdateQuantity(item.product.id, item.size, parseInt(e.target.value))} />
+                  <a onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity + 1)}>+</a>  
+                </div>
               }
               </div>
               <div className='cart-item-price'>

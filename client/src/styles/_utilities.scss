@@ -70,3 +70,28 @@
 
     }
 }
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 3px;
+    input{
+        margin-bottom: 0;
+        border: none;
+    }   
+}
+
+.input-label{
+    display:inline-block;
+    margin-top: 1rem;
+}
+
+.input-wrapper > svg {
+    margin: 1rem 0 1rem 1rem;
+}
+
+form span{
+    color: rgb(180, 0, 0);
+    font-size: 0.8rem;
+}

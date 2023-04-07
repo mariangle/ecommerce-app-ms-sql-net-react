@@ -1,19 +1,12 @@
-import React, { lazy, Suspense } from 'react'
-import styled from 'styled-components';
-import { Container } from '../../styles/styles.js';
+import React from 'react'
 import ProductCard from './ProductItem.js';
 
 function ProductList() {
   return (
-    <Grid>
+    <div className='product-grid container'>
       <ProductCard />
-    </Grid>
+    </div>
   )
 }
-const Grid = styled(Container)`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  grid-gap: 1rem;
-`;
 
 export default ProductList

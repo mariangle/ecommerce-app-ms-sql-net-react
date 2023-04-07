@@ -1,0 +1,12 @@
+.auth{
+    @include flex(center, center, column)
+}
+
+.login, .register{
+    width: 100%;
+    max-width: 40rem;
+    button{
+        margin: 2rem 0;
+        width: 100%;
+    }
+}
