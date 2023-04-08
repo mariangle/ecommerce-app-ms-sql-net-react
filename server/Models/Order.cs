@@ -1,22 +1,28 @@
 ﻿namespace backend.Models
 {
+    public enum OrderStatus
+    {
+        Pending,
+        Processing,
+        Shipped,
+        Delivered
+    }
+
     public class Order
     {
         public int OrderID { get; set; }
-        public DateTime OrderDate { get; set; }
+        public DateTime DateTime { get; set; }
         public decimal TotalPrice { get; set; }
-        public string Status { get; set; }
+        public OrderStatus Status { get; set; }
         public int UserID { get; set; }
-        public int ShippingID { get; set; }
 
-        public Order(int orderID, DateTime orderDate, decimal totalPrice, string status, int userID, int shippingID)
+        public Order(int orderID, DateTime dateTime, decimal totalPrice, OrderStatus status, int userID)
         {
             OrderID = orderID;
-            OrderDate = orderDate;
+            DateTime = dateTime;
             TotalPrice = totalPrice;
             Status = status;
             UserID = userID;
-            ShippingID = shippingID;
         }
     }
 }

@@ -33,10 +33,10 @@ namespace backend.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{userId}")]
+        public IActionResult Get(int userId)
         {
-            var user = _userRepository.GetById(id);
+            var user = _userRepository.GetById(userId);
             if (user == null)
             {
                 return NotFound();
@@ -45,9 +45,9 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(User user)
+        public IActionResult Post(User newUser)
         {
-            bool added = _userRepository.Add(user);
+            bool added = _userRepository.Add(newUser);
             if (!added)
             {
                 return BadRequest("Failed to add user");
@@ -56,7 +56,7 @@ namespace backend.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{userId}")]
         public IActionResult Put(User updatedUser)
         {
             bool updated = _userRepository.Update(updatedUser);
@@ -70,10 +70,10 @@ namespace backend.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{userId}")]
+        public IActionResult Delete(int userId)
         {
-            bool deleted = _userRepository.Delete(id);
+            bool deleted = _userRepository.Delete(userId);
             if (deleted)
             {
                 return Ok();

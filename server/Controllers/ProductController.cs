@@ -31,10 +31,10 @@ namespace backend.Controllers
             return Ok(products);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{productId}")]
+        public IActionResult Get(int productId)
         {
-            var product = _productRepository.GetById(id);
+            var product = _productRepository.GetById(productId);
             if (product == null)
             {
                 return NotFound();
@@ -49,7 +49,7 @@ namespace backend.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{productId}")]
         public IActionResult Put(Product updatedProduct)
         {
             bool updated = _productRepository.Update(updatedProduct);
@@ -63,10 +63,10 @@ namespace backend.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{productId}")]
+        public IActionResult Delete(int productId)
         {
-            bool deleted = _productRepository.Delete(id);
+            bool deleted = _productRepository.Delete(productId);
             if (deleted)
             {
                 return Ok();

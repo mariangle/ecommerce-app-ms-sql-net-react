@@ -49,18 +49,26 @@ public class Startup
             };
         });
 
-        //Enable CORS
-        services.AddCors(c =>
+        // Enable CORS
+        services.AddCors(options =>
         {
-            c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            options.AddPolicy("AllowOrigin", builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
         });
 
-        services.AddControllersWithViews().AddNewtonsoftJson(options =>
-        {
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-            options.SerializerSettings.ContractResolver = new DefaultContractResolver();
-        });
+        // Add MVC services and configure JSON serialization
+        services.AddControllersWithViews()
+            .AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+            });
 
+        // Add JWT authentication services
         services.AddAuthentication(options =>
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -74,45 +82,45 @@ public class Startup
                 ValidateAudience = true,
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
-                ValidIssuer = Configuration["JwtIssuer"],
-                ValidAudience = Configuration["JwtIssuer"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"]))
+                ValidIssuer = configuration["JwtIssuer"],
+                ValidAudience = configuration["JwtIssuer"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtKey"]))
             };
         });
 
-        services.AddControllers();
-        services.AddScoped<UserController>();
+        // Add repositories
         services.AddScoped(typeof(IRepository<>), typeof(UserRepository));
         services.AddScoped(typeof(IRepository<>), typeof(ProductRepository));
-        services.AddScoped(typeof(IProductSizeRepository<>), typeof(ProductSizeRepository));
+        services.AddScoped(typeof(IRepository<>), typeof(OrderRepository));
+        services.AddScoped(typeof(IListRepository<>), typeof(ProductSizeRepository));
+        services.AddScoped(typeof(IListRepository<>), typeof(OrderItemRepository));
+
+        // Add controllers
+        services.AddControllers();
     }
+
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
-
-        app.UseCors();
 
         app.UseHttpsRedirection();
 
         app.UseRouting();
 
+        app.UseAuthentication();
+
         app.UseAuthorization();
-
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-
-        // var userRepository = app.ApplicationServices.GetService<IUserRepository>();
 
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
         });
     }
+
 }

@@ -4,20 +4,20 @@ using System.Data.SqlClient;
 
 namespace backend.Repositories
 {
-    public class ProductSizeRepository : IListRepository<ProductSize>
+    public class OrderRepository : IRepository<Order>
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
 
-        public ProductSizeRepository(IConfiguration configuration)
+        public OrderRepository(IConfiguration configuration)
         {
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("UserAppCon");
         }
 
-        public IEnumerable<ProductSize> GetAll()
+        public IEnumerable<Order> GetAll()
         {
-            string query = @"SELECT ProductSizeID, Size, Price, Quantity, ProductID FROM dbo.PRODUCT_SIZE";
+            string query = @"SELECT OrderID, OrderDateTime, TotalPrice, OrderStatus, UserID FROM dbo.[ORDER]";
 
             DataTable table = new DataTable();
             SqlDataReader myReader;
@@ -33,25 +33,28 @@ namespace backend.Repositories
                 }
             }
 
-            var productSizes = new List<ProductSize>();
+            var orders = new List<Order>();
             foreach (DataRow row in table.Rows)
             {
-                productSizes.Add(new ProductSize(
-                    (int)row["ProductSizeID"],
-                    (int)row["Size"],
-                    (decimal)row["Price"],
-                    (int)row["Quantity"],
-                    (int)row["ProductID"]
+                OrderStatus orderStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), row["OrderStatus"].ToString());
+                orders.Add(new Order(
+                    (int)row["OrderID"],
+                    (DateTime)row["OrderDateTime"],
+                    (decimal)row["TotalPrice"],
+                    orderStatus,
+                    (int)row["UserID"]
                 ));
             }
-            return productSizes;
+            return orders;
+
+
         }
 
-        public List<ProductSize> GetById(int productId)
+        public Order GetById(int userId)
         {
-            string query = @"SELECT * FROM dbo.PRODUCT_SIZE WHERE ProductID = @ProductID";
+            string query = @"SELECT OrderID, OrderDateTime, TotalPrice, OrderStatus, UserID FROM dbo.[ORDER] WHERE UserID = @UserID";
 
-            List<ProductSize> productSizes = new List<ProductSize>();
+            Order order = null;
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -59,38 +62,33 @@ namespace backend.Repositories
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@ProductID", productId);
+                    command.Parameters.AddWithValue("@UserID", userId);
 
                     SqlDataReader reader = command.ExecuteReader();
 
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        ProductSize productSize = new ProductSize(
+                        order = new Order(
                             reader.GetInt32(0),
-                            reader.GetInt32(1),
+                            reader.GetDateTime(1),
                             reader.GetDecimal(2),
-                            reader.GetInt32(3),
+                            Enum.Parse<OrderStatus>(reader.GetString(3)),
                             reader.GetInt32(4)
                         );
-
-                        productSizes.Add(productSize);
                     }
-
-                    reader.Close();
                 }
 
                 connection.Close();
             }
 
-            return productSizes;
+            return order;
         }
 
-
-        public bool Add(ProductSize productSize)
+        public bool Add(Order order)
         {
-            string query = @"INSERT INTO dbo.PRODUCT_SIZE 
-                             (Size, Price, Quantity, ProductID) 
-                             VALUES (@Size, @Price, @Quantity, @ProductID)";
+            string query = @"INSERT INTO dbo.ORDER 
+                     (OrderDateTime, TotalPrice, OrderStatus, UserID) 
+                     VALUES (@DateTime, @TotalPrice, @Status, @UserID)";
 
             try
             {
@@ -99,10 +97,12 @@ namespace backend.Repositories
                     myCon.Open();
                     using (SqlCommand myCommand = new SqlCommand(query, myCon))
                     {
-                        myCommand.Parameters.AddWithValue("@Size", productSize.Size);
-                        myCommand.Parameters.AddWithValue("@Price", productSize.Price);
-                        myCommand.Parameters.AddWithValue("@Quantity", productSize.Quantity);
-                        myCommand.Parameters.AddWithValue("@ProductID", productSize.ProductID);
+                        order.DateTime = DateTime.Now;
+
+                        myCommand.Parameters.AddWithValue("@DateTime", order.DateTime);
+                        myCommand.Parameters.AddWithValue("@TotalPrice", order.TotalPrice);
+                        myCommand.Parameters.AddWithValue("@Status", order.Status.ToString());
+                        myCommand.Parameters.AddWithValue("@UserID", order.UserID);
                         myCommand.ExecuteNonQuery();
                         myCon.Close();
                     }
@@ -114,44 +114,48 @@ namespace backend.Repositories
                 return false;
             }
         }
-        public bool Update(ProductSize productSize)
+
+        public bool Update(Order order)
         {
-            string query = @"UPDATE dbo.PRODUCT_SIZE 
-                            SET Price = @Price, Quantity = @Quantity
-                            WHERE ProductSizeID = @ProductSizeID;
-                            ";
+            string query = @"UPDATE dbo.[ORDER] 
+                     SET OrderStatus = @OrderStatus,
+                     UserID = @UserID
+                     WHERE OrderID = @OrderID";
 
             using (SqlConnection myCon = new SqlConnection(_connectionString))
             {
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@ProductSizeID", productSize.ProductSizeID);
-                    myCommand.Parameters.AddWithValue("@Price", productSize.Price);
-                    myCommand.Parameters.AddWithValue("@Quantity", productSize.Quantity);
+                    myCommand.Parameters.AddWithValue("@OrderID", order.OrderID);
+                    myCommand.Parameters.AddWithValue("@Status", order.Status.ToString());
+                    myCommand.Parameters.AddWithValue("@UserID", order.UserID);
 
                     int rowsAffected = myCommand.ExecuteNonQuery();
+                    myCon.Close();
+
                     return rowsAffected > 0;
                 }
             }
         }
 
-        public bool Delete(int productSizeID)
+        public bool Delete(int orderId)
         {
-            string query = @"DELETE FROM dbo.PRODUCT_SIZE WHERE ProductSizeID = @ProductSizeID";
+            string query = @"DELETE FROM dbo.[ORDER] 
+                     WHERE OrderID = @OrderID";
 
             using (SqlConnection myCon = new SqlConnection(_connectionString))
             {
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@ProductSizeID", productSizeID);
-
+                    myCommand.Parameters.AddWithValue("@OrderID", orderId);
                     int rowsAffected = myCommand.ExecuteNonQuery();
+                    myCon.Close();
+
                     return rowsAffected > 0;
                 }
             }
         }
     }
 }
-

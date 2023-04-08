@@ -10,9 +10,9 @@ namespace backend.Controllers
     [EnableCors("_myAllowSpecificOrigins")]
     public class ProductSizeController : ControllerBase
     {
-        private readonly IProductSizeRepository<ProductSize> _psRepository;
+        private readonly IListRepository<ProductSize> _psRepository;
 
-        public ProductSizeController(IProductSizeRepository<ProductSize> productSizeRepo)
+        public ProductSizeController(IListRepository<ProductSize> productSizeRepo)
         {
             _psRepository = productSizeRepo;
         }
@@ -24,10 +24,10 @@ namespace backend.Controllers
             return Ok(productSizes);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet("{productId}")]
+        public IActionResult Get(int productId)
         {
-            var productSizes = _psRepository.GetById(id);
+            var productSizes = _psRepository.GetById(productId);
             if (productSizes == null)
             {
                 return NotFound();
@@ -36,9 +36,9 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(ProductSize ps)
+        public IActionResult Post(ProductSize newProductSize)
         {
-            bool added = _psRepository.Add(ps);
+            bool added = _psRepository.Add(newProductSize);
             if (!added)
             {
                 return BadRequest("Failed to add Product Size");
@@ -47,10 +47,10 @@ namespace backend.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Put(ProductSize ps)
+        [HttpPut("{productSizeId}")]
+        public IActionResult Put(ProductSize updatedProductSize)
         {
-            bool updated = _psRepository.Update(ps);
+            bool updated = _psRepository.Update(updatedProductSize);
             if (updated)
             {
                 return Ok();
@@ -61,10 +61,10 @@ namespace backend.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete("{productSizeId}")]
+        public IActionResult Delete(int productSizeId)
         {
-            bool deleted = _psRepository.Delete(id);
+            bool deleted = _psRepository.Delete(productSizeId);
             if (deleted)
             {
                 return Ok();

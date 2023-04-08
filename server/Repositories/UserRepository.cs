@@ -162,7 +162,7 @@ namespace backend.Repositories
             }
         }
 
-        public bool Delete(int id)
+        public bool Delete(int userId)
         {
             string query = @"DELETE FROM dbo.[USER] 
                              WHERE UserID = @UserID";
@@ -172,7 +172,7 @@ namespace backend.Repositories
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
-                    myCommand.Parameters.AddWithValue("@UserID", id);
+                    myCommand.Parameters.AddWithValue("@UserID", userId);
                     int rowsAffected = myCommand.ExecuteNonQuery();
                     myCon.Close();
 

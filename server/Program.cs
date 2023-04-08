@@ -30,7 +30,10 @@ namespace backend
 
             builder.Services.AddScoped<IRepository<User>, UserRepository>();
             builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
-            builder.Services.AddScoped<IProductSizeRepository<ProductSize>, ProductSizeRepository>();
+            builder.Services.AddScoped<IRepository<Order>, OrderRepository>();
+
+            builder.Services.AddScoped<IListRepository<ProductSize>, ProductSizeRepository>();
+            builder.Services.AddScoped<IListRepository<OrderItem>, OrderItemRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
