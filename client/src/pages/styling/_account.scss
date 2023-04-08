@@ -1,0 +1,30 @@
+.account{
+    gap: 5rem;
+    @include flex(center, flex-start, row);
+    @media (max-width: 850px) {
+        gap: 2rem;
+        @include flex(flex-start, flex-start, column);
+        ul{
+            @include flex(center, center, row);
+            li{
+                padding: 1rem 1rem 1rem 0rem;
+            }
+        }
+    }
+}
+
+.account-menu{
+    li{
+        border-bottom: none;
+        cursor: pointer;
+    }
+    li.active {
+        font-weight: bold;
+    }
+}
+
+.profile-info, .profile-container{
+    h2, button{
+        margin-top: 1rem;
+    }
+}

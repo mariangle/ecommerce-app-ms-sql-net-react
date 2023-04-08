@@ -1,6 +1,7 @@
 import React from 'react';
 import hero from "../assets/icons/hero.png"
 import { Link } from 'react-router-dom';
+import ProductList from '../components/product/ProductList';
 
 function Home() {
   return (
@@ -11,15 +12,19 @@ function Home() {
       </div>
       <div className='hero-about'>
         <div>
+          <p>Air Jordan 1</p>
+          <h3>Grey Blue</h3>
           <p>Exclusive</p>
-          <h3>SUMMER DISCOUNT</h3>
-          <p>10% OFF WITH OFF10</p>
-        <Link to="/shop"><button>SHOP NOW</button></Link>
+        <Link to="/shop"><button>SHOP NOW</button></Link> 
         </div>
         </div>  
       <div className='hero-container container'>
+        <h2>DISCOUNT</h2>
+        <div className="line"></div>
         <h2>JUST ARRIVED</h2>
+        <div className="line"></div>
         <h2>SHOP BRAND</h2>
+        <ProductList></ProductList>
       </div>
     </>
   );

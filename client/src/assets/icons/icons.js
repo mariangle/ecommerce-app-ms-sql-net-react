@@ -1,4 +1,4 @@
-import { faUser, faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faUser, faHeart, faSave, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping, faSearch, faBars, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 
 export const icons = {
@@ -9,4 +9,6 @@ export const icons = {
   hamburger: faBars,
   email: faEnvelope,
   lock: faLock,
+  trash: faTrashAlt,
+  save: faSave,
 };

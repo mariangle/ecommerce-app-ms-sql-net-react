@@ -1,7 +1,7 @@
-$color-main: #713a83;
-$darker-main: #1a1943;
+$color-main: #156546;
+$darker-main: #134733;
 $color-dark: #222;
-$color-grey: #747474;
+$color-grey: #4d4d4d;
 $color-smoke: #f6f6f6;
 
 @mixin flex($justify, $align, $direction){
@@ -12,15 +12,15 @@ $color-smoke: #f6f6f6;
 }
 @import "global";
 @import "utilities";
+
 @import "../components/layout/header";
 @import "../components/layout/footer";
 @import "../components/product/product";
+@import "../components/cart/cartItem"; 
 
-@import "./pages/productDetail";
-@import "./pages/cart"; 
-@import "./pages/auth"; 
-@import "./pages/home"; 
-
-
-@import "profile";
+@import "../pages/styling/productDetail";
+@import "../pages/styling/auth"; 
+@import "../pages/styling/home"; 
+@import "../pages/styling/admin";
+@import "../pages/styling/account";
 

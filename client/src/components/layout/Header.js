@@ -22,15 +22,15 @@ function Header() {
     <div className={`header-container ${isHomePage ? 'home' : ''}`}>
         <Link className="header-main" to="/"><h1>STORE</h1></Link>
         <ul>
-          <li><Link to="/shop">SHOP</Link></li>
-          <li><Link to="/">NIKE</Link></li>
-          <li><Link to="/">ADIDAS</Link></li>
-          <li><Link to="/">NEW RELEASES</Link></li>
+        <li><Link to="/shop">SHOP</Link></li>
+          <li><Link to="/">BLOG</Link></li>
+          <li><Link to="/">CONTACT US</Link></li>
+          <li><Link to="/">ABOUT US</Link></li>
         </ul>
-        <div className={`header-tools ${isHomePage ? 'home' : ''}`}>
-          <FontAwesomeIcon icon={icons.search}/>
+        <div className='header-tools'>
+          <Link to="/"><FontAwesomeIcon icon={icons.search}/></Link>
           <a onClick={handleNav}><FontAwesomeIcon icon={icons.user}/></a>      
-          <Link to="/"><FontAwesomeIcon icon={icons.heart} /></Link>    
+          <Link to="/admin"><FontAwesomeIcon icon={icons.heart} /></Link>    
           <Link to="/cart">
               <div className='cart-icon'>
                 <FontAwesomeIcon icon={icons.cart}/>

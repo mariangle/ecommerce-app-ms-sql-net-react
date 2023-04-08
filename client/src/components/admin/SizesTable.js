@@ -1,9 +1,10 @@
 import React from 'react'
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import productSizeApi from '../../utils/api/productSizeApi';
 import { deleteSize, createProductSize, updateExistingSize } from '../../store/reducers/productSizeSlice';
+import { icons } from '../../assets/icons/icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ProductSizes({ localProduct }) {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function ProductSizes({ localProduct }) {
       setAvailableSizes(productSizes);
     };
     fetchData();
-  }, [localProduct.productID]);
+  }, [localProduct?.productID]);
 
   const handleAddProductSize = async (event) => {
     event.preventDefault();
@@ -81,15 +82,14 @@ function ProductSizes({ localProduct }) {
   };
 
   return (
-    <>
-      <AvaliableSizes>
-        <table>
+      <>
+        <table className='size-table'>
           <thead>
             <tr>
               <th>Size</th>
               <th>Price</th>
               <th>Quantity</th>
-              <th>Options</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -113,7 +113,7 @@ function ProductSizes({ localProduct }) {
                 <input id="quantity" type="number" value={newSize.quantity} onChange={(e) => setNewSize({ ...newSize, quantity: e.target.value })} />
               </td>
               <td>
-                <a onClick={handleAddProductSize}>+</a>
+                <a onClick={handleAddProductSize}>Add</a>
               </td>
             </tr>
             {availableSizes.sort((a, b) => a.size - b.size).map((productSize, index) => (
@@ -132,23 +132,16 @@ function ProductSizes({ localProduct }) {
                   />
                 </td>
                 <td>
-                  <a onClick={() => handleDeleteProductSize(productSize.productSizeID)}>Delete</a>
-                  <a onClick={() => handleEditProductSize(productSize.productSizeID, productSize)}>Save</a>
+                  <a onClick={() => handleDeleteProductSize(productSize.productSizeID)}><FontAwesomeIcon icon={icons.trash}></FontAwesomeIcon></a>
+                  <a onClick={() => handleEditProductSize(productSize.productSizeID, productSize)}><FontAwesomeIcon icon={icons.save}></FontAwesomeIcon></a>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </AvaliableSizes>
-    </>
+      </>
   );
-  
 }
-
-const AvaliableSizes = styled.div`
-display: flex;
-flex-direction: column;
-`
 
 
 

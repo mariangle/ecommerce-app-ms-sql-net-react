@@ -41,7 +41,8 @@ function ProductCard() {
             <FontAwesomeIcon icon={icons.heart}></FontAwesomeIcon>
           </div>
           <div className='product-info'>
-            <h3>{product.brand} {product.name}</h3>
+            <p>{product.brand}</p>
+            <h3>{product.name}</h3>
             <p>{price} kr</p>
           </div>
         </Link>

@@ -1,12 +1,14 @@
 .product-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    grid-gap: 1rem;
+    grid-gap: 2rem;
 }
 
 .product-card{
     width: 100%;
     margin-bottom: 1rem;
+    a{
+        @include flex(center, center, column)}
 }
 
 .product-img{
@@ -14,10 +16,8 @@
     height: 300px;
     @include flex(center, center, row);
     background: $color-smoke;
-    border-radius: 20px;
     img{
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 90%;
         object-fit: cover;
     } 
     svg{
@@ -34,16 +34,18 @@
 }
 
 .product-info{
+    margin-top: 1rem;
+    h3, p{
+        text-align: center;
+        font-size: 1rem;
+    }
+    p:last-child{
+        color: $color-grey;
+    }
     h3{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 0.5rem 0rem 1rem 0rem;
-    font-size: 1rem;
-    font-weight: lighter;
-    span{
-        display: block;
-        color: var(--color-text)
-        }
+    text-transform: capitalize;
     }
 }

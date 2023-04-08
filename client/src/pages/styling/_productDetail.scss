@@ -3,10 +3,12 @@
 }
 
 .product-detail-img{
-    min-height: 50vh;
-    width: 100%;
+    min-height: 60vh;
     background: $color-smoke;
     flex: 2;
+    img{
+        max-width: 90%;
+    }
 }
 
 .product-detail-about{
@@ -15,6 +17,7 @@
         font-weight: 600;
     }
     h1{
+        font-size: 1.8rem;
         margin-top: 1rem;
         line-height: 100%;
     }

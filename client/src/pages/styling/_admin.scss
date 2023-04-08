@@ -1,0 +1,85 @@
+.admin{
+  width: 100%;
+  ul {
+    display: flex;
+    list-style-type: none;
+    border: 1px solid $color-dark;  
+    }
+    li {
+    border-bottom: none;
+    cursor: pointer;
+    text-align: center;
+    }
+
+    li.active {
+    color: white;
+    background-color: $color-dark;
+    }
+}
+
+.admin-product{
+  @include flex(space-between, flex-start, row);
+  width: 100%;
+  @media (max-width: 1000px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.product-table{
+  width: 100%;
+  @media (max-width: 600px) {
+    display: initial;
+  }
+}
+
+.product-panel{
+  padding: 1rem;
+  border-top: 3.45rem solid $color-dark;
+  @include flex(center, center, column);
+  width: 100%;
+  max-width: 30rem;
+  h2{
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  input{
+    padding: 0.5rem;
+  }
+  @media (max-width: 1000px) {
+    padding: 1rem 0;
+    max-width: none;
+  }
+}
+.product-panel-img{
+  width: 100%;
+  background: $color-smoke;
+  @include flex(center, center, row);
+  margin-bottom: 1rem;
+  img{
+    width: 50%;
+    height: 100%;
+    padding-bottom: 1.8rem;
+  }
+}
+
+.size-table{
+  input, select{
+    margin-bottom: 0rem;
+    padding: 0.5rem;
+  }
+}
+
+.product-panel-info{
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.label-small{
+  width: 8rem;
+  display: block;
+}
+
+td a:first-child svg{
+  margin-right: 1rem;
+}

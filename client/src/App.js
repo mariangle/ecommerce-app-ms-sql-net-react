@@ -8,7 +8,7 @@ import Shop from './pages/Shop';
 import ProductPage from './pages/ProductDetail';
 import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
-import AdminPage from "./pages/AdminDashboard"
+import Admin from "./pages/AdminPanel"
 import Account from './pages/MyAccount';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
@@ -33,7 +33,7 @@ function App() {
         <Route path="/authentication" element={<Authentication />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/account" element={<Account />} />
         <Route path="/shop" element={<Shop />} />
       </Routes>

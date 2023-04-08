@@ -7,29 +7,33 @@ body {
     line-height: 150%;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     color: $color-dark;
 }
-h2{
+h1, h2, h3, h4{
     font-size: 1.6rem;
+    margin-bottom: 1rem;
 }
-h3{
-    font-size: 1.6rem;
+ul{
+    list-style: none;
+  }
+li{
+    list-style: none;
+    padding: 0.5rem 1rem;
+
 }
-h4{
-    font-size: 1.6rem;
-}
-input{
+input, textarea, select{
     padding: 1rem;
     font-family: 'Montserrat', sans-serif;
     width: 100%;
     font-size: 1rem;
     margin-bottom: 1rem;
+    resize: none;
 }
 button{
     padding: 1rem;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-bottom   : 1rem;
     background: $color-dark;
     font-weight: bold;
     color: white;
@@ -51,16 +55,61 @@ img{
     max-height: 100%;
     object-fit: cover;
 } 
-select{
-    width: 100%;
-    font-size: 1rem;
-    padding: 1rem;
-    border-radius: 10px;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+table{
+    width: 100%;
+    box-sizing: border-box;
+    border-spacing: 0px;
+}
+th, td {
+    padding:15px;
+}
+tr{
+    background: white;
+    th{
+      font-weight: lighter;
+      background: $color-dark;
+      text-align: left;
+      color: white;
+
+    }
+    &:nth-child(2n){
+        background: $color-smoke;
+    }
+  }
+  td{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  th {
+    text-align: center;
+  }
+
+  td {
+    border-bottom: none;
+  }
+
+td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    }
 }

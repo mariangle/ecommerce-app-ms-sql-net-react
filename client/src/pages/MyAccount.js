@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import Profile from '../components/account/EditProfile';
+import Orders from '../components/account/MyOrders';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function Profile() {
+const tabs = ['Profile', 'My Orders'];
+
+function MyAccount() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
+  const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
     if (!user) {
@@ -12,56 +17,36 @@ function Profile() {
     }
   }, [user, navigate]);
 
+  const handleTabClick = (index) => {
+    setActiveTab(index);
+  };
+
   return (
     <>
       {user && (
-        <div className="profile-container container">
-          <h1>Edit Profile</h1>
-          <div className="profile-info">
-            <div className="divider">
-              <label>
-                First Name
-                <input value={user.firstName} />
-              </label>
-              <label>
-                Last Name
-                <input value={user.lastName} />
-              </label>
-            </div>
-            <label>
-              Email
-              <input value={user.email} />
-            </label>
-            <label>
-              Phone Number
-              <input value={user.phone} />
-            </label>
-          </div>
-          <div className="profile-info">
-            <h2>Shipping Details</h2>
-            <label>
-              Address
-              <input value={user.address} />
-            </label>
-            <div className="divider">
-              <label>
-                Postal Code
-                <input value={user.postalCode} />
-              </label>
-              <label>
-                City
-                <input value={user.city} />
-              </label>
-            </div>
-          </div>
-          <div className="divider">
-            <button>Cancel</button>
-            <button>Save</button>
+        <div className="container account">
+          <ul className='account-menu'>
+            {tabs.map((tab, index) => (
+              <li
+                key={tab}
+                className={index === activeTab ? 'active' : ''}
+                onClick={() => handleTabClick(index)}
+              >
+                {tab}
+              </li>
+            ))}
+          </ul>
+          <div className='account-content'>
+            {activeTab === 0 && <Profile user={user} />}
+            {activeTab === 1 && <Orders />}
           </div>
         </div>
       )}
-    </> 
+    </>
   );
+  
 }
 
-export default Profile;
+
+
+export default MyAccount

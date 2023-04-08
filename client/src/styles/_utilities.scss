@@ -33,12 +33,7 @@
 .divider{
     width: 100%;
     display: flex;
-    label:first-child{
-        margin-right: 1rem;
-    }
-    button:first-child{
-        margin-right:1rem;
-    }
+    gap: 1rem;
 }
 
 .line{

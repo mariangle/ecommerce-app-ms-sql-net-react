@@ -1,8 +1,6 @@
 import productApi from '../../utils/api/productApi';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Divider} from '../../styles/styles'; 
-import ProductSizes from './SizesManagement';
+import ProductSizes from './SizesTable';
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from '../../store/reducers/productSlice';
 import { createProduct, updateExistingProduct, removeProduct } from '../../store/reducers/productSlice';
@@ -65,8 +63,8 @@ function Products() {
   };
 
   return (
-    <StyledProducts>
-        <ProductTable>
+    <div className="admin-product">
+        <table className='product-table'>
             <thead>
                 <tr>
                 <th>ID</th>
@@ -81,58 +79,52 @@ function Products() {
                 </tr>
                 ))}
             </tbody>
-        </ProductTable>
-          {localProduct && <ProductPanel>
-            <ProductDetails>
-              <ProductInfo>
-                <Divider>
+        </table>
+        <div className='product-panel'>
+              <h2>{localProduct?.brand} {localProduct?.name}</h2>
+              {localProduct && (
+                <div className='product-panel-img'>
+                  <img src={localProduct.imageURL} alt="" />
+                </div>
+              )
+              }
+              <div className="product-panel-info">
+                { localProduct && ( <label className='label-small'>
+                  ID
+                  <input value={localProduct?.productID} readOnly/>
+                </label>)}
                 <label>
-                  ID: {localProduct?.productID}
-                </label>
-                <label>
-                  Brand
+                    Brand
                   <input id="productBrand" name="brand" maxLength="50" value={localProduct?.brand || ''} onChange={handleInputChange} />
                 </label>
                 <label>
                   Model
                   <input id="productName" name="name" maxLength="100" value={localProduct?.name || ''} onChange={handleInputChange}/>
                 </label>
-              </Divider>
+              </div>
               <label htmlFor="">
-                Description
-                <textarea id="productDescription" name="description" maxLength="500" rows="6" value={localProduct?.description || ''} onChange={handleInputChange}></textarea>
+                  Description
+                  <textarea id="productDescription" name="description" maxLength="500" rows="4" value={localProduct?.description || ''} onChange={handleInputChange}></textarea>
               </label>
-              <Divider>
-                <button onClick={() => setLocalProduct(null) }>Close</button>
-                <button onClick={handleSaveChanges}>Save</button>
-                <button onClick={handleAddProduct}>Add</button>
-                <button onClick={() => handleDeleteProduct(localProduct?.productID)}>Delete</button>
-              </Divider>
-              </ProductInfo>
-            </ProductDetails>
-            <ProductSizes localProduct={localProduct} />
-          </ProductPanel> 
-          }
-    </StyledProducts>
+            <label>
+                Image URL
+                <input id="productImageURL" name="imageURL" maxLength="100" value={localProduct?.imageURL || ''} onChange={handleInputChange}/>
+            </label>
+            <div className='divider'>
+                <button className='second-button' onClick={() => setLocalProduct(null) }>Clear</button>
+                { localProduct && (<button className='second-button' onClick={() => handleDeleteProduct(localProduct?.productID)}>Delete</button>)}
+                { localProduct && (<button onClick={handleSaveChanges}>Save Changes</button>)}
+                { !localProduct && (<button onClick={handleAddProduct}>Add Product</button>)}
+            </div>
+            {localProduct && (<ProductSizes localProduct={localProduct} />)}
+        </div> 
+    </div>
   );
 }
 
 
-const StyledProducts = styled.div`
-width: 100%;
-`
-const ProductTable = styled.table`
-`
-const ProductPanel = styled.div`
-position: fixed;
-top: 50%;
-right: 0;
-`
 
-const ProductDetails = styled.div`
-`
 
-const ProductInfo = styled.div`
-`
+
 
 export default Products;
