@@ -1,14 +1,9 @@
 import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { icons } from '../../assets/icons/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 function Register() {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [termsAccepted, setTermsAccepted] = useState(false);
 
 
   const onSubmit = async (registerData) => {

@@ -55,6 +55,23 @@ img{
     max-height: 100%;
     object-fit: cover;
 } 
+p{
+    font-size: 1rem; 
+  }
+  a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+  input[type=number] {
+  -moz-appearance: textfield;
+  appearance: text;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 

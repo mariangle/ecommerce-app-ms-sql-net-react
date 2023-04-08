@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-import { Container, About, Divider } from '../styles/styles'
+import React from 'react'
 import styled from 'styled-components'
 import { useForm } from 'react-hook-form';
 import CartItem from "../components/cart/CartItem";
@@ -30,7 +29,7 @@ function CheckoutPage() {
             </TransactionSection>
             <TransactionSection>
               <h2>Shipping address</h2>
-              <Divider>
+              <div className='divider'>
                 <label>
                   First Name
                   <input value={user?.firstName}{...register('firstName', { required: true })} />
@@ -39,7 +38,7 @@ function CheckoutPage() {
                   Last Name
                   <input value={user?.lastName}{...register('lastName', { required: true })} />
                 </label>
-              </Divider>
+              </div>
               <label>
                 Phone Number
                 <input value={user?.phone}{...register('phone', { required: true })} />
@@ -48,7 +47,7 @@ function CheckoutPage() {
                 Address
                 <input value={user?.address}{...register('address', { required: true })} />
               </label>
-              <Divider>
+              <div className='divider'>
                 <label>
                   City
                   <input value={user?.city}{...register('city', { required: true })} />
@@ -57,7 +56,7 @@ function CheckoutPage() {
                   Postal Code
                   <input value={user?.postalCode}{...register('zipCode', { required: true })} />
                 </label>
-              </Divider>
+              </div>
             </TransactionSection>
             <TransactionSection>
               <h2>Payment</h2>
@@ -69,7 +68,7 @@ function CheckoutPage() {
                 Card Number
                 <input {...register('cardNumber', { required: true })} />
               </label>
-              <Divider>
+              <div className='divider'>
               <Label>
                 Expiry Date
                 <select {...register('expiryMonth', { required: true })}>
@@ -104,11 +103,11 @@ function CheckoutPage() {
                 CVV:
                 <input {...register('cvv', { required: true })} />
               </label>
-              </Divider>
+              </div>
             </TransactionSection>
-        <Divider>
+        <div>
           <Link to="/cart"><button>Back</button></Link>
-        </Divider>
+        </div>
       </Form>
         </Transaction>
         <Cart>
@@ -137,16 +136,16 @@ function CheckoutPage() {
   )
 }
 
-const StyledCheckout = styled(Container)`
+const StyledCheckout = styled.div`
 justify-content: center;
 flex-wrap: wrap;
 
 `
 
-const Transaction = styled(About)`
+const Transaction = styled.div`
 margin-left: 0rem;
 `
-const Cart = styled(About)`
+const Cart = styled.div`
 flex-basis: 4 0%;`
 
 const TransactionSection = styled.div`

@@ -1,4 +1,3 @@
-import GlobalStyles from './styles/GlobalStyles';
 // import components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -25,7 +24,6 @@ function App() {
   return (
     <>
     <Provider store={store}>
-    <GlobalStyles />
       {showHeaderFooter && <Header/>}
       <Routes>
         <Route path="/" element={<Home location={location} />} />
