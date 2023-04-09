@@ -40,7 +40,7 @@ namespace backend.Repositories
                     (int)row["OrderItemID"],
                     (int)row["Quantity"],
                     (int)row["OrderID"],
-                    (int)row["ProductSizeID"]
+                        (int)row["ProductSizeID"]
                 ));
             }
             return orderItems;
@@ -116,7 +116,7 @@ namespace backend.Repositories
             string query = @"UPDATE dbo.ORDER_ITEM
                              SET Quantity = @Quantity,
                              OrderID = @OrderID,
-                             ProductSizeID = @ProductSizeID,
+                             ProductSizeID = @ProductSizeID
                              WHERE OrderItemID = @OrderItemID";
 
             using (SqlConnection myCon = new SqlConnection(_connectionString))
@@ -124,6 +124,7 @@ namespace backend.Repositories
                 myCon.Open();
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
+                    myCommand.Parameters.AddWithValue("@OrderItemID", orderItem.OrderItemID);
                     myCommand.Parameters.AddWithValue("@Quantity", orderItem.Quantity);
                     myCommand.Parameters.AddWithValue("@OrderID", orderItem.OrderID);
                     myCommand.Parameters.AddWithValue("@ProductSizeID", orderItem.ProductSizeID);
@@ -148,6 +149,11 @@ namespace backend.Repositories
                     return rowsAffected > 0;
                 }
             }
+        }
+
+        public OrderItem GetObjById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

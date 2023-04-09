@@ -91,7 +91,8 @@ public class Startup
         // Add repositories
         services.AddScoped(typeof(IRepository<>), typeof(UserRepository));
         services.AddScoped(typeof(IRepository<>), typeof(ProductRepository));
-        services.AddScoped(typeof(IRepository<>), typeof(OrderRepository));
+
+        services.AddScoped(typeof(IListRepository<>), typeof(OrderRepository));
         services.AddScoped(typeof(IListRepository<>), typeof(ProductSizeRepository));
         services.AddScoped(typeof(IListRepository<>), typeof(OrderItemRepository));
 

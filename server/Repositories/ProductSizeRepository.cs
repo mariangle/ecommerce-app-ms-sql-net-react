@@ -47,6 +47,46 @@ namespace backend.Repositories
             return productSizes;
         }
 
+        public ProductSize GetObjById(int productSizeId)
+        {
+            string query = @"SELECT * FROM dbo.PRODUCT_SIZE WHERE ProductSizeID = @ProductSizeID";
+
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ProductSizeID", productSizeId);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        ProductSize productSize = new ProductSize(
+                            reader.GetInt32(0),
+                            reader.GetInt32(1),
+                            reader.GetDecimal(2),
+                            reader.GetInt32(3),
+                            reader.GetInt32(4)
+                        );
+
+                        reader.Close();
+                        connection.Close();
+
+                        return productSize;
+                    }
+                    else
+                    {
+                        reader.Close();
+                        connection.Close();
+
+                        return null; // Or throw an exception if you prefer
+                    }
+                }
+            }
+        }
+
         public List<ProductSize> GetById(int productId)
         {
             string query = @"SELECT * FROM dbo.PRODUCT_SIZE WHERE ProductID = @ProductID";

@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace backend.Repositories
 {
-    public class OrderRepository : IRepository<Order>
+    public class OrderRepository : IListRepository<Order>
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
@@ -46,15 +46,13 @@ namespace backend.Repositories
                 ));
             }
             return orders;
-
-
         }
 
-        public Order GetById(int userId)
+        public List<Order> GetById(int userId)
         {
             string query = @"SELECT OrderID, OrderDateTime, TotalPrice, OrderStatus, UserID FROM dbo.[ORDER] WHERE UserID = @UserID";
 
-            Order order = null;
+            List<Order> orders = new List<Order>();
 
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -66,23 +64,28 @@ namespace backend.Repositories
 
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if (reader.Read())
+                    while (reader.Read())
                     {
-                        order = new Order(
+                        Order order = new Order(
                             reader.GetInt32(0),
                             reader.GetDateTime(1),
                             reader.GetDecimal(2),
                             Enum.Parse<OrderStatus>(reader.GetString(3)),
                             reader.GetInt32(4)
                         );
+
+                        orders.Add(order);
                     }
+
+                    reader.Close();
                 }
 
                 connection.Close();
             }
 
-            return order;
+            return orders;
         }
+
 
         public bool Add(Order order)
         {
@@ -156,6 +159,11 @@ namespace backend.Repositories
                     return rowsAffected > 0;
                 }
             }
+        }
+
+        public Order GetObjById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

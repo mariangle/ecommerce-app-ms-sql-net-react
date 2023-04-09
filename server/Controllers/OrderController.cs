@@ -10,9 +10,9 @@ namespace backend.Controllers
     [EnableCors("_myAllowSpecificOrigins")]
     public class OrderController : ControllerBase
     {
-        private readonly IRepository<Order> _orderRepository;
+        private readonly IListRepository<Order> _orderRepository;
 
-        public OrderController(IRepository<Order> orderRepo)
+        public OrderController(IListRepository<Order> orderRepo)
         {
             _orderRepository = orderRepo;
         }

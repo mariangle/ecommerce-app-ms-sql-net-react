@@ -35,6 +35,17 @@ namespace backend.Controllers
             return Ok(productSizes);
         }
 
+        [HttpGet("{id}/size")]
+        public IActionResult GetProductSizeById(int id)
+        {
+            var productSizes = _psRepository.GetObjById(id);
+            if (productSizes == null)
+            {
+                return NotFound();
+            }
+            return Ok(productSizes);
+        }
+
         [HttpPost]
         public IActionResult Post(ProductSize newProductSize)
         {
