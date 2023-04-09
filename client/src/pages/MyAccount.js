@@ -38,7 +38,7 @@ function MyAccount() {
           </ul>
           <div className='account-content'>
             {activeTab === 0 && <Profile user={user} />}
-            {activeTab === 1 && <Orders />}
+            {activeTab === 1 && <Orders user={user}/>}
           </div>
         </div>
       )}
