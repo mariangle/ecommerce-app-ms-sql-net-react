@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { variables } from './variables.js';
 
-const API_URL = variables.BASE_URL+"productsize"
+const API_URL = variables.PRODUCTSIZE_API
 
 export const getProductSizes = async () => {
   const response = await axios.get(`${API_URL}`);
@@ -13,8 +13,12 @@ export const getProductSizesByProductId = async (productId) => {
   return response.data;
 };
 
+export const getProductSize = async (productSizeId) => {
+  const response = await axios.get(`${API_URL}/${productSizeId}/size`);
+  return response.data;
+};
+
 const addProductSize = async (productSizeData) => {
-  console.log("API" + productSizeData)
   const response = await axios.post(`${API_URL}`, productSizeData);
   return response.data;
 };
@@ -25,7 +29,6 @@ const updateProductSize = async (productSizeId, productSizeData) => {
 };
 
 const deleteProductSize = async (productSizeId) => {
-  console.log("hi from api: " + productSizeId)
   const response = await axios.delete(`${API_URL}/${productSizeId}`);
   return response.data;
 };
@@ -33,6 +36,7 @@ const deleteProductSize = async (productSizeId) => {
 export default {
     getProductSizes,
     getProductSizesByProductId,
+    getProductSize,
     addProductSize,
     updateProductSize,
     deleteProductSize

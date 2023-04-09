@@ -24,7 +24,6 @@ function Home() {
         <h2>JUST ARRIVED</h2>
         <div className="line"></div>
         <h2>SHOP BRAND</h2>
-        <ProductList></ProductList>
       </div>
     </>
   );

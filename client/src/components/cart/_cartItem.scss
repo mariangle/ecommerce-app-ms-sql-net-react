@@ -8,6 +8,7 @@
 .cart-item{
     display: flex;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .cart-item-img{
@@ -27,7 +28,7 @@
     width: 70%;
     h3{
         font-size: 1rem;
-        font-weight: 500;
+        margin-bottom: 0rem;
     }
     p{
         color: $color-grey;
@@ -35,10 +36,7 @@
 }
 
 .cart-item-details{
-    @include flex(space-between, flex-start, column);
-    a:nth-child(4){
-  text-decoration: underline;
-}
+    @include flex(flex-start, flex-start, column);
 }
 
 .cart-item-quantity{

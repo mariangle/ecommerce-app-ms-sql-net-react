@@ -30,6 +30,9 @@ input, textarea, select{
     margin-bottom: 1rem;
     resize: none;
 }
+select{
+  padding: 0.5rem;
+}
 button{
     padding: 1rem;
     cursor: pointer;

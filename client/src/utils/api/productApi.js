@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { variables } from './variables.js';
 
-const API_URL = variables.BASE_URL+"Product"
+const API_URL = variables.PRODUCT_API
 
 const getProducts = async () => {
   const response = await axios.get(API_URL);

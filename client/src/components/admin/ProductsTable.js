@@ -1,4 +1,3 @@
-import productApi from '../../utils/api/productApi';
 import React, { useEffect, useState } from 'react';
 import ProductSizes from './SizesTable';
 import { useDispatch } from 'react-redux';
@@ -7,22 +6,17 @@ import { createProduct, updateExistingProduct, removeProduct } from '../../store
 
 function Products() {
   const dispatch = useDispatch();
-  const [data, setData] = useState([]);
+  const [products, setProducts] = useState([]);
   const [localProduct, setLocalProduct] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      const products = await productApi.getProducts();
-      setData(products);
-      dispatch(fetchProducts());
+      dispatch(fetchProducts()).then((response) => {
+        setProducts(response.payload);
+      });
     }
     fetchData();
   }, [dispatch]);
-
-  const handleEditProduct = (productId) => {
-    const product = data.find((p) => p.productID === productId);
-    setLocalProduct(product);
-  };
 
   const handleAddProduct = () => {
     const newProduct = {
@@ -33,7 +27,7 @@ function Products() {
     };
     dispatch(createProduct(newProduct))
     .then(() => {
-      setData([...data, newProduct]);
+      setProducts([...products, newProduct]);
       alert("Product has been added.")
     })
   };
@@ -46,17 +40,17 @@ function Products() {
   const handleSaveChanges = () => {
     dispatch(updateExistingProduct({ productId: localProduct.productID, product: localProduct }))
       .then(() => {
-        setData(data.map(p => p.productID === localProduct.productID ? localProduct : p));
+        setProducts(products.map(p => p.productID === localProduct.productID ? localProduct : p));
         alert("Changes have been saved.")
       })
   };
 
   const handleDeleteProduct = (productId) => {
-    setLocalProduct(data.find(product => product.productID === productId));
+    setLocalProduct(products.find(product => product.productID === productId));
     if (window.confirm("Are you sure you want to delete this product?")) {
       dispatch(removeProduct(productId))
       .then(() => {
-        setData(data.filter(p => p.productID !== productId));
+        setProducts(products.filter(p => p.productID !== productId));
         alert("Product has been deleted.")
       })
     }
@@ -72,8 +66,8 @@ function Products() {
                 </tr>
             </thead>
             <tbody>
-                {data.map((product, index) => (
-                <tr key={index}  onClick={() => handleEditProduct(product.productID)}>
+                {products.map((product, index) => (
+                <tr key={index}  onClick={() => setLocalProduct(product)}>         
                     <td>{product.productID}</td>
                     <td>{product.brand} {product.name}</td>
                 </tr>

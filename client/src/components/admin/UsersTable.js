@@ -1,11 +1,7 @@
 import userApi from '../../utils/api/userApi';
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 function Users() {
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -25,7 +21,6 @@ function Users() {
           <th>Email</th>
           <th>Phone</th>
           <th>Address</th>
-          <th>Options</th>
         </tr>
       </thead>
       <tbody>
@@ -36,10 +31,6 @@ function Users() {
             <td>{user.email}</td>
             <td>{user.phone}</td>
             <td>{user.postalCode} {user.city} {user.address}</td>
-            <td>
-              <FontAwesomeIcon icon={faTrash} />
-              <FontAwesomeIcon icon={faPenToSquare} />                    
-            </td>
           </tr>
         ))}
       </tbody>

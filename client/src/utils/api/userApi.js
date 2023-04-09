@@ -2,7 +2,7 @@ import axios from 'axios';
 import { variables } from './variables.js';
 import jwtDecode from 'jwt-decode';
 
-const API_URL = variables.BASE_URL+"User"
+const API_URL = variables.USER_API
 
 const getUsers = async () => {
   const response = await axios.get(API_URL);
@@ -36,7 +36,6 @@ const login = async (loginData) => {
       localStorage.setItem('user', JSON.stringify(response.data));
       const token = response.data.token;
       const decodedToken = jwtDecode(token);
-      console.log("in api:" + decodedToken.nameid) // Check if this logs the correct value
       return decodedToken.nameid;
     }
     return { token: null };
@@ -50,8 +49,6 @@ const login = async (loginData) => {
   }
   
 };
-
-
 
 export default {
   login,

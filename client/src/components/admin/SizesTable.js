@@ -16,14 +16,10 @@ function ProductSizes({ localProduct }) {
   });
 
   useEffect(() => {
-    const fetchData = async () => {
-      const productSizes = await productSizeApi.getProductSizesByProductId(
-        localProduct.productID
-      );
-      setAvailableSizes(productSizes);
-    };
-    fetchData();
-  }, [localProduct?.productID]);
+    localProduct && productSizeApi.getProductSizesByProductId(localProduct.productID)
+      .then(productSizes => setAvailableSizes(productSizes));
+  }, [localProduct]);
+  
 
   const handleAddProductSize = async (event) => {
     event.preventDefault();
@@ -132,7 +128,7 @@ function ProductSizes({ localProduct }) {
                   />
                 </td>
                 <td>
-                  <a onClick={() => handleDeleteProductSize(productSize.productSizeID)}><FontAwesomeIcon icon={icons.trash}></FontAwesomeIcon></a>
+                  <a onClick={(event) => handleDeleteProductSize(productSize.productSizeID, event)}><FontAwesomeIcon icon={icons.trash}></FontAwesomeIcon></a>
                   <a onClick={() => handleEditProductSize(productSize.productSizeID, productSize)}><FontAwesomeIcon icon={icons.save}></FontAwesomeIcon></a>
                 </td>
               </tr>
