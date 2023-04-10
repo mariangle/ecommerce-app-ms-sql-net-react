@@ -1,0 +1,46 @@
+.checkout{
+    @include flex(center, flex-start, row);
+    max-width: 1080px;
+    margin: auto;
+    width: 100%;
+    padding: 3rem 1rem;
+}
+
+.checkout-tabs{
+    a{
+        padding: 0;
+    }
+    a.active{
+        font-weight: bold;
+    }
+    p.separator{
+        padding: 0 0.5rem;
+    }
+}
+
+.checkout-left{
+    @include flex(flex-start, flex-start, column);
+    background: $color-smoke;
+    width: 55rem;
+    padding: 2rem;
+    min-height: 90vh;
+}
+
+.checkout-right{
+    @include flex(flex-start, flex-start, row);
+    max-width: 100%;
+    background: $color-smoke;
+    padding: 2rem;
+    margin-left: 2rem;
+}
+
+.checkout-container{
+    margin-top: 2rem;
+    width: 100%;    
+    button {
+        display: inline-block;
+      }
+      
+}
+
+
