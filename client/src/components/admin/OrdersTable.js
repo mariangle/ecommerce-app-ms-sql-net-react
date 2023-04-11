@@ -1,31 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchOrders } from "../../store/reducers/orderSlice"
+import { fetchOrders } from "../../store/actions/orderActions"
+import { useStatusString } from '../../utils/hooks/useStatusString';
 
 import OrderItemsTable from './OrderItemsTable';
 import OrderTable from './OrderTable';
 
 import userApi from '../../utils/api/userApi';
 
-
-
   function Orders() {
     const dispatch = useDispatch();
     const [orders, setOrders] = useState([])
     const [selectedOrder, setSelectedOrder] = useState(null)
     const [user, setUser] = useState([]);
-
-    const getStatusString = (status) => {
-      const statusMap = {
-        0: { statusString: 'Pending', className: 'yellow' },
-        1: { statusString: 'Processing', className: 'green' },
-        3: { statusString: 'Shipped', className: 'green' },
-        4: { statusString: 'Delivered', className: 'green' },
-        5: { statusString: 'Cancelled', className: 'red' }
-      };
-      const statusObj = statusMap[status] ?? { statusString: '', className: '' };
-      return <p className={`txt ${statusObj.className}`}>{statusObj.statusString}</p>;
-    };
+    const getStatusString = useStatusString();
 
     useEffect(() => {
       dispatch(fetchOrders()).then((response) => setOrders(response.payload));
@@ -37,7 +25,6 @@ import userApi from '../../utils/api/userApi';
       }
     }, [selectedOrder]);
     
-
     return (
       <div className="admin-product">
         <table>

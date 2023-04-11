@@ -3,12 +3,12 @@ import { variables } from './variables.js';
 
 const API_URL = variables.ORDERITEM_API
 
-export const getOrderItems = async () => {
+const getOrderItems = async () => {
   const response = await axios.get(`${API_URL}`);
   return response.data;
 };
 
-export const getOrderItemsByOrderId = async (orderId) => {
+const getOrderItemsByOrderId = async (orderId) => {
   const response = await axios.get(`${API_URL}/${orderId}`);
   return response.data;
 };

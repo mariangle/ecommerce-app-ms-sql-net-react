@@ -3,17 +3,17 @@ import { variables } from './variables.js';
 
 const API_URL = variables.PRODUCTSIZE_API
 
-export const getProductSizes = async () => {
+const getProductSizes = async () => {
   const response = await axios.get(`${API_URL}`);
   return response.data;
 };
 
-export const getProductSizesByProductId = async (productId) => {
+const getProductSizesByProductId = async (productId) => {
   const response = await axios.get(`${API_URL}/${productId}`);
   return response.data;
 };
 
-export const getProductSize = async (productSizeId) => {
+const getProductSize = async (productSizeId) => {
   const response = await axios.get(`${API_URL}/${productSizeId}/size`);
   return response.data;
 };

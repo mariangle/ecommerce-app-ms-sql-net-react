@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchOrdersByUserId } from '../../store/reducers/orderSlice';
+import { fetchOrdersByUserId } from '../../store/actions/orderActions';
 import orderItemApi from '../../utils/api/orderItemApi';
-import productSizeApi from '../../utils/api/productSizeApi';
+import sizeApi from '../../utils/api/sizeApi';
 import productApi from '../../utils/api/productApi';
-import { Link } from 'react-router-dom';
+import { useStatusString } from '../../utils/hooks/useStatusString';
 
 function MyOrders({ currentUser }) {
   const [orders, setOrders] = useState([]);
-
+  const getStatusString = useStatusString();
   const dispatch = useDispatch();
 
-  const getStatusString = (status) => {
-    const statusMap = {
-      0: { statusString: 'Pending', className: 'yellow' },
-      1: { statusString: 'Processing', className: 'green' },
-      3: { statusString: 'Shipped', className: 'green' },
-      4: { statusString: 'Delivered', className: 'green' },
-      5: { statusString: 'Cancelled', className: 'red' }
-    };
-    const statusObj = statusMap[status] ?? { statusString: '', className: '' };
-    return <p className={`txt ${statusObj.className}`}>{statusObj.statusString}</p>;
-  };
-  
 
   useEffect(() => {
     dispatch(fetchOrdersByUserId(currentUser.userID)).then(async (response) => {
@@ -30,7 +18,7 @@ function MyOrders({ currentUser }) {
         const orderItems = await orderItemApi.getOrderItemsByOrderId(order.orderID);
 
         const productSizePromises = orderItems.map((orderItem) =>
-          productSizeApi.getProductSize(orderItem.productSizeID)
+          sizeApi.getProductSize(orderItem.productSizeID)
         );
         const productSizes = await Promise.all(productSizePromises);
 

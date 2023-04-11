@@ -6,7 +6,7 @@ import { icons } from '../assets/icons/icons';
 
 import { useDispatch } from 'react-redux';
 import { fetchProducts } from '../store/actions/productActions';
-import { getProductSizesByProductId } from '../utils/api/productSizeApi.js';
+import sizeApi from '../utils/api/sizeApi.js';
 
 import { useCart } from "../utils/hooks/useCart";
 import { useProduct } from '../utils/hooks/useProduct';
@@ -30,7 +30,7 @@ function ProductDetail() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const productSizes = await getProductSizesByProductId(product.productID);
+      const productSizes = await sizeApi.getProductSizesByProductId(product.productID);
       setAvailableSizes(productSizes);
   
       const minPrice = Math.min(...productSizes.map((size) => size.price));

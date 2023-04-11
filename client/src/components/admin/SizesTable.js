@@ -1,8 +1,7 @@
-import React from 'react'
 import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import productSizeApi from '../../utils/api/productSizeApi';
-import { deleteSize, createProductSize, updateExistingSize } from '../../store/reducers/productSizeSlice';
+import React, { useEffect, useState } from 'react';
+import sizeApi from '../../utils/api/sizeApi';
+import { deleteSize, createProductSize, updateExistingSize } from '../../store/actions/sizeActions';
 import { icons } from '../../assets/icons/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -17,13 +16,12 @@ function ProductSizes({ localProduct }) {
 
   useEffect(() => {
     if(localProduct?.productID){
-      console.log("fetching sizes")
-      productSizeApi.getProductSizesByProductId(localProduct.productID)
+      sizeApi.getProductSizesByProductId(localProduct.productID)
       .then(productSizes => setAvailableSizes(productSizes));
     }
   }, [localProduct.productID]);
   
-
+  
   const handleAddProductSize = async (event) => {
     event.preventDefault();
     const createdSize = await dispatch(createProductSize({
