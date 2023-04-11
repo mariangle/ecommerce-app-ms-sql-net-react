@@ -3,10 +3,20 @@
     max-width: 1080px;
     margin: auto;
     width: 100%;
-    padding: 3rem 1rem;
+    padding: 5rem 1rem;
+    @media (max-width: 850px) {
+        display: block;
+        padding: 0rem 1rem;
+    }
+    button{
+        background: $color-blue;
+        color: white;
+        border: none;
+    }
 }
 
 .checkout-tabs{
+    @include flex(flex-start, center, row);
     a{
         padding: 0;
     }
@@ -19,19 +29,14 @@
 }
 
 .checkout-left{
-    @include flex(flex-start, flex-start, column);
-    background: $color-smoke;
-    width: 55rem;
+    @include flex(space-between, flex-start, column);
+    border: 1px solid $color-lightgrey;
+    max-width: 800px;
+    width: 100%;    
     padding: 2rem;
-    min-height: 90vh;
-}
+    min-height: 80vh;
+    border-radius: 5px;
 
-.checkout-right{
-    @include flex(flex-start, flex-start, row);
-    max-width: 100%;
-    background: $color-smoke;
-    padding: 2rem;
-    margin-left: 2rem;
 }
 
 .checkout-container{
@@ -40,7 +45,44 @@
     button {
         display: inline-block;
       }
-      
 }
 
+.checkout-top{
+    width: 100%;
+}
 
+.checkout-bottom{
+    width: 100%;    
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.checkout-right{
+    @include flex(flex-start, flex-start, row);
+    color: $color-grey;
+    background: $color-smoke;
+    border: 1px solid $color-lightgrey;
+    padding: 2rem;
+    width: 100%;    
+    max-width: 20rem;
+    margin-left: 2rem;
+    border-radius: 5px;
+    button{
+        border-radius: 0px;
+    }
+    .line{
+        background: $color-lightgrey;
+    }
+    @media (max-width: 850px) {
+        flex-wrap: wrap-reverse;
+        margin: 1rem 0 0 0;
+        max-width: none;
+        width: 100%;    
+    }
+}
+
+.checkout-order-summary{
+    width: 100%;
+}

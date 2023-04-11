@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import userApi from "../../utils/api/userApi";
+import { createSlice } from "@reduxjs/toolkit";
+import { login } from "../actions/userActions";
 
 const initialState = {
   currentUser: null,
@@ -7,18 +7,6 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-
-export const getUserById = createAsyncThunk("user/login", async (userId) => {
-  const user = await userApi.getUser(userId);
-  return user;
-
-});
-
-export const login = createAsyncThunk("user/login", async (loginData) => {
-  const userId = await userApi.login(loginData);
-  return userId;
-
-});
 
 export const userSlice = createSlice({
   name: "user",
@@ -30,7 +18,7 @@ export const userSlice = createSlice({
       state.token = "";
     },
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.currentUser = action.payload;
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
@@ -44,6 +32,7 @@ export const userSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -56,6 +45,7 @@ export const userSlice = createSlice({
         state.error = action.error.message;
         state.token = "";
         state.currentUser = null;
+        console.log("rejected")
       });
   },
 });

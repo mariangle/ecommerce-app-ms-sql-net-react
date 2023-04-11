@@ -3,9 +3,9 @@
     z-index: -1;
     position: absolute;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1200px;
     margin: auto;
-    height: 30rem;
+    height: 25rem;
     top: 0;
     left: 0;
     right: 0;
@@ -36,20 +36,20 @@
     transform: translate(-5%, -60%);
     z-index: -1;
     border-radius: 50%;
-    height: 70rem;
-    width: 70rem;
+    height: 50rem;
+    width: 50rem;
     background: white;
 }
 
 .hero-about{
     display: flex;
     padding: 5rem 0 5rem 1rem;
-    max-width: 1200px;
+    max-width: 1080px;
     width: 100%;
     margin: auto;
     h3{
         padding: 0rem 0rem;
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     p{
         margin-bottom: 1rem;

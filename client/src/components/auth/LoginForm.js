@@ -1,26 +1,28 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { login, getUserById, setUser } from '../../store/reducers/userSlice'; // actions
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { icons } from '../../assets/icons/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { useUser } from '../../utils/hooks/useUser';
 
 function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const { login } = useUser();
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmit = async (loginData) => {
-    const { payload: userId } = await dispatch(login(loginData));
-    const { payload: user } = await dispatch(getUserById(userId));
-    dispatch(setUser(user));
-    navigate('/');
+    const user = await login(loginData);
+    if (user && location.pathname === '/authentication') {
+      navigate('/account');
+    }
   };
-  
+
   return (
     <div className='login'>
+      <h1>Login</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label className='input-label'>
           Email
@@ -38,7 +40,7 @@ function Login() {
           </div>
         </label>
         {errors.password && <span>This field is required</span>}
-        <button type="submit">Login</button>
+        <button type="submit">LOGIN</button>
       </form>
     </div>
   )

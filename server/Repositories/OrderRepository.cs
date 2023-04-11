@@ -131,7 +131,7 @@ namespace backend.Repositories
                 using (SqlCommand myCommand = new SqlCommand(query, myCon))
                 {
                     myCommand.Parameters.AddWithValue("@OrderID", order.OrderID);
-                    myCommand.Parameters.AddWithValue("@Status", order.Status.ToString());
+                    myCommand.Parameters.AddWithValue("@OrderStatus", order.Status.ToString());
                     myCommand.Parameters.AddWithValue("@UserID", order.UserID);
 
                     int rowsAffected = myCommand.ExecuteNonQuery();

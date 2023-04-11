@@ -2,7 +2,7 @@
     min-height: 90vh;
     width: 100%;
     margin: auto;
-    max-width: 1480px;
+    max-width: 1080px;
     padding: 5rem 1rem;
 }
 
@@ -11,6 +11,18 @@
     @media (max-width: 850px) {
         display: block;
     }
+}
+.flex-start{
+    @include flex(flex-start, flex-start, row);
+    @media (max-width: 850px) {
+        display: block;
+    }
+}
+
+.space-between{
+    margin-bottom: 0.5rem;
+    width: 100%;
+    @include flex(space-between, center, row);
 }
 
 .side-container{
@@ -37,18 +49,19 @@
 }
 
 .line{
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
     height: 1px;
     width: 100%;
     background: $color-grey;
 }
 
-.space-between{
-    margin-bottom: 0.5rem;
+.line-divider{
+    margin: 2rem 0;
+    height: 1px;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    background: $color-lightgrey;
 }
+
 
 .second-button{
     max-width: 10rem;
@@ -66,10 +79,33 @@
     }
 }
 
+.txt{
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.grey{
+    background: #f4f4f4;
+    color: $color-grey;
+}
+.red{
+    background: #f2c4c6;
+    color: #6e3a39;
+}
+.yellow{
+    background: #fcee8e;
+    color: #7c6d29;
+}
+.green{
+    background: #c3f0d2;
+    color: #3b5f45;
+}
+
 .input-wrapper {
     display: flex;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid $color-lightgrey;
+    background: white;
     border-radius: 3px;
     input{
         margin-bottom: 0;

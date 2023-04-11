@@ -7,7 +7,6 @@ function Payment() {
 
         layout: 'vertical',
         color: 'blue',
-        shape: 'pill',  
     };
 
     const onApprove = async (data, actions) => {
@@ -25,8 +24,9 @@ function Payment() {
       };
 
   return (
-    <div>
-      <h1>Payment Options</h1>
+    <div className='checkout-payment'>
+      <h1>Payment</h1>
+      <p>Select payment option.</p>
       <PayPalScriptProvider options={{ "client-id": "sb" }}>
       <PayPalButtons
         style={buttonStyles}

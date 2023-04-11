@@ -5,7 +5,8 @@
         Pending,
         Processing,
         Shipped,
-        Delivered
+        Delivered,
+        Cancelled,
     }
 
     public class Order

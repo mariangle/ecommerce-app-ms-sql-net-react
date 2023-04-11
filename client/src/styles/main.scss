@@ -1,8 +1,10 @@
 $color-main: #156546;
 $darker-main: #134733;
 $color-dark: #222;
-$color-grey: #4d4d4d;
+$color-grey: #6d6c6c;
+$color-lightgrey: #dbdbdb;
 $color-smoke: #f6f6f6;
+$color-blue: rgb(0, 112, 184);
 
 @mixin flex($justify, $align, $direction){
     display: flex;
@@ -10,17 +12,24 @@ $color-smoke: #f6f6f6;
     align-items: $align;
     flex-direction: $direction;
 }
+
 @import "global";
 @import "utilities";
 
+// components
 @import "../components/layout/header";
 @import "../components/layout/footer";
-@import "../components/product/product";
-@import "../components/cart/cartItem"; 
 
-@import "../pages/styling/productDetail";
-@import "../pages/styling/auth"; 
-@import "../pages/styling/home"; 
-@import "../pages/styling/admin";
-@import "../pages/styling/account";
+// pages
+@import "../components/account/account";
+@import "../components/admin/admin";
+@import "../components/auth/auth"; 
+@import "../components/cart/cart";
+@import "../components/checkout/checkout";
+@import "../components/home/home"; 
+@import "../components/product/product";
+
+
+
+
 

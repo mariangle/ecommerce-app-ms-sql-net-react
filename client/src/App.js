@@ -8,22 +8,37 @@ import ProductPage from './pages/ProductDetail';
 import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
 import Admin from "./pages/AdminPanel"
-import Account from './pages/MyAccount';
+import Account from './pages/Account';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store/store';
 import Authentication from './pages/Authentication';
 import './styles/main.scss';
+import { useEffect } from 'react';
+import { useCart } from './utils/hooks/useCart';
 
 
 function App() {
   const location = useLocation();
   const showHeaderFooter = location.pathname !== '/checkout';
+
+  const { clearCart, addToCart } = useCart();
+
+  useEffect(() => {
+    const loadCartItems = async () => {
+      const cartItems = localStorage.getItem('cartItems');
+      console.log(cartItems)
+      if (cartItems) {
+        const parsedItems = JSON.parse(cartItems);
+        console.log(parsedItems)
+        clearCart();
+        parsedItems.forEach(item => addToCart(item));
+      }
+    };
+    loadCartItems();
+  }, []);
   
   return (
     <>
-    <Provider store={store}>
       {showHeaderFooter && <Header/>}
       <Routes>
         <Route path="/" element={<Home location={location} />} />
@@ -36,7 +51,6 @@ function App() {
         <Route path="/shop" element={<Shop />} />
       </Routes>
       {showHeaderFooter && <Footer />}
-    </Provider>
     </>
   );
 }

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ProductSizes from './SizesTable';
 import { useDispatch } from 'react-redux';
-import { fetchProducts } from '../../store/reducers/productSlice';
-import { createProduct, updateExistingProduct, removeProduct } from '../../store/reducers/productSlice';
+import { fetchProducts, createProduct, updateExistingProduct, removeProduct } from '../../store/actions/productActions';
 
 function Products() {
   const dispatch = useDispatch();
@@ -61,8 +60,8 @@ function Products() {
         <table className='product-table'>
             <thead>
                 <tr>
-                <th>ID</th>
-                <th>Model</th>
+                  <th>ID</th>
+                  <th>Model</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,7 +69,7 @@ function Products() {
                 <tr key={index}  onClick={() => setLocalProduct(product)}>         
                     <td>{product.productID}</td>
                     <td>{product.brand} {product.name}</td>
-                </tr>
+                  </tr>
                 ))}
             </tbody>
         </table>

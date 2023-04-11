@@ -1,55 +1,49 @@
 import React  from 'react';
 
-function Profile({user}) {
+function Profile({currentUser}) {
 
   return (
     <>
-        <div className="profile-container">
           <h1>Edit Profile</h1>
-          <div className="line"></div>
           <div>
             <div className="divider">
               <label>
                 First Name
-                <input value={user.firstName} />
+                <input value={currentUser.firstName} />
               </label>
               <label>
                 Last Name
-                <input value={user.lastName} />
+                <input value={currentUser.lastName} />
               </label>
             </div>
             <label>
               Email
-              <input value={user.email} />
+              <input value={currentUser.email} />
             </label>
             <label>
               Phone Number
-              <input value={user.phone} />
+              <input value={currentUser.phone} />
             </label>
           </div>
-          <div className="profile-info">
-            <h2>Shipping Details</h2>
-            <div className="line"></div>
+          <h2>Shipping Details</h2>
+          <label>
+            Address
+            <input value={currentUser.address} />
+          </label>
+          <div className="divider">
             <label>
-              Address
-              <input value={user.address} />
+              Postal Code
+              <input value={currentUser.postalCode} />
             </label>
-            <div className="divider">
-              <label>
-                Postal Code
-                <input value={user.postalCode} />
-              </label>
-              <label>
-                City
-                <input value={user.city} />
-              </label>
-            </div>
+            <label>
+              City
+              <input value={currentUser.city} />
+            </label>
           </div>
           <div className="divider">
-            <button className='second-button'>Cancel</button>
-            <button>Save</button>
+            <button className='second-button'>CANCEL</button>
+            <button>SAVE CHANGES</button>
           </div>
-        </div>
     </> 
   );
 }

@@ -1,43 +1,14 @@
 import React from 'react'
-import { removeFromCart, updateQuantity } from '../../store/reducers/cartSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useCart } from '../../utils/hooks/useCart';
+
 
 function CartItem() {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const { items: cartItems } = useSelector(state => state.cart);
+  const { removeFromCart, updateQuantity, items } = useCart();
 
-  let modify = false;
-
-  if (location.pathname === '/cart') {
-    modify = true 
-  } else {
-    modify = false
-  }
-
-  const handleRemoveFromCart = (itemId, size) => {
-    const item = cartItems.find((item) => item.product.id === itemId && item.size === size); 
-    
-    if (item) { // safeguard against undefined items
-      dispatch(removeFromCart({ product: item.product, size })); 
-    }
-  };
-  
-  const handleUpdateQuantity = (productId, size, newQuantity) => {
-    const item = cartItems.find((item) => item.product.id === productId && item.size === size);
-
-    if (10 >= newQuantity > 0  && item) { 
-      dispatch(updateQuantity({ productId, size, quantity: newQuantity }));
-    } 
-    if (newQuantity === 0 && item) { 
-      dispatch(removeFromCart({ product: item.product, size }));
-    } 
-  };
-
-  return (
+  return (  
     <>
-      {cartItems.map((item) => (
+      {items.map((item) => (
          <div className="cart-item" key={`${item.product.id}-${item.size}`}>
           <Link to={`/${item.product.productID}`}>
             <div className='cart-item-img'>
@@ -45,23 +16,25 @@ function CartItem() {
             </div>
           </Link>
           <div className='cart-item-about'>
-            <div className='cart-item-details'>
-              <Link to={`/${item.product.id}`}><h3>{item.product.brand} {item.product.name}</h3></Link>
+            <div className='cart-item-left'>
+              <Link to={`/${item.product.id}`}><p>{item.product.brand} {item.product.name}</p></Link>
+              <p>Brand: {item.product.brand}</p>
               <p>Size: {item.size}</p>
-              { modify && <p>Quantity: {item.quantity}</p>}
-              { modify && 
-                <div className='cart-item-quantity'>
-                  <a onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity - 1)}>-</a>
-                  <input type="number" value={item.quantity} onChange={(e) => handleUpdateQuantity(item.product.id, item.size, parseInt(e.target.value))} />
-                  <a onClick={() => handleUpdateQuantity(item.product.id, item.size, item.quantity + 1)}>+</a>  
-                </div>
-              }
+              <p>Quantity: {item.quantity}</p>
+              <a onClick={() => removeFromCart(item.product.id, item.size)}>Remove</a>
               </div>
-              <div className='cart-item-price'>
+              <div className='cart-item-right'>
                 <p>{item.price} kr.</p>
-                { modify && 
-                <a onClick={() => handleRemoveFromCart(item.product.id, item.size)}>x</a>
-                }
+                <div className='cart-item-quantity'>
+                <a onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}>-</a>
+                <input type="number" value={item.quantity} onChange={(e) => {
+                    const newQuantity = parseInt(e.target.value);
+                    if (!isNaN(newQuantity)) {
+                      updateQuantity(item.product.id, item.size, newQuantity);
+                    }
+                  }} />
+                  <a onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}>+</a>
+                </div>
               </div>
           </div>
         </div>

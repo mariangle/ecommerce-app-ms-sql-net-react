@@ -1,7 +1,8 @@
 import React from 'react'
 import { useUser} from "../../utils/hooks/useUser"
+import Login from '../auth/LoginForm';
 
-function Account({ goToTab }) {
+function Account() {
   const { currentUser } = useUser();
 
   return (
@@ -9,11 +10,13 @@ function Account({ goToTab }) {
       <h1>Account</h1>
       {currentUser ? (
       <div>
-        <p>currently logged in</p>
+        <p>You are currently logged in as {currentUser.firstName}.</p>
       </div>
       ) : (
         <div>
-          <p>u are not logged in</p>
+          <p>Guest checkout is currently not avaliable. Please log in. </p>
+          <div className="line-divider"></div>
+          <Login />
         </div>
       )}
     </div>

@@ -3,10 +3,10 @@
     padding: 2rem 1rem 1.5rem;
     @include flex(center, flex-start, row);
     width: 100%;
-    max-width: 1480px;
+    max-width: 1080px;
     margin: auto;
     min-height: 10vh;
-    border-top: 1px solid $color-grey;
+    border-top: 1px solid $color-lightgrey;
     @media (max-width: 700px) {
       display: block;
   }
@@ -16,16 +16,16 @@
     flex: 1 1 12rem;
     margin-right: 2rem;
     h3{
-        font-size: 1rem;
-        margin-bottom: 1rem;
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
     }
     ul{
         gap: 5rem;
         li{
-          padding: 0 0 1rem 0;
+          padding: 0 0 0.5rem 0;
         }
         li a{
-          font-size: 0.8rem;
+          font-size: 0.7rem;
         }
     }
     @media (max-width: 850px) {

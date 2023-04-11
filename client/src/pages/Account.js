@@ -2,28 +2,34 @@ import React, { useState, useEffect } from 'react';
 import Profile from '../components/account/EditProfile';
 import Orders from '../components/account/MyOrders';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectCurrentUser, setUser } from "../store/reducers/userSlice"
 
-const tabs = ['Profile', 'My Orders'];
+const tabs = ['Profile', 'My Orders', "Log Out"];
 
 function MyAccount() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.user);
+  const currentUser = useSelector((selectCurrentUser));
   const [activeTab, setActiveTab] = useState(0);
 
   useEffect(() => {
-    if (!user) {
+    if (!currentUser) {
       navigate('/authentication');
+
     }
-  }, [user, navigate]);
+  }, [currentUser, navigate]);
 
   const handleTabClick = (index) => {
+    if (index === 2){
+      dispatch(setUser(null))
+    }
     setActiveTab(index);
   };
-
+  
   return (
     <>
-      {user && (
+      {currentUser && (
         <div className="container account">
           <ul className='account-menu'>
             {tabs.map((tab, index) => (
@@ -36,9 +42,9 @@ function MyAccount() {
               </li>
             ))}
           </ul>
-          <div className='account-content'>
-            {activeTab === 0 && <Profile user={user} />}
-            {activeTab === 1 && <Orders user={user}/>}
+          <div className='profile-container'>
+            {activeTab === 0 && <Profile currentUser={currentUser} />}
+            {activeTab === 1 && <Orders currentUser={currentUser}/>}
           </div>
         </div>
       )}
@@ -46,7 +52,5 @@ function MyAccount() {
   );
   
 }
-
-
 
 export default MyAccount

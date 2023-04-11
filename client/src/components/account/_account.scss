@@ -1,9 +1,11 @@
 .account{
+    padding: 5rem 0;
     gap: 5rem;
     @include flex(center, flex-start, row);
     @media (max-width: 850px) {
+        padding: 5rem 1rem;
         gap: 2rem;
-        @include flex(flex-start, flex-start, column);
+        @include flex(flex-start, center, column);
         ul{
             @include flex(center, center, row);
             li{
@@ -24,7 +26,29 @@
 }
 
 .profile-info, .profile-container{
+    width: 100%;
+    max-width: 500px;
     h2, button{
         margin-top: 1rem;
     }
+}
+
+.my-orders-div{
+    margin-bottom: 2rem;
+}
+
+.my-orders-about{
+    ul{
+        gap: 1rem;
+        display: flex;
+        margin-bottom: 0.5rem;
+        li{
+            padding: 1rem 00;
+            @include flex(center, center, row)
+        }
+    }
+}
+
+td p {
+    display: inline;
 }

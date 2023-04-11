@@ -7,26 +7,31 @@ body {
     line-height: 150%;
     font-family: 'Montserrat', sans-serif;
     overflow-x: hidden;
-    letter-spacing: 0.5px;
     color: $color-dark;
 }
-h1, h2, h3, h4{
-    font-size: 1.6rem;
+h1, h2{
+    font-size: 1.4rem;
     margin-bottom: 1rem;
+}
+h3, h4{
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 ul{
     list-style: none;
   }
 li{
+    font-size: 0.8rem;
     list-style: none;
     padding: 0.5rem 1rem;
 
 }
 input, textarea, select{
-    padding: 1rem;
+    padding: 0.75rem;
     font-family: 'Montserrat', sans-serif;
+    border: 1px solid $color-lightgrey;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-bottom: 1rem;
     resize: none;
 }
@@ -38,20 +43,22 @@ button{
     cursor: pointer;
     margin-bottom   : 1rem;
     background: $color-dark;
+    font-size: 0.6rem;
     font-weight: bold;
     color: white;
     border: 2px solid $color-dark;
-    border-radius: 10px;
+    border-radius: 5px;
     flex-grow: 1;
     flex-shrink: 0;
     letter-spacing: 1px;
 }
 label{
+    font-size: 0.8rem;
     width: 100%;
     
 }
 svg.svg-inline--fa{
-    height: 1.2rem;
+    height: 1rem;
 }
 img{
     max-width: 100%;
@@ -59,9 +66,10 @@ img{
     object-fit: cover;
 } 
 p{
-    font-size: 1rem; 
+    font-size: 0.8rem; 
   }
   a{
+    font-size: 0.8rem;
     text-decoration: none;
     color: black;
     cursor: pointer;
@@ -91,8 +99,8 @@ th, td {
     padding:15px;
 }
 tr{
-    background: white;
     th{
+      font-size: 0.8rem;
       font-weight: lighter;
       background: $color-dark;
       text-align: left;
@@ -104,6 +112,7 @@ tr{
     }
   }
   td{
+    font-size: 0.8rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

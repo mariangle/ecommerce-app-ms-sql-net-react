@@ -19,7 +19,7 @@ namespace backend.Repositories
 
         public IEnumerable<User> GetAll()
         {
-            string query = @"SELECT UserID, FirstName, LastName, Phone, Email, Password, Address, City, PostalCode FROM dbo.[USER]";
+            string query = @"SELECT UserID, FirstName, LastName, Email, Phone, Password, Address, City, PostalCode FROM dbo.[USER]";
 
             DataTable table = new DataTable();
             SqlDataReader myReader;
@@ -42,8 +42,8 @@ namespace backend.Repositories
                     (int)row["UserID"],
                     row["FirstName"].ToString(),
                     row["LastName"].ToString(),
-                    row["Phone"].ToString(),
                     row["Email"].ToString(),
+                    row["Phone"].ToString(),
                     row["Password"].ToString(),
                     row["Address"] != DBNull.Value ? row["Address"].ToString() : null,
                     row["City"] != DBNull.Value ? row["City"].ToString() : null,
@@ -55,7 +55,7 @@ namespace backend.Repositories
 
         public User GetById(int userId)
         {
-            string query = @"SELECT UserID, FirstName, LastName, Phone, Email, Password, Address, City, PostalCode FROM dbo.[USER] WHERE UserID = @UserID";
+            string query = @"SELECT UserID, FirstName, LastName, Email, Phone, Password, Address, City, PostalCode FROM dbo.[USER] WHERE UserID = @UserID";
 
             User user = null;
 
@@ -96,8 +96,8 @@ namespace backend.Repositories
         public bool Add(User user)
         {
             string query = @"INSERT INTO dbo.[USER] 
-                             (FirstName, LastName, Phone, Email, Password, Address, City, PostalCode) 
-                             VALUES (@FirstName, @LastName, @Phone, @Email, @Password, @Address, @City, @PostalCode)";
+                             (FirstName, LastName, Email, Phone, Password, Address, City, PostalCode) 
+                             VALUES (@FirstName, @LastName, @Email, @Phone, @Password, @Address, @City, @PostalCode)";
 
             try
             {
@@ -130,8 +130,8 @@ namespace backend.Repositories
             string query = @"UPDATE dbo.[USER] 
                              SET FirstName = @FirstName,
                              LastName = @LastName,
-                             Phone = @Phone,
                              Email = @Email,
+                             Phone = @Phone,
                              Password = @Password,
                              Address = @Address,
                              City = @City,
@@ -146,8 +146,8 @@ namespace backend.Repositories
                     myCommand.Parameters.AddWithValue("@UserID", user.UserID);
                     myCommand.Parameters.AddWithValue("@FirstName", user.FirstName);
                     myCommand.Parameters.AddWithValue("@LastName", user.LastName);
-                    myCommand.Parameters.AddWithValue("@Phone", user.Phone);
                     myCommand.Parameters.AddWithValue("@Email", user.Email);
+                    myCommand.Parameters.AddWithValue("@Phone", user.Phone);
                     myCommand.Parameters.AddWithValue("@Password", user.Password);
                     myCommand.Parameters.AddWithValue("@Address", user.Address);
                     myCommand.Parameters.AddWithValue("@City", user.City);

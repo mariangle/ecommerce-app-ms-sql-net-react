@@ -1,6 +1,5 @@
 import React from 'react';
 import { useUser} from "../../utils/hooks/useUser"
-import { useFormContext } from 'react-hook-form';
 
 function Details() {
     const { currentUser } = useUser();
@@ -25,20 +24,20 @@ function Details() {
             </div>
             <label>
                 Phone Number
-                <input value={currentUser?.phone} required />
+                <input value={currentUser?.phone} readOnly />
             </label>
             <label>
                 Address
-                <input value={currentUser?.address} required />
+                <input value={currentUser?.address} readOnly />
             </label>
             <div className='divider'>
                 <label>
                     City
-                    <input value={currentUser?.city} required />
+                    <input value={currentUser?.city} readOnly />
                 </label>
                 <label>
                     Postal Code
-                    <input value={currentUser?.postalCode} required />
+                    <input value={currentUser?.postalCode} readOnly />
                 </label>
             </div>
         </div>

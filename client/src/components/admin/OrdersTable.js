@@ -17,14 +17,15 @@ import userApi from '../../utils/api/userApi';
 
     const getStatusString = (status) => {
       const statusMap = {
-        0: "Pending",
-        1: "Processing",
-        3: "Shipped",
-        4: "Delivered"
+        0: { statusString: 'Pending', className: 'yellow' },
+        1: { statusString: 'Processing', className: 'green' },
+        3: { statusString: 'Shipped', className: 'green' },
+        4: { statusString: 'Delivered', className: 'green' },
+        5: { statusString: 'Cancelled', className: 'red' }
       };
-      return statusMap[status] || "";
+      const statusObj = statusMap[status] ?? { statusString: '', className: '' };
+      return <p className={`txt ${statusObj.className}`}>{statusObj.statusString}</p>;
     };
-    
 
     useEffect(() => {
       dispatch(fetchOrders()).then((response) => setOrders(response.payload));
@@ -59,10 +60,12 @@ import userApi from '../../utils/api/userApi';
             ))}
           </tbody>
         </table>
-        <div className="product-panel">
-          <OrderTable user={user} selectedOrder={selectedOrder}></OrderTable>
-          <OrderItemsTable selectedOrder={selectedOrder}></OrderItemsTable>
-        </div>
+        {selectedOrder && 
+          <div className="product-panel">
+            <OrderTable user={user} selectedOrder={selectedOrder}></OrderTable>
+            <OrderItemsTable selectedOrder={selectedOrder}></OrderItemsTable>
+          </div>
+        }
       </div>
     );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import hero from "../assets/icons/hero.png"
+import hero from "../assets/icons/hero2.png"
 import { Link } from 'react-router-dom';
 import ProductList from '../components/product/ProductList';
 
