@@ -26,10 +26,8 @@ function App() {
   useEffect(() => {
     const loadCartItems = async () => {
       const cartItems = localStorage.getItem('cartItems');
-      console.log(cartItems)
       if (cartItems) {
         const parsedItems = JSON.parse(cartItems);
-        console.log(parsedItems)
         clearCart();
         parsedItems.forEach(item => addToCart(item));
       }

@@ -13,15 +13,24 @@ export const useProduct = () => {
   };
 
   const createProductHandler = (product) => {
-    dispatch(createProduct(product));
+    dispatch(createProduct(product))
+    .then(() => {
+      alert("Product has been added.")
+    })
   };
 
   const updateExistingProductHandler = (productId, product) => {
-    dispatch(updateExistingProduct({ productId, product }));
+    dispatch(updateExistingProduct( productId, product ));
   };
 
   const removeProductHandler = (productId) => {
-    dispatch(removeProduct(productId));
+    console.log("hey")
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      dispatch(removeProduct(productId))
+        .then(() => {
+          alert("Product has been deleted.");
+        });
+    }
   };
 
   return { 

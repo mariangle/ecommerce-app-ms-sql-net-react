@@ -16,9 +16,12 @@ function ProductSizes({ localProduct }) {
   });
 
   useEffect(() => {
-    localProduct && productSizeApi.getProductSizesByProductId(localProduct.productID)
+    if(localProduct?.productID){
+      console.log("fetching sizes")
+      productSizeApi.getProductSizesByProductId(localProduct.productID)
       .then(productSizes => setAvailableSizes(productSizes));
-  }, [localProduct]);
+    }
+  }, [localProduct.productID]);
   
 
   const handleAddProductSize = async (event) => {
@@ -109,7 +112,7 @@ function ProductSizes({ localProduct }) {
                 <input id="quantity" type="number" value={newSize.quantity} onChange={(e) => setNewSize({ ...newSize, quantity: e.target.value })} />
               </td>
               <td>
-                <a onClick={handleAddProductSize}>Add</a>
+                <a href='' onClick={handleAddProductSize}>Add</a>
               </td>
             </tr>
             {availableSizes.sort((a, b) => a.size - b.size).map((productSize, index) => (
@@ -128,8 +131,8 @@ function ProductSizes({ localProduct }) {
                   />
                 </td>
                 <td>
-                  <a onClick={(event) => handleDeleteProductSize(productSize.productSizeID, event)}><FontAwesomeIcon icon={icons.trash}></FontAwesomeIcon></a>
-                  <a onClick={() => handleEditProductSize(productSize.productSizeID, productSize)}><FontAwesomeIcon icon={icons.save}></FontAwesomeIcon></a>
+                  <a href='' onClick={(event) => handleDeleteProductSize(productSize.productSizeID, event)}><FontAwesomeIcon icon={icons.trash}></FontAwesomeIcon></a>
+                  <a href='' onClick={() => handleEditProductSize(productSize.productSizeID, productSize)}><FontAwesomeIcon icon={icons.save}></FontAwesomeIcon></a>
                 </td>
               </tr>
             ))}
