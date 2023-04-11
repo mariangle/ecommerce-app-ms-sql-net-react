@@ -8,7 +8,7 @@ function Products() {
 
   useEffect(() => {
     fetchProducts();
-  }, [])
+  }, [products])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

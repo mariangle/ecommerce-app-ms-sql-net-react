@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import orderItemApi from '../../utils/api/orderItemApi';
 import productApi from '../../utils/api/productApi';
-import productSizeApi from '../../utils/api/productSizeApi';
+import sizeApi from '../../utils/api/sizeApi';
 import { Link } from 'react-router-dom';
 
 function OrderItemsTable({ selectedOrder }) {
@@ -15,7 +15,7 @@ function OrderItemsTable({ selectedOrder }) {
         setOrderItems(orderItems);
 
         const productSizePromises = orderItems.map((orderItem) =>
-          productSizeApi.getProductSize(orderItem.productSizeID)
+        sizeApi.getProductSize(orderItem.productSizeID)
         );
         Promise.all(productSizePromises).then((productSizes) => {
           setProductSizes(productSizes);

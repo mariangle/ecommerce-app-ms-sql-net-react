@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { icons } from '../../assets/icons/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { useProduct } from '../../utils/hooks/useProduct';
 
 function ProductCard() {
@@ -11,7 +10,7 @@ function ProductCard() {
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts])
+  }, [])
 
 return (
   <>

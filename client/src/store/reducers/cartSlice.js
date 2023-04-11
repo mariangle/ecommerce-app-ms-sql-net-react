@@ -26,13 +26,14 @@ const cartSlice = createSlice({
     removeFromCart: (state, action) => {
       const { product, size } = action.payload; 
       state.items = state.items.filter(item => item.product.id !== product.id || item.size !== size); 
-      localStorage.removeItem('cartItems', JSON.stringify(state.items));
+      localStorage.setItem('cartItems', JSON.stringify(state.items));
     },
     updateQuantity: (state, action) => {
       const { productId, size, quantity } = action.payload;
       const cartItemIndex = state.items.findIndex(item => item.product.id === productId && item.size === size);
       if (cartItemIndex !== -1) { 
         state.items[cartItemIndex].quantity = quantity;
+        localStorage.setItem('cartItems', JSON.stringify(state.items));
       }
     },  
     clearCart: (state, action) => {
