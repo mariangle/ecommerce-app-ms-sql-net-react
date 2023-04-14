@@ -1,3 +1,4 @@
+import './styles/main.scss';
 // import components
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -9,31 +10,15 @@ import CartPage from "./pages/Cart"
 import CheckoutPage from './pages/Checkout';
 import Admin from "./pages/AdminPanel"
 import Account from './pages/Account';
+import Authentication from './pages/Authentication';
+import Wishlist from './pages/Wishlist';
 
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Authentication from './pages/Authentication';
-import './styles/main.scss';
-import { useEffect } from 'react';
-import { useCart } from './utils/hooks/useCart';
 
 
 function App() {
   const location = useLocation();
   const showHeaderFooter = location.pathname !== '/checkout';
-
-  const { clearCart, addToCart } = useCart();
-
-  useEffect(() => {
-    const loadCartItems = async () => {
-      const cartItems = localStorage.getItem('cartItems');
-      if (cartItems) {
-        const parsedItems = JSON.parse(cartItems);
-        clearCart();
-        parsedItems.forEach(item => addToCart(item));
-      }
-    };
-    loadCartItems();
-  }, []);
   
   return (
     <>
@@ -47,6 +32,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/account" element={<Account />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
       {showHeaderFooter && <Footer />}
     </>
