@@ -1,25 +1,29 @@
-.product-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    grid-gap: 2rem;
+.shop{
+    padding: 2rem 1rem;
+    max-width: 1080px;
+    width: 100%;
+    margin: auto;
 }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+  }
+  @media screen and (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
 
 .product-card{
-    width: 100%;
-    margin-bottom: 1rem;
-    a{
-        @include flex(center, center, column)}
-}
-
-.product-img{
     position: relative;
-    height: 250px;
-    @include flex(center, center, row);
-    background: $color-smoke;
-    img{
-        max-width: 90%;
-        object-fit: cover;
-    } 
+    width: 100%;
+    max-width: 320px;
+    a{
+        @include flex(center, center, column)
+    }
     svg{
         position: absolute;
         z-index: 9999;
@@ -30,6 +34,24 @@
         padding: 0.3rem;
         border-radius: 50%;
         color: $color-dark;
+        z-index: 9999;
+    }
+    @media (max-width: 600px) {
+    margin-bottom: 1rem;
+    max-width: none;
+    }
+}
+
+.product-img{
+    height: 250px;
+    @include flex(center, center, row);
+    background: $color-smoke;
+    img{
+        max-width: 90%;
+        object-fit: cover;
+    } 
+    a{
+        height: 100%;
     }
 }
 
@@ -39,6 +61,8 @@
         text-align: center;
         font-size: 0.8rem;
         margin: 0rem;
+    }
+    h3{
         white-space: normal;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -48,7 +72,7 @@
 
 
 .product-detail-img{
-    @include flex(center, center, row)
+    @include flex(center, center, row);
 }
 
 .product-detail-img{
@@ -61,6 +85,9 @@
 }
 
 .product-detail-about{
+    input, select{
+        width: 100%;
+    }
     h2{
         font-size: 1rem;
         font-weight: 600;

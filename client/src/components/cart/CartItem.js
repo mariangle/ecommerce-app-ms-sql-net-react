@@ -18,7 +18,7 @@ function CartItem() {
           </Link>
           <div className='cart-item-about'>
             <div className='cart-item-left'>
-              <Link to={`/${item.product.id}`}><p>{item.product.brand} {item.product.name}</p></Link>
+              <Link to={`/${item.product.productID}`}><p>{item.product.brand} {item.product.name}</p></Link>
               <p>Brand: {item.product.brand}</p>
               <p>Size: {item.size}</p>
               <p>Quantity: {item.quantity}</p>

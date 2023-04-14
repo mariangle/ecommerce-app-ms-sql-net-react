@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchOrders } from "../../store/actions/orderActions"
-import { useStatusString } from '../../utils/hooks/useStatusString';
+import { useStatusString, formatDate } from '../../utils/hooks/useUtil';
 
 import OrderItemsTable from './OrderItemsTable';
 import OrderTable from './OrderTable';
@@ -40,7 +40,7 @@ import userApi from '../../utils/api/userApi';
             {orders.map((order, index) => (
               <tr key={index} onClick={() => setSelectedOrder(order)}>
                 <td>{order.orderID}</td>
-                <td>{order.dateTime}</td>
+                <td>{formatDate(order.dateTime)}</td>
                 <td>{getStatusString(order.status)}</td>
                 <td>{order.userID}</td>
               </tr>

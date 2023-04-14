@@ -33,7 +33,7 @@ function OrderItemsTable({ selectedOrder }) {
   }, [selectedOrder]);
 
   return (
-    <div>
+    <div className='order-items'>
       {orderItems.map((orderItem, index) => (
         <div key={index} className='cart-item'>
           {products[index] && (
@@ -53,7 +53,9 @@ function OrderItemsTable({ selectedOrder }) {
             </div>
             {productSizes[index] && (
               <div className="cart-item-price">
-                <p>{productSizes[index].price} kr</p>
+                <p>{productSizes[index].price} €</p>
+                                        {console.log(products)}
+
               </div>
             )}
           </div>

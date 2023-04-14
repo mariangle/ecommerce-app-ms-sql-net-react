@@ -15,6 +15,9 @@
     color: white;
     background-color: $color-dark;
     }
+    input, textarea, select{
+      width: 100%;
+    }
 }
 
 .admin-product{
@@ -81,4 +84,8 @@
 
 td a:first-child svg{
   margin-right: 1rem;
+}
+
+.order-items{
+  width: 100%;
 }

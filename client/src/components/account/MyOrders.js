@@ -4,7 +4,7 @@ import { fetchOrdersByUserId } from '../../store/actions/orderActions';
 import orderItemApi from '../../utils/api/orderItemApi';
 import sizeApi from '../../utils/api/sizeApi';
 import productApi from '../../utils/api/productApi';
-import { useStatusString } from '../../utils/hooks/useStatusString';
+import { useStatusString, formatPrice, formatDateTime } from '../../utils/hooks/useUtil';
 
 function MyOrders({ currentUser }) {
   const [orders, setOrders] = useState([]);
@@ -50,7 +50,7 @@ function MyOrders({ currentUser }) {
           <div className='my-orders-about space-between'>
             <ul>
               <li><p className='grey txt'>Order #{order.orderID}</p></li>
-              <li><p>Placed {order.dateTime}</p></li>
+              <li><p>Placed {formatDateTime(order.dateTime)}</p></li>
             </ul>
             <ul>
               {order.status === 0 && <li><a className='red txt'>Cancel</a></li>}
@@ -61,7 +61,7 @@ function MyOrders({ currentUser }) {
           </div>
           <div>
             {order.orderItems.map((orderItem) => (
-              <div>
+              <div key={orderItem.orderItemID}>
                 <div className="cart-item" key={orderItem.orderItemID}>
                   <div className="cart-item-img">
                     <img src={orderItem.product.imageURL}></img>
@@ -71,7 +71,7 @@ function MyOrders({ currentUser }) {
                       <p>{orderItem.product.brand} {orderItem.product.name}</p>
                       <p>Size: {orderItem.productSize.size}</p>
                       <p>Quantity: {orderItem.quantity}</p>
-                      <p>Price: {orderItem.productSize.price} kr</p>
+                      <p>Price: {formatPrice(orderItem.productSize.price)}</p>
                     </div>
                   </div>
                 </div>

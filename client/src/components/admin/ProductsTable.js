@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ProductSizes from './SizesTable';
 import { useProduct } from '../../utils/hooks/useProduct';
+import { useStock } from '../../utils/hooks/useUtil';
+
 
 function Products() {
   const { products, fetchProducts, createProduct, updateExistingProduct, removeProduct } = useProduct();
-  const [localProduct, setLocalProduct] = useState(null);
+  const [localProduct, setLocalProduct] = useState({});
+  const getStock = useStock();
+  const product = products.find((product) => product?.productID === localProduct?.productID);
 
   useEffect(() => {
     fetchProducts();
@@ -22,6 +26,7 @@ function Products() {
                 <tr>
                   <th>ID</th>
                   <th>Model</th>
+                  <th>Stock</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,20 +34,21 @@ function Products() {
                 <tr key={index}  onClick={() => setLocalProduct(product)}>         
                     <td>{product.productID}</td>
                     <td>{product.brand} {product.name}</td>
+                    <td>{getStock(product.inStock)}</td>
                   </tr>
                 ))}
             </tbody>
         </table>
         <div className='product-panel'>
               <h2>{localProduct?.brand} {localProduct?.name}</h2>
-              {localProduct && (
+              {product && (
                 <div className='product-panel-img'>
                   <img src={localProduct?.imageURL} alt="" />
                 </div>
               )
               }
               <div className="product-panel-info">
-                { localProduct && ( <label className='label-small'>
+                { product && ( <label className='label-small'>
                   ID
                   <input value={localProduct?.productID} readOnly/>
                 </label>)}
@@ -64,12 +70,12 @@ function Products() {
                 <input id="productImageURL" name="imageURL" maxLength="100" value={localProduct?.imageURL || ''} onChange={handleInputChange}/>
             </label>
             <div className='divider'>
-                <button className='second-button' onClick={() => setLocalProduct(null) }>Clear</button>
-                { localProduct && (<button className='second-button' onClick={() => removeProduct(localProduct?.productID)}>Delete</button>)}
-                { localProduct?.productID && (<button onClick={() => updateExistingProduct({ productId: localProduct.productID, product: localProduct })}>Save Changes</button>)}
-                { !localProduct?.productID && (<button onClick={() => createProduct(localProduct)}>Add Product</button>)}
+                <button className='second-button' onClick={() => setLocalProduct(null) }>CLEAR</button>
+                { product && (<button className='second-button' onClick={() => removeProduct(product?.productID)}>DELETE</button>)}
+                { product?.productID && (<button onClick={() => updateExistingProduct({ productId: product?.productID, product: localProduct })}>SAVE CHANGES</button>)}
+                { !product?.productID && (<button onClick={() => createProduct(localProduct)}>Add Product</button>)}
             </div>
-            {localProduct && (<ProductSizes localProduct={localProduct} />)}
+            {product && (<ProductSizes product={product} />)}
         </div> 
     </div>
   );

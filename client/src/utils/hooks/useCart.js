@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart, updateQuantity, calculateSubtotal, getTotal, updateDelivery, applyDiscount, clearCart } from '../../store/reducers/cartSlice';
+import { addToCart, removeFromCart, updateQuantity, calculateSubtotal, getTotal, applyDiscount, clearCart } from '../../store/reducers/cartSlice';
+import { formatPrice } from './useUtil';
 
 export const useCart = () => {
   const dispatch = useDispatch();
@@ -12,16 +13,14 @@ export const useCart = () => {
   const quantity = items.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
-    dispatch(applyDiscount({ discount }));
     dispatch(calculateSubtotal());
   }, [items, dispatch, quantity]);
 
   useEffect(() => {
     dispatch(getTotal());
-  }, [subtotal, delivery, dispatch]);
+  }, [subtotal, delivery, dispatch, discount]);
 
   const addToCartHandler = (item) => {
-    console.log("addtocarthandler", item)
     dispatch(addToCart(item));
   };
   
@@ -45,15 +44,29 @@ export const useCart = () => {
     dispatch(clearCart());
   };
 
+  const applyDiscountHandler = (discountCode) => {
+    const discount = 0.1;
+    if(discountCode.toLowerCase() === "10off"){
+      dispatch(applyDiscount({ discount }));
+    } else{
+      alert("Wrong discount")
+    }
+  }; 
+
   return { 
     addToCart: addToCartHandler, 
     removeFromCart: removeFromCartHandler, 
     updateQuantity: updateQuantityHandler, 
     clearCart: clearCartHandler, 
+    applyDiscount: applyDiscountHandler,
     items, 
-    subtotal, 
-    delivery, total, 
-    quantity 
+    defaultSubtotal: subtotal,
+    defaultTotal: total, 
+    subtotal: formatPrice(subtotal), 
+    delivery: formatPrice(delivery), 
+    total: formatPrice(total), 
+    quantity,
+    discount
   };
 };
 

@@ -1,34 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import { icons } from '../../assets/icons/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useProduct } from '../../utils/hooks/useProduct';
+import { useWishlist } from '../../utils/hooks/useWishlist';
+import { formatPrice } from '../../utils/hooks/useUtil';
 
-function ProductCard() {
-  const { products, fetchProducts } = useProduct();
-
-  useEffect(() => {
-    fetchProducts();
-  }, [])
+function ProductCard({product, index}) {
+  const { wishlistItems, toggleWishlistItem } = useWishlist();
+  const itemExists = wishlistItems.find((item) => item.productID === product.productID);
 
 return (
   <>
-    {products.map((product, index) => 
-      <div className='product-card' key={index}>
-      <Link to={`/${product.productID}`}>
-        <div className='product-img'>
-          <img src={product.imageURL} alt="" />
-          <FontAwesomeIcon icon={icons.heart}></FontAwesomeIcon>
-        </div>
-        <div className='product-info'>
-          <p>{product.brand}</p>
-          <h3>{product.name}</h3>
-          <p> getproductpricewithproductid* kr</p>
-        </div>
-      </Link>
-    </div>
-    )}
+  {product.inStock &&
+        <div className='product-card' key={index}>   
+            <FontAwesomeIcon
+              icon={itemExists ? icons.heartFull : icons.heart}
+              onClick={() => toggleWishlistItem(product)}
+            />   
+          <div className='product-img'>
+              <Link to={`/${product.productID}`}><img src={product.imageURL} alt="" /></Link>
+          </div>
+          <div className='product-info'>
+            <Link to={`/${product.productID}`}>
+              <p>{product.brand}</p>
+              <h3>{product.name}</h3>
+              <p> {formatPrice(product.defaultPrice)}</p>
+            </Link>
+          </div>
+      </div>
+  }
   </>
 );}
 

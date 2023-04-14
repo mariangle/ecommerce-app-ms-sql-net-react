@@ -1,0 +1,52 @@
+.filter-control{
+    @include flex(flex-start, center, row);
+    width: 100%;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    select, input{
+        margin-bottom: 0rem;
+        height: 100%;
+        padding: 0.5rem;
+    }
+}
+
+.filter-search{
+    .input-wrapper{
+        max-width: 500px;
+        margin: auto;
+        margin-bottom: 2rem;
+    }
+
+}
+
+.filter-div{
+    margin-right: 1rem;
+    a{
+        display: block;
+        padding: 0.25rem;
+        margin-top: 0.6rem;
+        transform: translateY(-2px);
+    }
+    label{
+        margin-right: 0.5rem;
+    }
+}
+
+.filter-option{
+    width: 100%;
+    display: flex;
+}
+
+.filter-spec{
+    @include flex(flex-start, center, row);
+    p{
+        padding: 0 0.5rem;
+    }
+    input{
+        width: 100px;
+    }
+}
+
+input[id=maxPrice], input[id=minPrice] {
+    width: 80px;
+}
