@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import orderItemApi from '../../utils/api/orderItemApi';
-import productApi from '../../utils/api/productApi';
 import sizeApi from '../../utils/api/sizeApi';
 import { Link } from 'react-router-dom';
+import { useProduct } from "../../utils/hooks/useProduct"
+import { formatPrice } from '../../utils/hooks/useUtil';
+
 
 function OrderItemsTable({ selectedOrder }) {
   const [orderItems, setOrderItems] = useState([]);
   const [productSizes, setProductSizes] = useState([]);
-  const [products, setProducts] = useState([]);
+  const { products }= useProduct();
 
   useEffect(() => {
     if (selectedOrder) {
@@ -19,13 +21,6 @@ function OrderItemsTable({ selectedOrder }) {
         );
         Promise.all(productSizePromises).then((productSizes) => {
           setProductSizes(productSizes);
-        });
-
-        const productPromises = orderItems.map((productSizeId) =>
-            productApi.getProduct(productSizeId.productSizeID)
-        );
-        Promise.all(productPromises).then((products) => {
-            setProducts(products);
         });
         
       });
@@ -53,9 +48,7 @@ function OrderItemsTable({ selectedOrder }) {
             </div>
             {productSizes[index] && (
               <div className="cart-item-price">
-                <p>{productSizes[index].price} €</p>
-                                        {console.log(products)}
-
+                <p>{formatPrice(productSizes[index].price)}</p>
               </div>
             )}
           </div>

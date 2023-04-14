@@ -39,7 +39,7 @@ function OrderSummary({onPaymentComplete}) {
             <p>{delivery}</p>
         </div>
         <div className="line"></div>
-        <div className="space-between">
+        <div className="space-between bold">
             <p>Total</p>
             <p>{total}</p>
         </div>
@@ -52,7 +52,7 @@ function OrderSummary({onPaymentComplete}) {
               {
                 amount: {
                   currency_code: "DKK",
-                  value: defaultTotal                
+                  value: 2025                
                 },
               },
             ],

@@ -15,7 +15,7 @@ namespace backend.Repositories
             _connectionString = _configuration.GetConnectionString("UserAppCon");
         }
 
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<Product> GetAll()    
         {
             string query = @"SELECT ProductID, Name, Brand, Description, ImageURL FROM dbo.PRODUCT";
 

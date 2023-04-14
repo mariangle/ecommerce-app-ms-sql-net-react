@@ -46,9 +46,9 @@ function OrderTable({user, selectedOrder}) {
             <select name="status" value={selectedOrder?.status} onChange={(e) => handleStatusChange(e)}>
                 <option value={0} disabled={selectedOrder?.status === 0}>Pending</option>
                 <option value={1} disabled={selectedOrder?.status === 1}>Processing</option>
-                <option value={3} disabled={selectedOrder?.status === 3}>Shipped</option>
-                <option value={4} disabled={selectedOrder?.status === 4}>Delivered</option>
-                <option value={4} disabled={selectedOrder?.status === 5}>Cancelled</option>
+                <option value={2} disabled={selectedOrder?.status === 2}>Shipped</option>
+                <option value={3} disabled={selectedOrder?.status === 3}>Delivered</option>
+                <option value={4} disabled={selectedOrder?.status === 4}>Cancelled</option>
             </select>
             </label>
 
