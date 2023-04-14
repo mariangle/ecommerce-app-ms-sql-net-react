@@ -4,7 +4,6 @@
     max-width: 1080px;
     margin: auto;
     padding: 1rem;
-    border-bottom: 1px solid $color-grey;
     flex: 1;
     @include flex(space-between, center, row);
     ul{
@@ -28,7 +27,8 @@
     }
 }
 .header-tools{
-    @include flex(space-between, center, row);
+    flex: 1;
+    @include flex(flex-end, flex-end, row);
     svg{
         padding: 0.5rem;
     }
@@ -56,15 +56,12 @@
     }
 }
 
-.header-container.home{
-    border-bottom: none;
-}
-
 .header-second{
     width: 100%;
     margin: auto;
     @include flex(center, center, row);
     background: $color-smoke;
+    border: 1px solid $color-lightgrey;
     @media (max-width: 850px) {
         display: none;
     }
@@ -85,3 +82,48 @@
     }
 }
 
+.header-second-msg p:first-child {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .header-second-msg p:nth-child(2) {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .header-second-msg p:last-child {
+    flex: 1;
+    text-align: right;
+  }
+
+  .header-main{
+    flex: 1;
+
+  }
+
+  .header-search{
+    display: none;
+    width: 100%;
+    border-top: 1px solid $color-lightgrey;
+    border-bottom: 1px solid $color-lightgrey;
+    .input-wrapper{
+        border: none;
+        max-width: 1080px;
+        margin: auto;
+        input{
+            width: 100%;
+        }
+    }
+    &.active{
+        display: block;
+    }
+  }
+
+  .header-line{
+    height: 1px;
+    background: $color-lightgrey;
+    &.active{
+        display: none;
+    }
+  }

@@ -23,7 +23,7 @@
     transform-origin: center center; 
     @media (max-width: 850px) {
         right: -5%;
-        transform: scale(90%) rotate(-15deg);
+        transform: scale(80%) rotate(-15deg);
         bottom: 10%;
     }
 }
@@ -42,6 +42,7 @@
 }
 
 .hero-about{
+    position: sticky;
     display: flex;
     padding: 5rem 0 5rem 1rem;
     max-width: 1080px;
@@ -49,21 +50,23 @@
     margin: auto;
     h3{
         padding: 0rem 0rem;
-        font-size: 1.6rem;
+        font-size: 3rem;
+        margin: 1rem 0;
     }
     p{
-        margin-bottom: 1rem;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     button{
+        margin-top: 1rem;
         width: 100%;
         background: $color-dark;
-        border: none;
+        border: 2px solid $color-dark;
+        font-size: 1rem;
     }
     @media (max-width: 800px) {
         padding-top: 2rem;
         h3{
-            font-size: 1.6rem;
+            font-size: 2.5rem;
         }
     }
 }

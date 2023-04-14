@@ -4,6 +4,9 @@
     margin: auto;
     max-width: 1080px;
     padding: 5rem 1rem;
+    @media (max-width: 850px) {
+        padding: 1rem;
+    }
 }
 
 .flex{
@@ -65,11 +68,18 @@
 
 .second-button{
     max-width: 10rem;
-    background: none;
-    color: $color-dark;
+    border: 2px solid $color-smoke;
+    background: $color-smoke;
+    color: $color-blue;
     gap: 1rem;
     flex-grow: 0;
     flex-shrink: 1;
+    transition: all 0.1s ease-in-out;
+    &:hover{
+        background: $color-blue;
+        color: white;
+        border: 2px solid $color-blue;
+    }
     @include flex(center, center, row);
     @media (max-width: 1000px) {
         span{

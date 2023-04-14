@@ -1,10 +1,9 @@
-$color-main: #156546;
-$darker-main: #134733;
+$lighter-main: #0b92e6;
 $color-dark: #222;
 $color-grey: #6d6c6c;
 $color-lightgrey: #dbdbdb;
 $color-smoke: #f6f6f6;
-$color-blue: rgb(0, 112, 184);
+$color-blue: #0070ba;
 
 @mixin flex($justify, $align, $direction){
     display: flex;
@@ -19,8 +18,11 @@ $color-blue: rgb(0, 112, 184);
 // components
 @import "../components/layout/header";
 @import "../components/layout/footer";
+@import "../components/checkout/confirm";
+@import "../components/product/filter";
 
 // pages
+@import "../components/wishlist/wishlist";
 @import "../components/account/account";
 @import "../components/admin/admin";
 @import "../components/auth/auth"; 

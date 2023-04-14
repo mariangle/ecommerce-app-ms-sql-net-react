@@ -25,6 +25,7 @@ const addProductSize = async (productSizeData) => {
 
 const updateProductSize = async (productSizeId, productSizeData) => {
   const response = await axios.put(`${API_URL}/${productSizeId}`, productSizeData);
+  console.log("in api", response)
   return response.data;
 };
 

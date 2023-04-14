@@ -30,10 +30,12 @@ input, textarea, select{
     padding: 0.75rem;
     font-family: 'Montserrat', sans-serif;
     border: 1px solid $color-lightgrey;
-    width: 100%;
     font-size: 0.8rem;
     margin-bottom: 1rem;
     resize: none;
+}
+select{
+  cursor: pointer;
 }
 select{
   padding: 0.5rem;
@@ -42,15 +44,20 @@ button{
     padding: 1rem;
     cursor: pointer;
     margin-bottom   : 1rem;
-    background: $color-dark;
+    background: $color-blue;
     font-size: 0.6rem;
     font-weight: bold;
     color: white;
-    border: 2px solid $color-dark;
+    border: 2px solid $color-blue;
     border-radius: 5px;
     flex-grow: 1;
     flex-shrink: 0;
     letter-spacing: 1px;
+    transition: all 0.1s ease-in-out;
+    &:hover{
+      background: $lighter-main;
+      border: 2px solid $lighter-main;
+  }
 }
 label{
     font-size: 0.8rem;
@@ -78,6 +85,9 @@ p{
   -moz-appearance: textfield;
   appearance: text;
   }
+  input[type=radio]:checked {
+    font-weight: bold;
+    }
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -94,6 +104,10 @@ table{
     width: 100%;
     box-sizing: border-box;
     border-spacing: 0px;
+    button{
+      margin: 0;
+      padding: 0.5rem;
+    }
 }
 th, td {
     padding:15px;
