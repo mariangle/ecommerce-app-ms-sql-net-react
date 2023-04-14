@@ -13,18 +13,18 @@ export const fetchProductSizes = createAsyncThunk( 'productSizes/fetchProductSiz
     }
   );
   
-  export const createProductSize = createAsyncThunk('productSizes/createProductSize', async ({ size, price, quantity, productId }) => {
-      const productSize = { size, price, quantity, productId };
-      const createdProductSize = await sizeApi.addProductSize(productSize);
+  export const addSize = createAsyncThunk('productSizes/addSize', async ({ size, price, quantity, productId }) => {
+      const newSize = { size, price, quantity, productId };
+      const createdProductSize = await sizeApi.addProductSize(newSize);
       return createdProductSize;
     }
   );
   
-  export const updateExistingSize = createAsyncThunk(
+  export const updateSize = createAsyncThunk(
     'products/updateExistingSize',
-    async ({ productSizeId, productSize }) => {
+    async ({ sizeId, size }) => {
       try {
-        const updatedSize = await sizeApi.updateProductSize(productSizeId, productSize);
+        const updatedSize = await sizeApi.updateProductSize(sizeId, size);
         return updatedSize;
       } catch (error) {
         console.error('Error updating size: ', error);

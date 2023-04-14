@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchProductSizes, createProductSize } from '../actions/sizeActions';
+import { fetchProductSizes, addSize } from '../actions/sizeActions';
 
 const initialState = {
   productSizes: [],
@@ -28,9 +28,6 @@ export const productSizeSlice = createSlice({
         state.loading = 'idle';
         state.error = action.error.message;
       })
-      .addCase(createProductSize.fulfilled, (state, action) => {
-        state.productSizes.push(action.payload);
-      });
   }
 });
 
