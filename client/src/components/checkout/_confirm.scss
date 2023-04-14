@@ -1,0 +1,60 @@
+.order-summary{
+    color: $color-grey;
+    background: $color-smoke;
+    border: 1px solid $color-lightgrey;
+    padding: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    button{
+        border-radius: 0px;
+    }
+    .line{
+        background: $color-lightgrey;
+    }
+    @media (max-width: 850px) {
+        flex-wrap: wrap-reverse;
+        margin: 1rem 0 0 0;
+        max-width: none;
+        width: 100%;    
+    }
+}
+
+.checkout-right{
+    @include flex(flex-start, flex-start, column);
+    width: 100%;    
+    max-width: 300px;
+    margin-left: 2rem;
+}
+
+.payment-method{
+    width: 100%;    
+    margin-bottom: 1rem;
+}
+
+.discount-code{
+    @include flex(space-between, center, row);
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+    button, input{
+        border-radius: 0px;
+        margin: 0;
+    }
+    button{
+        border: none;
+    }
+}
+
+
+.complete{
+    width: 100%;
+    @include flex(center, center, column);
+    svg{
+        color: $color-blue;
+        height: 100px;   
+        margin: 4rem 0 1rem;
+    }
+    button{
+        margin-top: 1rem;
+    }
+}

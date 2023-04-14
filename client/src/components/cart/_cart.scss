@@ -8,22 +8,31 @@
         max-width: none;
     }
 }
+.cart-items{
+    a:nth-child(2){
+        text-decoration: underline;
+    }
+}
 
-.summary-container{
+.cart-summary{
     max-width: 18rem;
     width: 100%;
     margin-left: 5rem;
-    button{
-        margin-top: 0.5rem;
-        width: 100%;
-        font-size: 0.6rem;
-        background: $color-blue;
-        border: $color-blue;
-    }
     @media (max-width: 850px) {
     margin: 2rem 0 0 0rem;
     max-width: none;
     }
+}
+.summary-content{
+    margin-bottom: 1.5rem;
+    button{
+        width: 100%;
+    }
+}
+
+.bold{
+    font-weight: bold;
+    color: $color-dark;
 }
 
 .cart-item{

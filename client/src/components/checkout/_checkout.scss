@@ -1,88 +1,115 @@
 .checkout{
     @include flex(center, flex-start, row);
-    max-width: 1080px;
     margin: auto;
     width: 100%;
     padding: 5rem 1rem;
     @media (max-width: 850px) {
         display: block;
-        padding: 0rem 1rem;
-    }
-    button{
-        background: $color-blue;
-        color: white;
-        border: none;
+        padding: 3rem 1rem;
     }
 }
 
-.checkout-tabs{
+.checkout-nav{
     @include flex(flex-start, center, row);
-    a{
-        padding: 0;
-    }
-    a.active{
-        font-weight: bold;
-    }
+    width: 100%;
     p.separator{
         padding: 0 0.5rem;
     }
 }
 
-.checkout-left{
-    @include flex(space-between, flex-start, column);
-    border: 1px solid $color-lightgrey;
-    max-width: 800px;
-    width: 100%;    
-    padding: 2rem;
-    min-height: 80vh;
-    border-radius: 5px;
+.checkout-tab{
+    @include flex(center, center, column);
+    flex: 1;
+    p, span{
+    font-size: 0.7rem;
+    text-align: center;
+    }
+    span{
+        border: 1px solid $color-lightgrey;
+        background: $color-smoke;
+        height: 35px;
+        margin: 0 0.5rem;
+        width: 35px;
+        border-radius: 50%;
+        @include flex(center, center, column);
+        &.completed{
+            background:  $color-blue;
+            color: white;
+        }
+    }
+    &.active{
+        p, span{
+            color: $color-blue;
+        }
+        span{
+            border: 1px solid $color-blue;
+            color: $color-blue;
+        }
+    }
+}
 
+.checkout-tab-line{
+    height: 2px;
+    width: 100%;
+    background: $color-smoke;
+    transform: translateY(-10px);
+    &.completed{
+        background: $color-blue;
+    }
 }
 
 .checkout-container{
+    @include flex(flex-start, center, column);
+    width: 100%;    
+    max-width: 800px;
+    padding: 1rem;
+    min-height: 80vh;
+}
+
+.checkout-content{
+    min-height: 20vh;
     margin-top: 2rem;
     width: 100%;    
+    max-width: 800px;
     button {
         display: inline-block;
       }
+    h1, h2{
+        font-size: 1rem;
+        margin: 0.5rem 0 0rem;
+    }
+    .line-divider{
+        margin: 1rem 0;
+    }
 }
 
-.checkout-top{
-    width: 100%;
+.shipping-content{
+    input{
+        width: 100%;
+    }
+}
+
+.payment-option{
+    @include flex(flex-start, center, row);
+    input{
+        width: 5%;
+        margin-bottom: 0rem;
+    }
 }
 
 .checkout-bottom{
     width: 100%;    
     margin-top: 2rem;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     gap: 1rem;
 }
 
-.checkout-right{
-    @include flex(flex-start, flex-start, row);
-    color: $color-grey;
-    background: $color-smoke;
-    border: 1px solid $color-lightgrey;
-    padding: 2rem;
-    width: 100%;    
-    max-width: 20rem;
-    margin-left: 2rem;
-    border-radius: 5px;
-    button{
-        border-radius: 0px;
-    }
-    .line{
-        background: $color-lightgrey;
-    }
-    @media (max-width: 850px) {
-        flex-wrap: wrap-reverse;
-        margin: 1rem 0 0 0;
-        max-width: none;
-        width: 100%;    
-    }
+.checkout-contentbox{
+    width: 100%;
 }
 
-.checkout-order-summary{
+
+.checkout-left{
     width: 100%;
 }
