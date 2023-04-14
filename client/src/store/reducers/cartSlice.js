@@ -1,15 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const DELIVERY_THRESHOLD = 3000;
+export const DELIVERY_THRESHOLD = 1200;
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [],
-    subtotal: 0,
-    delivery: 29,
-    discount: 0,
-    total: 0,
+    items: localStorage.getItem('cartItems')
+      ? JSON.parse(localStorage.getItem('cartItems'))
+      : [],    
+      subtotal: 0,
+      delivery: 0,
+      discount: 0,
+      total: 0,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -47,7 +49,7 @@ const cartSlice = createSlice({
         state.delivery = 0;
         state.subtotal = subtotal;
       } else {
-        state.delivery = 29;
+        state.delivery = 60;
         state.subtotal = subtotal;
       }
     },   
@@ -56,6 +58,7 @@ const cartSlice = createSlice({
     },
     applyDiscount: (state, action) => {
       state.discount = action.payload.discount;
+      console.log("discount sat:",state.discount)
     },
     getTotal: (state) => {
       state.total =  state.subtotal - (state.subtotal * state.discount) + state.delivery;
