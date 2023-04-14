@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CartItems from "../components/cart/CartItem";
 import { useCart } from '../utils/hooks/useCart';
 import { Link } from 'react-router-dom';
-import { clear } from '@testing-library/user-event/dist/clear';
+import { formatPrice } from '../utils/hooks/useUtil';
+import {DELIVERY_THRESHOLD} from '../store/reducers/cartSlice';
 
 function CartPage() {
-  const { clearCart, items, subtotal, delivery, total, quantity } = useCart();
+  const { discount, applyDiscount, clearCart, items, subtotal, defaultSubtotal, delivery, total, quantity } = useCart();
+  const [discountCode, setDiscountCode] = useState('');
 
   return (
     <div className='cart flex container'>
@@ -14,33 +16,52 @@ function CartPage() {
           {items.length === 0 ? (
             <p>There’s nothing in your bag yet.</p>
           ) : (
-            <div>
+            <div className='cart-items'>
               <CartItems />
               <a onClick={clearCart}>Clear Cart</a>
             </div>
           )}
       </div>
       {quantity > 0 && (
-        <div className='summary-container'>
-          <h2>Summary</h2>
-          <div className="space-between">
-            <p>Subtotal</p>
-            <p>{subtotal ? subtotal :0} kr.</p>
+        <div className='cart-summary'>
+          <div className='summary-content'>
+            <h2>Summary</h2>
+            <div className="space-between">
+              <p>Subtotal</p>
+              <p>{subtotal ? subtotal : 0}</p>
+            </div>
+            {discount > 0 && (
+              <div className="space-between">
+                <p>Discount</p>
+                <p>-10%</p>
+              </div>
+            )}
+            <div className="space-between">
+              <p>Delivery</p>
+              <p>{delivery ? delivery : "Free"}</p>
+            </div>
+            <div className='line'></div>
+            <div className="space-between bold" >
+              <p>Total</p>
+              <p>{total ? total : 0}</p>
+            </div>
+            <Link to="/checkout"><button>CHECKOUT</button></Link>
+              {defaultSubtotal < DELIVERY_THRESHOLD ? (
+                <p>
+                  Spend {formatPrice(DELIVERY_THRESHOLD - defaultSubtotal)} more and get free shipping!
+                </p>
+              ) : ( <p>Your order is eligible  for free shipping.</p> )
+              }
           </div>
-          <div className="space-between">
-            <p>Delivery</p>
-            <p>{delivery ? delivery + " kr" : "Free"}</p>
-          </div>
-          <div className='line'></div>
-          <div className="space-between">
-            <p>Total</p>
-            <p>{total ? total : 0} kr.</p>
-          </div>
-          <Link to="/checkout"><button>CHECKOUT</button></Link>
-          {subtotal < 2000 && <p>You are {2000 - subtotal} kr away for free shipping!</p> }
+          { !discount > 0 && 
+            <div className="discount-code">
+              <input placeholder="Discount Code" type="text" onChange={(e) => setDiscountCode(e.target.value)} />
+              <button  onClick={() => applyDiscount(discountCode)}>Apply</button>
+            </div>
+          }
         </div>
-      )}
-    </div>
+        )}
+      </div>
   );
 }
 

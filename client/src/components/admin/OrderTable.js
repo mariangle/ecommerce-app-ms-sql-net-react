@@ -4,7 +4,6 @@ function OrderTable({user, selectedOrder}) {
     
       const handleStatusChange = (event) => {
         const newStatus = parseInt(event.target.value);
-        console.log(newStatus)
       };
 
   return (

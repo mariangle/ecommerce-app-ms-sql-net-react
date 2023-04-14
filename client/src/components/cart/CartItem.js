@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useCart } from '../../utils/hooks/useCart';
+import { formatPrice } from '../../utils/hooks/useUtil';
 
 
 function CartItem() {
@@ -24,16 +25,16 @@ function CartItem() {
               <a onClick={() => removeFromCart(item.product.id, item.size)}>Remove</a>
               </div>
               <div className='cart-item-right'>
-                <p>{item.price} kr.</p>
+                <p>{formatPrice(item.price)}</p>
                 <div className='cart-item-quantity'>
-                <a onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}>-</a>
-                <input type="number" value={item.quantity} onChange={(e) => {
-                    const newQuantity = parseInt(e.target.value);
-                    if (!isNaN(newQuantity)) {
-                      updateQuantity(item.product.id, item.size, newQuantity);
-                    }
-                  }} />
-                  <a onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}>+</a>
+                  <a onClick={() => updateQuantity(item.product.id, item.size, item.quantity - 1)}>-</a>
+                  <input type="number" value={item.quantity} onChange={(e) => {
+                      const newQuantity = parseInt(e.target.value);
+                      if (!isNaN(newQuantity)) {
+                        updateQuantity(item.product.id, item.size, newQuantity);
+                      }
+                    }} />
+                    <a onClick={() => updateQuantity(item.product.id, item.size, item.quantity + 1)}>+</a>
                 </div>
               </div>
           </div>
