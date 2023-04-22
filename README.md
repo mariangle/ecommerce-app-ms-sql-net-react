@@ -6,7 +6,7 @@ This is a full-stack e-commerce application designed to provide a practical lear
 * **.NET Web API framework for the back-end API development**
 * **SQL for the database management**
 * **Redux store for states management**
-* **Utilizing  SASS for efficient and scalable styling**
+* **Utilizing SCSS for efficient and scalable styling**
 
 # Key Features
 * User authentication using JWT tokens for ```secure login```
