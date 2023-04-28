@@ -91,3 +91,12 @@ C:\Users\45313\Documents\GitHub\Ecommerce\server\bin\Debug\net6.0\Microsoft.Iden
 C:\Users\45313\Documents\GitHub\Ecommerce\server\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\45313\Documents\GitHub\Ecommerce\server\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\45313\Documents\GitHub\Ecommerce\server\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\Serilog.dll
+C:\Users\45313\Documents\GitHub\Ecommerce\backend\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

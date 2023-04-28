@@ -6,17 +6,14 @@ import { useSize } from '../../utils/hooks/useSize';
 function ProductSizes({ product }) {
   const { addSize, updateSize, deleteSize } = useSize();
   const [newSize, setNewSize] = useState({ size: '', price: '', quantity: '' });
-  const [editedSize, setEditedSize] = useState(null); // new useState hook
+  const [editedSize, setEditedSize] = useState({}); 
   
-  const updateSizeHandler = (sizeId, updatedSize) => {
-    updateSize({ sizeId, size: { ...updatedSize } });
-    setEditedSize(null); // set editedSize to null after updating
-  };
-
-  const handleEdit = (size) => {
-    setEditedSize(size);
-  };
-
+  const handleInputChange = (e, index) => {
+    const { name, value } = e.target;
+    const updatedSize = { ...product.sizes[index], [name]: value };
+    setEditedSize(updatedSize);
+  };    
+  
   return (
     <>
       <table className='size-table'>
@@ -66,32 +63,27 @@ function ProductSizes({ product }) {
             <tr key={index}>
               <td>{size.size}</td>
               <td>
-                <input
-                  id="quantity" type="number"
-                  value={size.price}
-                  onChange={(e) =>
-                    updateSizeHandler(size.productSizeID, {
-                      ...size,
-                      price: e.target.value,
-                    })
-                  }
+              <input
+                  name="price"
+                  type="number"
+                  value={editedSize?.price ?? size?.price}
+                  onChange={(e) => handleInputChange(e, index)}
                 />
               </td>
               <td>
-                <input
-                  id="price" type="number"
-                  value={size.quantity}
-                  onChange={(e) =>
-                    updateSizeHandler(size.productSizeID, {
-                      ...size,
-                      quantity: e.target.value,
-                    })
-                  }
+              <input
+                  name="quantity"
+                  type="number"
+                  value={editedSize?.quantity ?? size?.quantity}
+                  onChange={(e) => handleInputChange(e, index)}
                 />
               </td>
               <td>
                 <button onClick={(e) => deleteSize(size.productSizeID, e)}>
                   <FontAwesomeIcon icon={icons.trash}></FontAwesomeIcon>
+                </button>
+                <button onClick={() => updateSize({ sizeId: size.productSizeID, size: editedSize})}>
+                  <FontAwesomeIcon icon={icons.save}></FontAwesomeIcon>
                 </button>
               </td>
             </tr>

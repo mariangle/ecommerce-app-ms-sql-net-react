@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lGu7KyUf8dK1cEWq5BhVjUNU4HCS9xUNho9b8pDNXoSdPjH80f+WGmmmoZGaEDLONp8SRwnMsQowoXr9hWQJ8A==",
+  "dgSpecHash": "dJZAsVTYsg/dgMknTi6VXlAL5tNMgHtjyaqdbUHrV8uWYYUbGpwSQwNIIW6jaSxz+P7S2T53GZr0OtJqzmJcxA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\server\\backend.csproj",
+  "projectFilePath": "C:\\Users\\45313\\Documents\\GitHub\\Ecommerce\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\45313\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.15\\microsoft.aspnetcore.authentication.jwtbearer.6.0.15.nupkg.sha512",
     "C:\\Users\\45313\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.15\\microsoft.aspnetcore.jsonpatch.6.0.15.nupkg.sha512",
