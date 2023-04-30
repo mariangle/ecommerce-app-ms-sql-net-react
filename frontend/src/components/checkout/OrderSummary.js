@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react'
+import React, {useEffect} from 'react'
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 import { useCart } from "../../utils/hooks/useCart"
 
 
 function OrderSummary({onPaymentComplete}) {
-    const { discount } = useCart();
     const buttonStyles = {
         layout: 'vertical',
         color: 'blue',
         label: 'checkout',
     };
-    const { subtotal, delivery, total, defaultTotal, clearCart } = useCart();
+    const { subtotal, delivery, discount, defaultTotal, clearCart } = useCart();
   
     const onApprove = async (data, actions) => {
         const order = await actions.order.capture();
@@ -41,7 +40,7 @@ function OrderSummary({onPaymentComplete}) {
         <div className="line"></div>
         <div className="space-between bold">
             <p>Total</p>
-            <p>{total}</p>
+            <p>{defaultTotal}</p>
         </div>
         <PayPalScriptProvider options={{ "client-id": "sb", currency: "DKK" }}>
       <PayPalButtons
@@ -52,7 +51,7 @@ function OrderSummary({onPaymentComplete}) {
               {
                 amount: {
                   currency_code: "DKK",
-                  value: 2025                
+                  value: defaultTotal,
                 },
               },
             ],

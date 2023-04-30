@@ -27,10 +27,7 @@
       if (product) {
         if (!selectedSize) {
           const defaultIndex = product?.sizes.findIndex((size) => size.price === product.defaultPrice);
-          setDefaultSize(defaultIndex);
-        } else {
-          const defaultIndex = product?.sizes.findIndex((size) => size.price === selectedSize.price);
-          setDefaultSize(defaultIndex);
+          setDefaultSize(defaultIndex);           
         }
       }
     }, [selectedSize, product]);
