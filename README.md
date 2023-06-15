@@ -28,16 +28,16 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project served as an opportunity for me to use my existing self-taught front-end and existing back-end skills and build an ecommerce. However, I quickly realized that I needed to acquire additional knowledge in various technologies to accomplish my goals. Through my exploration of technologies like C# Web API, Redux, JWT tokens, and HTTP methods, I expanded my skill set and gained the ability to develop a comprehensive full-stack e-commerce application. This experience allowed me to create an aesthetically pleasing and highly functional solution.
+This project served as an opportunity for me to use my self-taught front-end skills and existing back-end skills to build an ecommerce. However, I quickly realized that I needed to acquire additional knowledge in various technologies to accomplish my goal. Through my exploration of technologies like C# Web API, Redux, JWT tokens, and HTTP methods, I expanded my skill set and gained the ability to develop a comprehensive full-stack e-commerce application. This experience allowed me to create an aesthetically pleasing and highly functional solution.
 
 
 
 
 ### Built With
 
-* React
-* SQL
-* C# Web Api
+* React.js
+* Microsoft SQL Server
+* .NET Web API
 * Redux
 * SCSS
 
@@ -99,7 +99,7 @@ https://user-images.githubusercontent.com/124585244/232165214-5f6338a3-c6ee-4018
 - [ ] Improve the application's responsiveness for smaller screens
 - [ ] Implement encryption and decryption for user passwords
   - [ ] Hash passwords
-- [ ] Implement guest checkout functionality
+- [ ] Add guest checkout functionality
 
 > note: This was my first project, and while it served as a valuable learning experience, I have moved on to other projects and may not actively maintain or update it.
 
