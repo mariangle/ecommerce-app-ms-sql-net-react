@@ -1,50 +1,136 @@
-# Overview
-This is a full-stack e-commerce application designed to provide a practical learning experience. The application allows users to purchase sneakers and is built using both front-end and back-end development techniques. The primary goal was to gain a deeper understanding of web development and to create a functional and well-designed e-commerce application from scratch.
+# Sneaker Ecommerce
 
-# Technologies
-* **React for the front-end user interface**
-* **.NET Web API framework for the back-end API development**
-* **SQL for the database management**
-* **Redux store for states management**
-* **Utilizing SCSS for efficient and scalable styling**
 
-# Key Features
-* User authentication using JWT tokens for ```secure login```
-* Dynamic pricing and inventory management
-* Easy-to-use and ```intuitive interface``` for seamless shopping experience
-* Filtering and sorting options: search by keyword, sort by newest and oldest, and filter by size and price range
-* Integration with PayPal for ```secure payment processing```
-* Cart and wishlist items are saved in local storage for convenience
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#previews">Previews</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details
 
-# Previews
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-**Browsing and Shopping:**
+This project served as an opportunity for me to use my existing self-taught front-end and existing back-end skills and build an ecommerce. However, I quickly realized that I needed to acquire additional knowledge in various technologies to accomplish my goals. Through my exploration of technologies like C# Web API, Redux, JWT tokens, and HTTP methods, I expanded my skill set and gained the ability to develop a comprehensive full-stack e-commerce application. This experience allowed me to create an aesthetically pleasing and highly functional solution.
+
+
+
+
+### Built With
+
+* React
+* SQL
+* C# Web Api
+* Redux
+* SCSS
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running, follow these steps.
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/mariangle/ecommerce-app-ms-sql-net-react.git
+   ```
+
+2. Back end:
+   * Configure your database connection details in an `app.config` file.
+   * Build and run the solution file from the "Backend" folder in Visual Studio.
+
+3. Front end:
+   * Navigate to the "Frontend" directory 
+   * Install required npm packages   
+
+     ```sh
+     npm install
+     ```
+     
+   * Start the front end development server   
+
+     ```sh
+     npm start
+     ```
+
+     
+## Previews
+
+**Browsing and Shopping**
 
 https://user-images.githubusercontent.com/124585244/232165426-5b6ef0fe-9d9c-44b1-a7a6-00236a7ac21e.mp4
 
----
 
-**Complete Checkout and User Profile:**
+**Complete Checkout and User Profile**
 
 https://user-images.githubusercontent.com/124585244/232165800-c91f324c-d68a-4244-be8e-42a71947e062.mp4
 
----
 
-**Managing Products:**
+
+**Managing Products**
 
 https://user-images.githubusercontent.com/124585244/232165214-5f6338a3-c6ee-4018-98c7-ae8ef98efa30.mp4
 
+<!-- ROADMAP -->
+## Roadmap
+- [x] Store cart and wishlist items in local storage
+- [x] Filtering and sorting options
+- [x] Implement promotional offers and free shipping for orders exceeding a specific amount.
+- [x] Integrate PayPal as a payment method
+- [ ] Improve the application's responsiveness for smaller screens
+- [ ] Implement encryption and decryption for user passwords
+  - [ ] Hash passwords
+- [ ] Implement guest checkout functionality
+
+> note: This was my first project, and while it served as a valuable learning experience, I have moved on to other projects and may not actively maintain or update it.
+
+
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Email: marianguyenle17@gmail.com
+  
+  
+  
+  
+[![Linkedin Badge](https://img.shields.io/badge/-Maria-blue?style=plastic-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/maria-nguyen-le/)](https://www.linkedin.com/in/maria-nguyen-le/)
+
+
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* [Font Awesome](https://fontawesome.com)
+
+<p align="right">(<a href="#sneaker-ecommerce">back to top</a>)</p>
+  
 ---
-
-# To Do
-* **Integrate additional payment methods such as Stripe**
-* **Enhance the application's responsiveness for smaller screens**
-* **Address minor bugs and improve code readability**
-* **Implement guest checkout and edit/register users with password hashing for better security.**
-
-In a larger project, separating the shipping and user tables would allow for easier implementation of guest checkout and greater flexibility in managing a user's shipping details. As part of planned improvements, the application could also benefit from a separate table for brands to simplify filtering by brand and further abstraction of the database for better scalability.
-
-# Conclusion
-This project allowed me to combine my knowledge of SQL and C# with self-taught front-end skills and learn about web API frameworks and development, HTTP methods, and Redux for store management. I also learned how to develop endpoints for the back-end API, which enabled communication with the front-end user interface. Through this project, I gained a better understanding of full-stack development and how to incorporate SQL and databases into a larger project. The planned improvements will further enhance the application's functionality, security, and user experience.
-
-
