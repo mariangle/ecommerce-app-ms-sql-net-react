@@ -28,10 +28,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project served as an opportunity for me to use my self-taught front-end skills and existing back-end skills to build an ecommerce. However, I quickly realized that I needed to acquire additional knowledge in various technologies to accomplish my goal. Through my exploration of technologies like C# Web API, Redux, JWT tokens, and HTTP methods, I expanded my skill set and gained the ability to develop a comprehensive full-stack e-commerce application. This experience allowed me to create an aesthetically pleasing and highly functional solution.
-
-
-
+This project was an opportunity for me to utilize my self-taught front-end skills and existing back-end knowledge to build an ecommerce platform. However, I soon realized that my skills in both areas were not sufficient, and I lacked full-stack knowledge, including how to establish communication between the front end and back end. Despite these challenges, I took pride in this project because it motivated me to learn and explore various technologies, such as C# Web API, Redux, JWT tokens, and HTTP methods and API development in general.
 
 ### Built With
 
@@ -101,35 +98,27 @@ https://user-images.githubusercontent.com/124585244/232165214-5f6338a3-c6ee-4018
   - [ ] Hash passwords
 - [ ] Add guest checkout functionality
 
-> note: This was my first project, and while it served as a valuable learning experience, I have moved on to other projects and may not actively maintain or update it.
-
-
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+<details>
+  <summary><b>MIT License</b></summary>
 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+</details>
 
 <!-- CONTACT -->
 ## Contact
 
 Email: marianguyenle17@gmail.com
-  
-  
-  
-  
+
 [![Linkedin Badge](https://img.shields.io/badge/-Maria-blue?style=plastic-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/maria-nguyen-le/)](https://www.linkedin.com/in/maria-nguyen-le/)
-
-
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* [Font Awesome](https://fontawesome.com)
 
 <p align="right">(<a href="#sneaker-ecommerce">back to top</a>)</p>
   
