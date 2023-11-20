@@ -28,7 +28,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project was an opportunity for me to utilize my self-taught front-end skills and existing back-end knowledge to build an ecommerce platform. However, I soon realized that my skills in both areas were not sufficient, and I lacked full-stack knowledge, including how to establish communication between the front end and back end. Despite these challenges, I took pride in this project because it motivated me to learn and explore various technologies, such as C# Web API, Redux, JWT tokens, and HTTP methods and API development in general.
+This project was an opportunity for me to utilize my self-taught front-end skills and existing back-end knowledge to build an ecommerce platform. However, my skills in both areas were not sufficient, and I lacked full-stack knowledge, including how to establish communication between the front end and back end. Despite these challenges, I took pride in this project because it motivated me to learn and explore various technologies, such as C# Web API, Redux, JWT tokens, and HTTP methods and API development in general.
 
 ### Built With
 
@@ -37,7 +37,6 @@ This project was an opportunity for me to utilize my self-taught front-end skill
 * .NET Web API
 * Redux
 * SCSS
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -98,6 +97,7 @@ https://user-images.githubusercontent.com/124585244/232165214-5f6338a3-c6ee-4018
   - [ ] Hash passwords
 - [ ] Add guest checkout functionality
 
+> Note: This project is dated, and there are many aspects I would approach differently now. I am no longer actively developing it. However, if you intend to clone or fork it, be aware of the following: The database was initially set up using SQL statements, which were not saved. Starting the project may be challenging due to this. I recommend using Entity Framework's update-database command to recreate the database schema.
 
 <!-- LICENSE -->
 ## License
