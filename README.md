@@ -54,6 +54,9 @@ To get a local copy up and running, follow these steps.
    * Configure your database connection details in an `app.config` file.
    * Build and run the solution file from the "Backend" folder in Visual Studio.
 
+> Note: This project is dated, and there are many aspects I would approach differently now. I am no longer actively developing it. However, if you intend to clone or fork it: The database was initially set up using SQL statements, which were not saved. Starting the project may be challenging due to this. I recommend using Entity Framework's update-database command to recreate the database schema based on the models.
+
+
 3. Front end:
    * Navigate to the "Frontend" directory 
    * Install required npm packages   
@@ -96,8 +99,6 @@ https://user-images.githubusercontent.com/124585244/232165214-5f6338a3-c6ee-4018
 - [ ] Implement encryption and decryption for user passwords
   - [ ] Hash passwords
 - [ ] Add guest checkout functionality
-
-> Note: This project is dated, and there are many aspects I would approach differently now. I am no longer actively developing it. However, if you intend to clone or fork it, be aware of the following: The database was initially set up using SQL statements, which were not saved. Starting the project may be challenging due to this. I recommend using Entity Framework's update-database command to recreate the database schema.
 
 <!-- LICENSE -->
 ## License
