@@ -9,7 +9,7 @@ import { useCart } from "../../utils/hooks/useCart";
 import { useWishlist } from "../../utils/hooks/useWishlist";
 import { searchProducts } from "../../store/reducers/productSlice";
 
-function Header() {
+export default function Header() {
   const location = useLocation();
   const { quantity } = useCart();
   const { wishlistCount } = useWishlist();
@@ -23,7 +23,7 @@ function Header() {
   };
 
   return (
-    <nav>
+    <nav className="bg-red-500">
       <div className="header-second">
         <div className="header-second-msg">
           <p>
@@ -93,5 +93,3 @@ function Header() {
     </nav>
   );
 }
-
-export default Header;
