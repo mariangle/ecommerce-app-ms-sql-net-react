@@ -1,4 +1,6 @@
 import "./styles/main.scss";
+import "./index.css";
+
 import Layout from "./components/layout/Layout";
 import NotFound from "./pages/NotFound";
 

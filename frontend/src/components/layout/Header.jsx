@@ -1,95 +1,54 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icons } from "../../assets/icons/icons";
-import { useLocation } from "react-router-dom";
-import { useCart } from "../../utils/hooks/useCart";
+import { icons } from "@/constants/icons";
+import { useCart } from "@/hooks/useCart";
 import { useWishlist } from "../../utils/hooks/useWishlist";
-import { searchProducts } from "../../store/reducers/productSlice";
+
+import Container from "@/components/ui/Container";
+import Banner from "@/components/layout/Banner";
+import NavItem from "@/components/layout/NavItem";
+
+const navLinks = [
+  { label: "Adidas", url: "/adidas" },
+  { label: "Yeezy", url: "/yeezy" },
+  { label: "New Balance", url: "/new-balance" },
+  { label: "Nike", url: "/nike" },
+];
 
 export default function Header() {
-  const location = useLocation();
   const { quantity } = useCart();
   const { wishlistCount } = useWishlist();
-  const dispatch = useDispatch();
-
-  const isHome = location.pathname === "/";
-  const isShop = location.pathname === "/products ";
-
-  const handleSearchChange = (e) => {
-    dispatch(searchProducts(e.target.value));
-  };
 
   return (
-    <nav className="bg-red-500">
-      <div className="header-second">
-        <div className="header-second-msg">
-          <p>
-            <span>SECURE</span> PAYMENT THROUGH PAYPAL
-          </p>
-          <p>
-            <span>FREE</span> SHIPPING ON ORDERS OVER 1.200,00 KR
-          </p>
-          <p>
-            <span>100%</span> AUTHENTIC
-          </p>
-        </div>
-      </div>
-      <div className="header-container">
-        <Link className="header-main header-section" to="/">
+    <>
+      <Banner />
+      <Container className="flex items-center justify-between py-4">
+        <Link className="font-bold" to="/">
           <h1>STORE</h1>
         </Link>
-        <ul className="header-section">
-          <li>
-            <Link to="/products">SHOP</Link>
-          </li>
-          <li>
-            <Link to="/">CONTACT US</Link>
-          </li>
-          <li>
-            <Link to="/">ABOUT US</Link>
-          </li>
+        <ul className="flex items-center gap-2">
+          {navLinks.map((item, index) => (
+            <li key={index}>
+              <NavItem item={item} />
+            </li>
+          ))}
         </ul>
-        <div className="header-tools header-section">
+        <div className="flex items-center gap-4">
           <Link to="/account">
-            <div className="svg-icon">
-              <FontAwesomeIcon icon={icons.user} />
-            </div>
+            <FontAwesomeIcon icon={icons.user} />
           </Link>
-          <Link to="/wishlist">
-            <div className="svg-icon">
-              <FontAwesomeIcon icon={icons.heart} />
-              {wishlistCount > 0 && (
-                <span>{wishlistCount > 9 ? "9+" : wishlistCount} </span>
-              )}
-            </div>
+          <Link to="/wishlist" className="flex items-center">
+            <FontAwesomeIcon icon={icons.heart} />
+            {wishlistCount > 0 && (
+              <span>{wishlistCount > 9 ? "9+" : wishlistCount} </span>
+            )}
           </Link>
           <Link to="/cart">
-            <div className="svg-icon">
-              <FontAwesomeIcon icon={icons.cart} />
-              {quantity > 0 && <span>{quantity > 9 ? "9+" : quantity} </span>}
-            </div>
+            Shopping bag <span>({quantity > 9 ? "9+" : quantity})</span>
           </Link>
-          <div className="burger">
-            <FontAwesomeIcon icon={icons.hamburger} />
-          </div>
         </div>
-      </div>
-      <div className={`header-search ${isShop ? "active" : ""}`}>
-        <div className="input-wrapper">
-          <FontAwesomeIcon icon={icons.search}></FontAwesomeIcon>
-          <input
-            type="text"
-            id="search"
-            placeholder="Search..."
-            name="search"
-            onChange={handleSearchChange}
-          />
-        </div>
-      </div>
-      <div className={`header-line ${isHome || isShop ? "active" : ""}`}></div>
-    </nav>
+      </Container>
+    </>
   );
 }

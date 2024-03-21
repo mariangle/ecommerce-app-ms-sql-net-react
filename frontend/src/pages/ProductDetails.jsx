@@ -1,106 +1,48 @@
-import React, { useState, useEffect } from "react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icons } from "../assets/icons/icons";
+import * as React from "react";
 
 import { useParams } from "react-router-dom";
-import { useCart } from "../utils/hooks/useCart";
-import { useProduct } from "../utils/hooks/useProduct";
-import { useWishlist } from "../utils/hooks/useWishlist";
-import { formatPrice } from "../utils/hooks/useUtil";
+
+import Button from "@/components/ui/Button";
+import Container from "@/components/ui/Container";
+
+import useProducts from "@/hooks/useProducts";
+import useCart from "@/hooks/useCart";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const { addToCart } = useCart();
-  const { products, fetchProducts } = useProduct();
-  const { wishlistItems, toggleWishlistItem } = useWishlist();
-  const [selectedSize, setSelectedSize] = useState(null);
-  const [defaultSize, setDefaultSize] = useState(null);
-  const product = products.find((product) => product?.productID === Number(id));
-  const itemExists = wishlistItems.find(
-    (item) => item?.productID === product?.productID
-  );
+  const { product, loading, error } = useProducts(parseInt(id, 10));
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  if (loading) return <Container>loading product</Container>;
 
-  useEffect(() => {
-    if (product) {
-      if (!selectedSize) {
-        const defaultIndex = product?.sizes.findIndex(
-          (size) => size.price === product.defaultPrice
-        );
-        setDefaultSize(defaultIndex);
-      }
-    }
-  }, [selectedSize, product]);
+  if (error) return <Container>error loading product</Container>;
+
+  if (!product) return <Container>no product found</Container>;
 
   return (
-    <>
-      {product && (
-        <div className="flex container">
-          <div className="product-detail-img flex-2">
-            <img src={product.imageURL} alt="" />
-          </div>
-          <div className="product-detail-about flex-1">
-            <h2>{product.brand}</h2>
-            <h1>
-              {product.brand} {product.name}
-            </h1>
-            <p>
-              {selectedSize
-                ? `${formatPrice(selectedSize?.price)}`
-                : `${formatPrice(product.defaultPrice)}`}
-            </p>
-            <div>
-              <label htmlFor="size-select">Available sizes</label>
-              <select
-                id="size-select"
-                value={
-                  selectedSize
-                    ? JSON.stringify(selectedSize)
-                    : JSON.stringify(product.sizes[defaultSize])
-                }
-                onChange={(e) => setSelectedSize(JSON.parse(e.target.value))}
-              >
-                {product?.sizes
-                  ?.slice()
-                  ?.sort((a, b) => a.size - b.size)
-                  ?.map((size, index) => (
-                    <option key={index} value={JSON.stringify(size)}>
-                      EU {size?.size} - {formatPrice(size?.price)}{" "}
-                      {size.quantity <= 3 ? `(only ${size.quantity} left)` : ""}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <div className="divider">
-              <button
-                onClick={() =>
-                  addToCart({
-                    product: product,
-                    size: selectedSize?.size || product.sizes[0].size,
-                    price: selectedSize?.price || product.defaultPrice,
-                  })
-                }
-              >
-                ADD TO BASKET
-              </button>
-              <button
-                className="second-button"
-                onClick={() => toggleWishlistItem(product)}
-              >
-                <span>WISHLIST</span>
-                <FontAwesomeIcon
-                  icon={itemExists ? icons.heartFull : icons.heart}
-                />
-              </button>
-            </div>
-            <p>{product.description}</p>
+    <Container page className="flex flex-col md:flex-row">
+      <div className="flex-1 bg-gray-100">
+        <img src={product.image} alt={product.name} />
+      </div>
+      <div className="flex-1">
+        <div>
+          <div className="font-bold">{product.brand}</div>
+          <h1 className="text-2xl md:text-3xl font-semibold mt-4">
+            {product.name}
+          </h1>
+          <div className="text-xl md:text-2xl my-8">
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "DKK",
+            }).format(product.sizes[0].price)}
           </div>
         </div>
-      )}
-    </>
+        <div className="flex items-center gap-2">
+          <Button onClick={() => addToCart(product)}>Add to basket</Button>
+          <Button variant="secondary">Wishlist</Button>
+        </div>
+        <p>{product.description}</p>
+      </div>
+    </Container>
   );
 }

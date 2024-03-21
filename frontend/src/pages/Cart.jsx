@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CartItems from "../components/cart/CartItem";
-import { useCart } from "../utils/hooks/useCart";
+import { useCart } from "@/hooks/useCart";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../utils/hooks/useUtil";
 import { DELIVERY_THRESHOLD } from "../store/reducers/cartSlice";
@@ -20,7 +20,7 @@ export default function Cart() {
   const [discountCode, setDiscountCode] = useState("");
 
   return (
-    <div className="cart flex container">
+    <div className="cart flex width-container">
       <div className="cart-container flex-2">
         <h1>
           Shopping Bag{" "}

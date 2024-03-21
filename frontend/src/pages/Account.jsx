@@ -29,7 +29,7 @@ export default function MyAccount() {
   return (
     <>
       {currentUser && (
-        <div className="container account">
+        <div className="width-container account">
           <ul className="account-menu">
             {tabs.map((tab, index) => (
               <li

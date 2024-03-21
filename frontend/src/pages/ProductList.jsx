@@ -1,6 +1,17 @@
 import React from "react";
-import ProductGrid from "../components/product/ProductList";
+import SearchBar from "@/components/SearchBar";
+import Container from "@/components/ui/Container";
+import ProductListGrid from "@/components/product/ProductList";
+import ProductFilter from "@/components/filter/ProductFilter";
 
 export default function ProductList() {
-  return <ProductGrid />;
+  return (
+    <>
+      <SearchBar />
+      <Container page>
+        <ProductFilter />
+        <ProductListGrid />
+      </Container>
+    </>
+  );
 }

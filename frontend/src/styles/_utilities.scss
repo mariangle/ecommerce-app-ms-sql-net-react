@@ -1,138 +1,136 @@
-.container{
-    min-height: 90vh;
-    width: 100%;
-    margin: auto;
-    max-width: 1080px;
-    padding: 5rem 1rem;
-    @media (max-width: 850px) {
-        padding: 1rem;
+.width-container {
+  min-height: 90vh;
+  width: 100%;
+  margin: auto;
+  max-width: 1080px;
+  padding: 5rem 1rem;
+  @media (max-width: 850px) {
+    padding: 1rem;
+  }
+}
+
+.flex {
+  @include flex(center, flex-start, row);
+  @media (max-width: 850px) {
+    display: block;
+  }
+}
+.flex-start {
+  @include flex(flex-start, flex-start, row);
+  @media (max-width: 850px) {
+    display: block;
+  }
+}
+
+.space-between {
+  margin-bottom: 0.5rem;
+  width: 100%;
+  @include flex(space-between, center, row);
+}
+
+.side-container {
+  flex: 1;
+}
+
+.flex-1 {
+  margin-left: 3rem;
+  min-width: 20rem;
+  flex: 1;
+  @media (max-width: 850px) {
+    margin: 2rem 0 0 0;
+  }
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.divider {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.line {
+  margin: 0.5rem 0;
+  height: 1px;
+  width: 100%;
+  background: $color-grey;
+}
+
+.line-divider {
+  margin: 2rem 0;
+  height: 1px;
+  width: 100%;
+  background: $color-lightgrey;
+}
+
+.secondary-button {
+  max-width: 10rem;
+  border: 2px solid $color-smoke;
+  background: $color-smoke;
+  color: $color-blue;
+  gap: 1rem;
+  flex-grow: 0;
+  flex-shrink: 1;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    background: $color-blue;
+    color: white;
+    border: 2px solid $color-blue;
+  }
+  @include flex(center, center, row);
+  @media (max-width: 1000px) {
+    span {
+      display: none;
     }
+  }
 }
 
-.flex{
-    @include flex(center, flex-start, row);
-    @media (max-width: 850px) {
-        display: block;
-    }
-}
-.flex-start{
-    @include flex(flex-start, flex-start, row);
-    @media (max-width: 850px) {
-        display: block;
-    }
+.txt {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
 }
 
-.space-between{
-    margin-bottom: 0.5rem;
-    width: 100%;
-    @include flex(space-between, center, row);
+.grey {
+  background: #f4f4f4;
+  color: $color-grey;
 }
-
-.side-container{
-    flex: 1;
+.red {
+  background: #f2c4c6;
+  color: #6e3a39;
 }
-
-.flex-1{
-    margin-left: 3rem;
-    min-width: 20rem;
-    flex: 1;
-    @media (max-width: 850px) {
-        margin: 2rem 0 0 0;
-    }
+.yellow {
+  background: #fcee8e;
+  color: #7c6d29;
 }
-
-.flex-2{
-    flex: 2;
-}
-
-.divider{
-    width: 100%;
-    display: flex;
-    gap: 1rem;
-}
-
-.line{
-    margin: 0.5rem 0;
-    height: 1px;
-    width: 100%;
-    background: $color-grey;
-}
-
-.line-divider{
-    margin: 2rem 0;
-    height: 1px;
-    width: 100%;
-    background: $color-lightgrey;
-}
-
-
-.second-button{
-    max-width: 10rem;
-    border: 2px solid $color-smoke;
-    background: $color-smoke;
-    color: $color-blue;
-    gap: 1rem;
-    flex-grow: 0;
-    flex-shrink: 1;
-    transition: all 0.1s ease-in-out;
-    &:hover{
-        background: $color-blue;
-        color: white;
-        border: 2px solid $color-blue;
-    }
-    @include flex(center, center, row);
-    @media (max-width: 1000px) {
-        span{
-            display: none;
-        }
-
-    }
-}
-
-.txt{
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-}
-
-.grey{
-    background: #f4f4f4;
-    color: $color-grey;
-}
-.red{
-    background: #f2c4c6;
-    color: #6e3a39;
-}
-.yellow{
-    background: #fcee8e;
-    color: #7c6d29;
-}
-.green{
-    background: #c3f0d2;
-    color: #3b5f45;
+.green {
+  background: #c3f0d2;
+  color: #3b5f45;
 }
 
 .input-wrapper {
-    display: flex;
-    align-items: center;
-    border: 1px solid $color-lightgrey;
-    background: white;
-    border-radius: 3px;
-    input{
-        margin-bottom: 0;
-        border: none;
-    }   
+  display: flex;
+  align-items: center;
+  border: 1px solid $color-lightgrey;
+  background: white;
+  border-radius: 3px;
+  input {
+    margin-bottom: 0;
+    border: none;
+  }
 }
 
-.input-label{
-    display:inline-block;
-    margin-top: 1rem;
+.input-label {
+  display: inline-block;
+  margin-top: 1rem;
 }
 
 .input-wrapper > svg {
-    margin: 1rem 0 1rem 1rem;
+  margin: 1rem 0 1rem 1rem;
 }
 
-form span{
-    color: rgb(180, 0, 0);
-    font-size: 0.8rem;
+form span {
+  color: rgb(180, 0, 0);
+  font-size: 0.8rem;
 }

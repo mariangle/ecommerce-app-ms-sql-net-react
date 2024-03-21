@@ -14,7 +14,7 @@ export const routes = [
     component: Landing,
   },
   {
-    path: "/products",
+    path: "/:category",
     component: ProductList,
   },
   {

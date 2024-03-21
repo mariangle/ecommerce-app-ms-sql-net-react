@@ -1,135 +1,142 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 body {
-    line-height: 150%;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
-    color: $color-dark;
+  line-height: 150%;
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+  color: $color-dark;
 }
-h1, h2{
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+h1,
+h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
 }
-h3, h4{
+h3,
+h4 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
-ul{
-    list-style: none;
-  }
-li{
-    font-size: 0.8rem;
-    list-style: none;
-    padding: 0.5rem 1rem;
-
+ul {
+  list-style: none;
 }
-input, textarea, select{
-    padding: 0.75rem;
-    font-family: 'Montserrat', sans-serif;
-    border: 1px solid $color-lightgrey;
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-    resize: none;
+li {
+  font-size: 0.8rem;
+  list-style: none;
+  padding: 0.5rem 1rem;
 }
-select{
+input,
+textarea,
+select {
+  padding: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+  border: 1px solid $color-lightgrey;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  resize: none;
+}
+select {
   cursor: pointer;
 }
-select{
+select {
   padding: 0.5rem;
 }
-button{
-    padding: 1rem;
-    cursor: pointer;
-    margin-bottom   : 1rem;
-    background: $color-blue;
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: white;
-    border: 2px solid $color-blue;
-    border-radius: 5px;
-    flex-grow: 1;
-    flex-shrink: 0;
-    letter-spacing: 1px;
-    transition: all 0.1s ease-in-out;
-    &:hover{
-      background: $lighter-main;
-      border: 2px solid $lighter-main;
+
+.button {
+  text-align: center;
+  padding: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: 0.6rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.primary-button {
+  background: $color-blue;
+  color: white;
+  border: 2px solid $color-blue;
+
+  flex-grow: 1;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    background: $lighter-main;
+    border: 2px solid $lighter-main;
   }
 }
-label{
-    font-size: 0.8rem;
-    width: 100%;
-    
+label {
+  font-size: 0.8rem;
+  width: 100%;
 }
-svg.svg-inline--fa{
-    height: 1rem;
+svg.svg-inline--fa {
+  height: 1rem;
 }
-img{
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-} 
-p{
-    font-size: 0.8rem; 
-  }
-  a{
-    font-size: 0.8rem;
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-  }
-  input[type=number] {
+img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+p {
+  font-size: 0.8rem;
+}
+a {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+input[type="number"] {
   -moz-appearance: textfield;
   appearance: text;
-  }
-  input[type=radio]:checked {
-    font-weight: bold;
-    }
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+}
+input[type="radio"]:checked {
+  font-weight: bold;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-table{
-    width: 100%;
-    box-sizing: border-box;
-    border-spacing: 0px;
-    button{
-      margin: 0;
-      padding: 0.5rem;
-    }
-}
-th, td {
-    padding:15px;
-}
-tr{
-    th{
-      font-size: 0.8rem;
-      font-weight: lighter;
-      background: $color-dark;
-      text-align: left;
-      color: white;
-
-    }
-    &:nth-child(2n){
-        background: $color-smoke;
-    }
+table {
+  width: 100%;
+  box-sizing: border-box;
+  border-spacing: 0px;
+  button {
+    margin: 0;
+    padding: 0.5rem;
   }
-  td{
+}
+th,
+td {
+  padding: 15px;
+}
+tr {
+  th {
     font-size: 0.8rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-weight: lighter;
+    background: $color-dark;
+    text-align: left;
+    color: white;
+  }
+  &:nth-child(2n) {
+    background: $color-smoke;
+  }
+}
+td {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 600px) {
@@ -150,9 +157,9 @@ tr{
     border-bottom: none;
   }
 
-td:before {
+  td:before {
     content: attr(data-label);
     float: left;
     font-weight: bold;
-    }
+  }
 }

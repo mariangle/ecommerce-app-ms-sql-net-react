@@ -1,0 +1,76 @@
+[
+  {
+    "id": 1,
+    "name": "Yeezy Boost 350 V2",
+    "brand": "Yeezy",
+    "image": "https://images.pexels.com/photos/19090/pexels-photo.jpg",
+    "description": "The Yeezy Boost 350 V2 is a popular sneaker designed by Kanye West.",
+    "price": 5000,
+    "sizes": [
+      {
+        "size": "US 7",
+        "price": 220,
+        "stock": 10
+      },
+      {
+        "size": "US 8",
+        "price": 220,
+        "stock": 10
+      },
+      {
+        "size": "US 9",
+        "price": 220,
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Air Jordan 1 Retro High OG",
+    "brand": "Jordan",
+    "image": "https://images.pexels.com/photos/19090/pexels-photo.jpg",
+    "description": "The Air Jordan 1 Retro High OG is a classic basketball sneaker with iconic design.",
+    "price": 3200,
+    "sizes": [
+      {
+        "size": "US 7",
+        "stock": 10
+      },
+      {
+        "size": "US 8",
+        "price": 220,
+        "stock": 10
+      },
+      {
+        "size": "US 9",
+        "price": 220,
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Nike Dunk Low Off-White",
+    "brand": "Nike",
+    "price": 1500,
+    "image": "https://images.pexels.com/photos/19090/pexels-photo.jpg",
+    "description": "The Nike Dunk Low Off-White is a collaboration between Nike and Off-White, featuring unique design elements.",
+    "sizes": [
+      {
+        "size": "US 7",
+        "price": 220,
+        "stock": 10
+      },
+      {
+        "size": "US 8",
+        "price": 220,
+        "stock": 10
+      },
+      {
+        "size": "US 9",
+        "price": 220,
+        "stock": 10
+      }
+    ]
+  }
+]

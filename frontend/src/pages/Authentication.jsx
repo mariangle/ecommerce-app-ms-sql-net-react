@@ -6,7 +6,7 @@ export default function Authentication() {
   const [activeTab, setActiveTab] = useState("login");
 
   return (
-    <div className="auth container">
+    <div className="auth width-container">
       <div className="auth-container">
         {activeTab === "login" && <Login />}
         {activeTab === "signup" && <Register />}

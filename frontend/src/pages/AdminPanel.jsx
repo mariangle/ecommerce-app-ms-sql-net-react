@@ -13,7 +13,7 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className="admin container">
+    <div className="admin width-container">
       <ul>
         {tabs.map((tab, index) => (
           <li

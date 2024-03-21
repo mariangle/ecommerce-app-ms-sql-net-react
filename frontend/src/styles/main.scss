@@ -5,33 +5,23 @@ $color-lightgrey: #dbdbdb;
 $color-smoke: #f6f6f6;
 $color-blue: #0070ba;
 
-@mixin flex($justify, $align, $direction){
-    display: flex;
-    justify-content: $justify;
-    align-items: $align;
-    flex-direction: $direction;
+@mixin flex($justify, $align, $direction) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
 }
 
 @import "global";
 @import "utilities";
 
 // components
-@import "../components/layout/header";
 @import "../components/layout/footer";
 @import "../components/checkout/confirm";
-@import "../components/product/filter";
 
 // pages
-@import "../components/wishlist/wishlist";
 @import "../components/account/account";
 @import "../components/admin/admin";
-@import "../components/auth/auth"; 
+@import "../components/auth/auth";
 @import "../components/cart/cart";
 @import "../components/checkout/checkout";
-@import "../components/home/home"; 
-@import "../components/product/product";
-
-
-
-
-
