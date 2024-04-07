@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import Products from "@/content/Products.json";
 
 export default function useProducts(productId) {
-  const { category } = useParams();
+  const location = useLocation();
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [product, setProduct] = React.useState(null);
@@ -26,17 +26,13 @@ export default function useProducts(productId) {
   };
 
   React.useEffect(() => {
-    productId ? getProduct(productId) : getProducts(category);
-  }, [productId, category]);
+    productId ? getProduct(productId) : getProducts();
+  }, [productId, location.pathname]);
 
-  const getProducts = (category) => {
+  const getProducts = () => {
     setLoading(true);
     setTimeout(() => {
       try {
-        const products = Products.filter(
-          (product) => product.brand.toLowerCase() === category
-        );
-        // setProducts(products);
         setProducts(Products);
       } catch (error) {
         setError(true);

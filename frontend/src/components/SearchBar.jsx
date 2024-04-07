@@ -11,15 +11,15 @@ export default function SearchBar() {
   const handleSearchChange = (e) => {};
 
   return (
-    <div className="border-y py-2">
-      <Container className="flex items-center gap-2 justify-start">
+    <div className="border-b py-2">
+      <Container className="flex items-center gap-2 py-1 justify-start">
         <FontAwesomeIcon icon={icons.search}></FontAwesomeIcon>
         <input
           type="text"
           id="search"
           placeholder="Search..."
           name="search"
-          className="border-none focus:outline-none"
+          className="border-none focus:outline-none text-sm"
           onChange={handleSearchChange}
         />
       </Container>

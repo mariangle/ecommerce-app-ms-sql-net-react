@@ -1,5 +1,23 @@
-import { faUser, faCircleCheck, faHeart as faHeartRegular, faSave, faCreditCard, faAddressCard, faEdit } from '@fortawesome/free-regular-svg-icons';
-import { faBasketShopping, faSearch, faBars, faEnvelope, faLock, faTimes, faHeart as faHeartSolid, faSlidersH  } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUser,
+  faCircleCheck,
+  faHeart as faHeartRegular,
+  faSave,
+  faCreditCard,
+  faAddressCard,
+  faEdit,
+} from "@fortawesome/free-regular-svg-icons";
+import {
+  faBasketShopping,
+  faSearch,
+  faBars,
+  faEnvelope,
+  faLock,
+  faTimes,
+  faHeart as faHeartSolid,
+  faSlidersH,
+  faClose,
+} from "@fortawesome/free-solid-svg-icons";
 
 export const icons = {
   user: faUser,
@@ -16,5 +34,6 @@ export const icons = {
   creditCard: faCreditCard,
   idCard: faAddressCard,
   check: faCircleCheck,
-  filter: faSlidersH
+  filter: faSlidersH,
+  close: faClose,
 };

@@ -14,10 +14,24 @@ export default function useFilter() {
   const [unfilteredProducts, setUnfilteredProducts] = React.useState([]);
   const [filteredProducts, setFilteredProducts] = React.useState([]);
 
-  const initialize = ({ products }) => {
-    setUnfilteredProducts(products);
+  const initialize = ({ products, brand, sale }) => {
+    let filteredProducts = products;
 
-    const prices = products.map((product) => product.price);
+    if (sale) {
+      filteredProducts = products.filter((product) => product.price.discount);
+    }
+
+    if (brand) {
+      filteredProducts = products.filter((product) => product.brand === brand);
+    }
+
+    setUnfilteredProducts(filteredProducts);
+
+    const prices = products.map((product) =>
+      product.price.discount
+        ? product.price.default * (1 - product.price.discount)
+        : product.price.default
+    );
     const minPrice = Math.min(...prices);
     const maxPrice = Math.max(...prices);
 
@@ -29,9 +43,9 @@ export default function useFilter() {
   const getFilteredProducts = React.useCallback(
     (products) => {
       let filtered = products.filter((product) => {
-        if (filter.price.min !== 0 && product.price <= filter.price.min)
+        if (filter.price.min !== 0 && product.price.default < filter.price.min)
           return false;
-        if (filter.price.max !== 0 && product.price >= filter.price.max)
+        if (filter.price.max !== 0 && product.price.default > filter.price.max)
           return false;
         return true;
       });

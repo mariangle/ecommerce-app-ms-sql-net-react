@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
   const itemExists = wishlistItems.find((item) => item.id === product.id);
 
   return (
-    <div className="relative">
+    <div className="relative z-0">
       <FontAwesomeIcon
         icon={itemExists ? icons.heartFull : icons.heart}
         onClick={() => toggleWishlistItem(product)}
@@ -28,7 +28,16 @@ export default function ProductCard({ product }) {
         <Link to={`/products/${product.id}`}>
           <p>{product.brand}</p>
           <h3 className="font-bold">{product.name}</h3>
-          <p>{product.price}</p>
+          {product.price.discount ? (
+            <div>
+              <p className="line-through">DKK {product.price.default}</p>
+              <p className="text-red-700">
+                DKK {product.price.default * (1 - product.price.discount)}
+              </p>
+            </div>
+          ) : (
+            <p>DKK {product.price.default}</p>
+          )}
         </Link>
       </div>
     </div>
@@ -39,8 +48,9 @@ export function ProductCardSkeleton() {
   return (
     <div className="animate-pulse">
       <div className="h-52 bg-gray-300 rounded"></div>
-      <div className="h-4 mt-2 bg-gray-300 rounded w-1/4 mx-auto"></div>
-      <div className="h-4 mt-2 bg-gray-300 rounded w-1/3 mx-auto"></div>
+      <div className="h-2 mt-2 bg-gray-300 rounded w-1/4 mx-auto"></div>
+      <div className="h-3 mt-2 bg-gray-300 rounded w-1/3 mx-auto"></div>
+      <div className="h-2 mt-2 bg-gray-300 rounded w-1/5 mx-auto"></div>
     </div>
   );
 }

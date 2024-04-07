@@ -5,6 +5,7 @@ import {
   setSort,
 } from "@/store/reducers/filter-store";
 import useFilter from "@/hooks/useFilter";
+import Button from "@/components/ui/Button";
 
 export default function ProductFilter() {
   const dispatch = useDispatch();
@@ -27,12 +28,12 @@ export default function ProductFilter() {
   };
 
   return (
-    <div className="p-4 bg-white shadow rounded">
-      <h2 className="text-lg font-semibold mb-4">Filter Products</h2>
-      <button onClick={handleSort}>
+    <div className="min-w-[250px]">
+      <Button onClick={handleSort}>
         Sort Price ({filter.sort === "asc" ? "Ascending" : "Descending"})
-      </button>
+      </Button>
       <div className="space-y-2">
+        <div className="uppercase font-semibold">Price</div>
         <div>
           <label className="block text-sm font-medium">Min Price</label>
           <input
