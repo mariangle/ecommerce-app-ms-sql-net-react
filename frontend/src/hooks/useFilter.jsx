@@ -27,37 +27,65 @@ export default function useFilter() {
 
     setUnfilteredProducts(filteredProducts);
 
-    const prices = products.map((product) =>
-      product.price.discount
-        ? product.price.default * (1 - product.price.discount)
-        : product.price.default
+    const prices = products.map(
+      (product) => product.price.default * (1 - (product.price.discount || 0))
     );
+
     const minPrice = Math.min(...prices);
     const maxPrice = Math.max(...prices);
 
+    const sizes = products.flatMap((product) =>
+      product.sizes.map((size) => size.size)
+    );
+
+    const uniqueSizes = [...new Set(sizes)];
+
     dispatch(setMinPrice(minPrice));
     dispatch(setMaxPrice(maxPrice));
-    dispatch(setInitial({ price: { min: minPrice, max: maxPrice } }));
+    dispatch(
+      setInitial({
+        price: { min: minPrice, max: maxPrice },
+        sizes: uniqueSizes,
+      })
+    );
   };
 
   const getFilteredProducts = React.useCallback(
     (products) => {
       let filtered = products.filter((product) => {
-        if (filter.price.min !== 0 && product.price.default < filter.price.min)
+        if (
+          filter.price.min !== 0 &&
+          product.price.default * (1 - (product.price.discount || 0)) <
+            filter.price.min
+        )
           return false;
-        if (filter.price.max !== 0 && product.price.default > filter.price.max)
+        if (
+          filter.price.max !== 0 &&
+          product.price.default * (1 - (product.price.discount || 0)) >
+            filter.price.max
+        )
           return false;
+
+        if (filter.sizes.length > 0) {
+          if (!product.sizes.some((size) => filter.sizes.includes(size.size)))
+            return false;
+        }
         return true;
       });
 
       filtered.sort((a, b) => {
         if (filter.sort === "asc") {
-          return a.price - b.price;
+          return (
+            a.price.default * (1 - (a.price.discount || 0)) -
+            b.price.default * (1 - (b.price.discount || 0))
+          );
         } else {
-          return b.price - a.price;
+          return (
+            b.price.default * (1 - (b.price.discount || 0)) -
+            a.price.default * (1 - (a.price.discount || 0))
+          );
         }
       });
-
       return filtered;
     },
     [filter]

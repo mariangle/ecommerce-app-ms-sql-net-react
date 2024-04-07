@@ -7,7 +7,6 @@ import SearchBar from "@/components/SearchBar";
 import Container from "@/components/ui/Container";
 import ProductListGrid from "@/components/product/ProductList";
 import FilterPanel from "@/components/filter/FilterPanel";
-import MobileFilter from "@/components/filter/MobileFilter";
 import { navLinks } from "@/constants/navLinks";
 
 export default function ProductList() {
@@ -42,9 +41,8 @@ export default function ProductList() {
         </h1>
       </div>
       <Container>
-        <div className="flex flex-col md:items-start md:justify-start md:flex-row gap-6 py-8">
-          <FilterPanel />
-          <MobileFilter />
+        <div className="flex flex-col md:items-start md:justify-start md:flex-row gap-8 py-8">
+          <FilterPanel loading={loading} />
           <ProductListGrid products={filteredProducts} loading={loading} />
         </div>
       </Container>

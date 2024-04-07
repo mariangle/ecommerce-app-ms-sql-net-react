@@ -6,11 +6,13 @@ const initialState = {
     max: 0,
   },
   sort: "asc",
+  sizes: [],
   initial: {
     price: {
       min: 0,
       max: 0,
     },
+    sizes: [],
   },
 };
 
@@ -24,6 +26,9 @@ const filterSlice = createSlice({
     setMaxPrice: (state, action) => {
       state.price.max = action.payload;
     },
+    setSizes: (state, action) => {
+      state.sizes = action.payload;
+    },
     setSort: (state, action) => {
       state.sort = action.payload;
     },
@@ -33,7 +38,7 @@ const filterSlice = createSlice({
   },
 });
 
-export const { setMinPrice, setMaxPrice, setSort, setInitial } =
+export const { setMinPrice, setMaxPrice, setSort, setInitial, setSizes } =
   filterSlice.actions;
 
 export default filterSlice.reducer;

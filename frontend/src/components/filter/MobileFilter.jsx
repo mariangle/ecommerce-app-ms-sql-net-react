@@ -5,14 +5,16 @@ import ProductFilter from "@/components/filter/ProductFilter";
 import { icons } from "@/constants/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function MobileFilter() {
+export default function MobileFilter({ loading }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const close = () => setIsOpen(false);
 
   return (
-    <div className="md:hidden">
-      <button onClick={() => setIsOpen(true)}>Filtrer</button>
+    <div className="md:hidden w-full">
+      <button onClick={() => setIsOpen(true)} className="w-full h-12 text-sm">
+        Filtrer
+      </button>
       {isOpen && (
         <div
           className="fixed z-10 inset-0 bg-black/50 backdrop-blur-md"
@@ -32,7 +34,7 @@ export default function MobileFilter() {
           <div className="text-center uppercase font-semibold">Filter</div>
         </div>
         <div className="p-4">
-          <ProductFilter />
+          <ProductFilter loading={loading} />
         </div>
       </div>
     </div>

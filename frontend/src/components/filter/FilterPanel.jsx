@@ -1,9 +1,9 @@
 import ProductFilter from "@/components/filter/ProductFilter";
 
-export default function FilterPanel() {
+export default function FilterPanel({ loading }) {
   return (
-    <div className="hidden md:block">
-      <ProductFilter />
+    <div className="hidden lg:block">
+      <ProductFilter loading={loading} />
     </div>
   );
 }
