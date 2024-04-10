@@ -18,10 +18,10 @@ export default function ProductListHeader({ loading, products }) {
 
   return (
     <>
-      <div className="hidden md:flex md:justify-between">
+      <div className="hidden lg:flex lg:justify-between">
         {loading ? (
           <div>
-            <div className="w-12 animate-pulse h-4 bg-gray-300" />
+            <div className="h-4 w-12 animate-pulse bg-gray-300" />
           </div>
         ) : (
           <div className="text-sm font-semibold">
@@ -30,7 +30,7 @@ export default function ProductListHeader({ loading, products }) {
         )}
         {loading ? (
           <div>
-            <div className="w-32 animate-pulse h-4 bg-gray-300" />
+            <div className="h-4 w-32 animate-pulse bg-gray-300" />
           </div>
         ) : (
           <select
@@ -43,11 +43,11 @@ export default function ProductListHeader({ loading, products }) {
           </select>
         )}
       </div>
-      <div className="flex md:hidden divide-x border-y items-center">
+      <div className="sticky top-[57px] z-20 flex items-center divide-x border-b bg-white lg:hidden">
         <select
           value={filter.sort}
           onChange={handleSort}
-          className="w-full border-none h-12 text-sm text-center"
+          className="h-12 w-full border-none text-center text-sm"
         >
           <option value="asc">Sort Price (Ascending)</option>
           <option value="desc">Sort Price (Descending)</option>

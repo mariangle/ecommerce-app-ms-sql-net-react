@@ -1,9 +1,12 @@
-import React, { useState } from "react";
-import CartItems from "../components/cart/CartItem";
+import * as React from "react";
+
+import CartItem from "@/components/CartItem";
+import Container from "@/components/ui/Container";
+import Button from "@/components/ui/Button";
 import { useCart } from "@/hooks/useCart";
 import { Link } from "react-router-dom";
-import { formatPrice } from "../utils/hooks/useUtil";
-import { DELIVERY_THRESHOLD } from "../store/reducers/cartSlice";
+import { formatPrice } from "@/utils/hooks/useUtil";
+import { DELIVERY_THRESHOLD } from "@/store/reducers/cartSlice";
 
 export default function Cart() {
   const {
@@ -17,34 +20,36 @@ export default function Cart() {
     total,
     quantity,
   } = useCart();
-  const [discountCode, setDiscountCode] = useState("");
+  const [discountCode, setDiscountCode] = React.useState("");
 
   return (
-    <div className="cart flex width-container">
-      <div className="cart-container flex-2">
-        <h1>
+    <Container className="flex flex-col py-24 md:flex-row md:justify-between">
+      <div className="flex-2">
+        <h1 className="mb-4 font-bold">
           Shopping Bag{" "}
-          {quantity > 0
-            ? "(" +
-              quantity +
-              " " +
-              (quantity === 1 ? "product" : "products") +
-              ")"
-            : ""}
+          {quantity > 0 &&
+            `(${quantity} ${quantity === 1 ? "product" : "products"})`}
         </h1>
         {items.length === 0 ? (
           <p>There’s nothing in your bag yet.</p>
         ) : (
-          <div className="cart-items">
-            <CartItems />
-            <a onClick={clearCart}>Clear Cart</a>
+          <div className="space-y-4">
+            {items.map((item, index) => (
+              <CartItem item={item} key={index} />
+            ))}
+            <button
+              className="mt-6 text-xs text-gray-500 underline underline-offset-4"
+              onClick={clearCart}
+            >
+              Clear Cart
+            </button>
           </div>
         )}
       </div>
       {quantity > 0 && (
-        <div className="cart-summary">
-          <div className="summary-content">
-            <h2>Summary</h2>
+        <div>
+          <div>
+            <h2 className="mb-4 text-lg font-semibold">Summary</h2>
             <div className="space-between">
               <p>Subtotal</p>
               <p>{subtotal ? subtotal : 0}</p>
@@ -65,7 +70,7 @@ export default function Cart() {
               <p>{total ? total : 0}</p>
             </div>
             <Link to="/checkout">
-              <button>CHECKOUT</button>
+              <Button className="w-full">CHECKOUT</Button>
             </Link>
             {defaultSubtotal < DELIVERY_THRESHOLD ? (
               <p>
@@ -77,17 +82,17 @@ export default function Cart() {
             )}
           </div>
           {!discount > 0 && (
-            <div className="discount-code">
+            <div>
               <input
                 placeholder="Discount Code"
                 type="text"
                 onChange={(e) => setDiscountCode(e.target.value)}
               />
-              <button onClick={() => applyDiscount(discountCode)}>Apply</button>
+              <Button onClick={() => applyDiscount(discountCode)}>Apply</Button>
             </div>
           )}
         </div>
       )}
-    </div>
+    </Container>
   );
 }

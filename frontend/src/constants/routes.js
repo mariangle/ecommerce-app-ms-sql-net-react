@@ -14,7 +14,15 @@ export const routes = [
     component: Landing,
   },
   {
-    path: "/:category",
+    path: "/:sneakers",
+    component: ProductList,
+  },
+  {
+    path: "/:sneakers/:brand",
+    component: ProductList,
+  },
+  {
+    path: "/:sneakers/sale",
     component: ProductList,
   },
   {

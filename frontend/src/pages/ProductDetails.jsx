@@ -11,30 +11,28 @@ import useCart from "@/hooks/useCart";
 export default function ProductDetails() {
   const { id } = useParams();
   const { addToCart } = useCart();
-  const { product, loading, error } = useProducts(parseInt(id, 10));
+  const { product, loading } = useProducts(parseInt(id, 10));
 
-  if (loading) return <Container>loading product</Container>;
-
-  if (error) return <Container>error loading product</Container>;
+  if (loading) return <ProductDetailsSkeleton />;
 
   if (!product) return <Container>no product found</Container>;
 
   return (
     <Container page className="flex flex-col md:flex-row">
-      <div className="flex-1 bg-gray-100">
+      <div className="grid flex-1 place-content-center bg-gray-100">
         <img src={product.image} alt={product.name} />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 md:sticky md:top-24">
         <div>
           <div className="font-bold">{product.brand}</div>
-          <h1 className="text-2xl md:text-3xl font-semibold mt-4">
+          <h1 className="mt-4 text-2xl font-semibold md:text-3xl">
             {product.name}
           </h1>
-          <div className="text-xl md:text-2xl my-8">
+          <div className="my-8 text-xl md:text-2xl">
             {new Intl.NumberFormat("en-US", {
               style: "currency",
               currency: "DKK",
-            }).format(product.sizes[0].price)}
+            }).format(product.price.default)}
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -42,6 +40,25 @@ export default function ProductDetails() {
           <Button variant="secondary">Wishlist</Button>
         </div>
         <p>{product.description}</p>
+      </div>
+    </Container>
+  );
+}
+
+function ProductDetailsSkeleton() {
+  return (
+    <Container page className="flex flex-col md:flex-row">
+      <div className="grid h-96 flex-1 animate-pulse place-content-center bg-gray-300"></div>
+      <div className="flex-1">
+        <div>
+          <div className="h-10 w-8 animate-pulse bg-gray-300 font-bold"></div>
+          <div className="mt-4 h-10 w-3/5 bg-gray-300"></div>
+          <div className="mt-4 h-10 w-[25%] animate-pulse bg-gray-300 font-bold"></div>
+        </div>
+        <div className="mt-12 flex items-center gap-2">
+          <div className="h-12 w-full animate-pulse bg-gray-300 font-bold"></div>
+          <div className="h-12 w-20 animate-pulse bg-gray-300 font-bold"></div>
+        </div>
       </div>
     </Container>
   );

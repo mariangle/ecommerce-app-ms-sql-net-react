@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import { getProductPrice } from "@/utils/getProductPrice";
+
 export const DELIVERY_THRESHOLD = 1200;
 
 const cartSlice = createSlice({
@@ -27,7 +29,7 @@ const cartSlice = createSlice({
     updateQuantity: (state, action) => {
       const { productId, size, quantity } = action.payload;
       const cartItemIndex = state.items.findIndex(
-        (item) => item.product.id === productId && item.size === size
+        (item) => item.product.id === productId && item.size === size,
       );
       if (cartItemIndex !== -1) {
         state.items[cartItemIndex].quantity = quantity;
@@ -40,8 +42,8 @@ const cartSlice = createSlice({
     },
     calculateSubtotal: (state, action) => {
       const subtotal = state.items.reduce(
-        (acc, item) => acc + item.price * item.quantity,
-        0
+        (acc, item) => acc + getProductPrice(item),
+        0,
       );
 
       if (subtotal >= DELIVERY_THRESHOLD) {
@@ -57,7 +59,6 @@ const cartSlice = createSlice({
     },
     applyDiscount: (state, action) => {
       state.discount = action.payload.discount;
-      console.log("discount sat:", state.discount);
     },
     getTotal: (state) => {
       state.total =

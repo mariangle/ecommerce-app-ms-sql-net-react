@@ -78,8 +78,8 @@ const footerContent = {
 
 const Footer = () => {
   return (
-    <footer className="bg-neutral-50 border-t">
-      <Container className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 py-12 gap-6">
+    <footer className="border-t bg-neutral-50">
+      <Container className="grid grid-cols-1 gap-6 py-12 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <h3 className="mb-4 font-semibold">{footerContent.shop.title}</h3>
           <ul className="space-y-3">
@@ -114,7 +114,7 @@ const Footer = () => {
             ))}
           </ul>
         </div>
-        <div className="flex gap-4 items-start justify-start md:justify-end">
+        <div className="flex items-start justify-start gap-4 md:justify-end">
           <Link to="#" className="size-5">
             <img src={FacebookIcon} alt="Twitter" />
           </Link>
@@ -127,10 +127,10 @@ const Footer = () => {
         </div>
       </Container>
       <div className="h-px w-full bg-gray-200"></div>
-      <Container className="flex flex-col md:flex-row gap-4 md:justify-between py-6">
-        <div className="flex flex-col md:flex-row items-center gap-6">
-          <div className="text-center font-bold text-sm">SNEAKERSTORE</div>
-          <ul className="flex flex-col sm:flex-row gap-3">
+      <Container className="flex flex-col gap-4 py-6 md:flex-row md:justify-between">
+        <div className="flex flex-col items-center gap-6 md:flex-row">
+          <div className="text-center text-sm font-bold">restocks</div>
+          <ul className="flex flex-col gap-3 sm:flex-row">
             <li className="p-0 text-neutral-500">Terms & Conditions</li>
             <li className="p-0 text-neutral-500">Privacy Policy</li>
             <li className="p-0 text-neutral-500">Other Policies</li>

@@ -2,18 +2,15 @@ import Container from "@/components/ui/Container";
 
 export default function Banner() {
   return (
-    <div className="hidden md:block py-4 bg-gray-50 gap-8 border-b">
-      <Container className="justify-between flex items-center">
-        <p className="text-xs">
-          <span className="text-sky-600">SECURE</span> PAYMENT THROUGH PAYPAL
+    <div className="hidden border-b bg-slate-950 py-3 text-white xl:block">
+      <Container className="flex items-center justify-between">
+        <p className="ml-0 flex-1 text-left text-xs">
+          SECURE PAYMENT THROUGH PAYPAL
         </p>
-        <p className="text-xs">
-          <span className="text-sky-600">FREE SHIPPING</span> ON ORDERS OVER
-          1.200,00 KR
+        <p className="ml-0 flex-1 text-center text-xs">
+          FREE SHIPPING ON ORDERS OVER 1.200,00 KR
         </p>
-        <p className="text-xs">
-          <span className="text-sky-600">100%</span> AUTHENTIC
-        </p>
+        <p className="flex-1 text-right text-xs">100% AUTHENTIC</p>
       </Container>
     </div>
   );

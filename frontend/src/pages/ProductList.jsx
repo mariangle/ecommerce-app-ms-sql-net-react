@@ -3,30 +3,22 @@ import { useLocation } from "react-router-dom";
 
 import useProducts from "@/hooks/useProducts";
 import useFilter from "@/hooks/useFilter";
-import SearchBar from "@/components/SearchBar";
 import Container from "@/components/ui/Container";
 import ProductListGrid from "@/components/product/ProductList";
 import FilterPanel from "@/components/filter/FilterPanel";
 import { navLinks } from "@/constants/navLinks";
 
 export default function ProductList() {
-  const [heading, setHeading] = React.useState("");
   const location = useLocation();
   const { loading, products } = useProducts();
   const { initialize, filteredProducts } = useFilter();
 
+  const categoryData = navLinks.find((item) => item.url === location.pathname);
+
   React.useEffect(() => {
     if (!loading) {
-      const categoryData = navLinks.find(
-        (item) => item.url === location.pathname
-      );
-
-      setHeading(categoryData?.label);
-
       initialize({
         products: products,
-        brand: categoryData?.label === "Sale" ? "" : categoryData?.label,
-        sale: categoryData?.label === "Sale",
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,14 +26,13 @@ export default function ProductList() {
 
   return (
     <>
-      <SearchBar />
-      <div className="border-b h-24 grid place-content-center">
-        <h1 className="text-center font-medium uppercase text-2xl">
-          {heading}
+      <div className="grid h-32 place-content-center border-b bg-black">
+        <h1 className="text-center text-2xl font-medium uppercase text-white">
+          {categoryData?.label}
         </h1>
       </div>
-      <Container>
-        <div className="flex flex-col md:items-start md:justify-start md:flex-row gap-8 py-8">
+      <Container className="px-0 md:px-4">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-start md:pt-12">
           <FilterPanel loading={loading} />
           <ProductListGrid products={filteredProducts} loading={loading} />
         </div>

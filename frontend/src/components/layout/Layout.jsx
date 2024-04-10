@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <>
       <Header />
-      {children}
+      <div className="min-h-[80svh]">{children} </div>
       <Footer />
     </>
   );

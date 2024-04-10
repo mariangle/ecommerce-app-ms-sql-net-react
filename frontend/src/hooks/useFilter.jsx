@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+
+import { getProductPrice } from "@/utils/getProductPrice";
 import {
   setMinPrice,
   setMaxPrice,
@@ -14,28 +16,18 @@ export default function useFilter() {
   const [unfilteredProducts, setUnfilteredProducts] = React.useState([]);
   const [filteredProducts, setFilteredProducts] = React.useState([]);
 
-  const initialize = ({ products, brand, sale }) => {
+  const initialize = ({ products }) => {
     let filteredProducts = products;
-
-    if (sale) {
-      filteredProducts = products.filter((product) => product.price.discount);
-    }
-
-    if (brand) {
-      filteredProducts = products.filter((product) => product.brand === brand);
-    }
 
     setUnfilteredProducts(filteredProducts);
 
-    const prices = products.map(
-      (product) => product.price.default * (1 - (product.price.discount || 0))
-    );
+    const prices = products.map((product) => getProductPrice(product));
 
-    const minPrice = Math.min(...prices);
-    const maxPrice = Math.max(...prices);
+    const minPrice = prices.length > 0 ? Math.min(...prices) : null;
+    const maxPrice = prices.length > 0 ? Math.max(...prices) : null;
 
     const sizes = products.flatMap((product) =>
-      product.sizes.map((size) => size.size)
+      product.sizes.map((size) => size.size),
     );
 
     const uniqueSizes = [...new Set(sizes)];
@@ -46,7 +38,7 @@ export default function useFilter() {
       setInitial({
         price: { min: minPrice, max: maxPrice },
         sizes: uniqueSizes,
-      })
+      }),
     );
   };
 
@@ -55,14 +47,12 @@ export default function useFilter() {
       let filtered = products.filter((product) => {
         if (
           filter.price.min !== 0 &&
-          product.price.default * (1 - (product.price.discount || 0)) <
-            filter.price.min
+          getProductPrice(product) < filter.price.min
         )
           return false;
         if (
           filter.price.max !== 0 &&
-          product.price.default * (1 - (product.price.discount || 0)) >
-            filter.price.max
+          getProductPrice(product) > filter.price.max
         )
           return false;
 
@@ -75,20 +65,14 @@ export default function useFilter() {
 
       filtered.sort((a, b) => {
         if (filter.sort === "asc") {
-          return (
-            a.price.default * (1 - (a.price.discount || 0)) -
-            b.price.default * (1 - (b.price.discount || 0))
-          );
+          return getProductPrice(a) - getProductPrice(b);
         } else {
-          return (
-            b.price.default * (1 - (b.price.discount || 0)) -
-            a.price.default * (1 - (a.price.discount || 0))
-          );
+          return getProductPrice(b) - getProductPrice(a);
         }
       });
       return filtered;
     },
-    [filter]
+    [filter],
   );
 
   React.useEffect(() => {

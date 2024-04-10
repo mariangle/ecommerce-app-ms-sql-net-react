@@ -31,14 +31,14 @@ export default function ProductFilter({ loading }) {
   return (
     <div className="min-w-[250px]">
       <div className="mb-4">
-        <div className="uppercase font-semibold mb-2">Sizes</div>
+        <div className="mb-2 font-semibold uppercase">Sizes</div>
         <div className="grid grid-cols-2 gap-2">
           {filter.initial.sizes.map((size, index) => (
             <button
               key={index}
               className={cn(
-                "border text-xs py-2",
-                filter.sizes.includes(size) && "bg-neutral-100"
+                "border py-2 text-xs",
+                filter.sizes.includes(size) && "bg-neutral-100",
               )}
               onClick={() => toggleSetSize(size)}
             >
@@ -47,32 +47,37 @@ export default function ProductFilter({ loading }) {
           ))}
         </div>
       </div>
-      <div className="space-y-2 mb-4">
-        <div className="uppercase font-semibold mb-2">Price</div>
-        <div>
-          <label className="block text-sm font-medium">Min Price</label>
-          <input
-            type="range"
-            min={filter.initial.price.min}
-            max={filter.initial.price.max}
-            value={filter.price.min}
-            onChange={handleSetMinPrice}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-          <div>Selected: {filter.price.min}</div>
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Max Price</label>
-          <input
-            type="range"
-            min={filter.initial.price.min}
-            max={filter.initial.price.max}
-            value={filter.price.max}
-            onChange={handleSetMaxPrice}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-          <div>Selected: {filter.price.max}</div>
-        </div>
+      <div className="mb-4 space-y-2">
+        <div className="mb-2 font-semibold uppercase">Price</div>
+
+        {filter.price.min && (
+          <div>
+            <label className="block text-sm font-medium">Min Price</label>
+            <input
+              type="range"
+              min={filter.initial.price.min}
+              max={filter.initial.price.max}
+              value={filter.price.min}
+              onChange={handleSetMinPrice}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            />
+            <div>Selected: {filter.price.min}</div>
+          </div>
+        )}
+        {filter.price.max && (
+          <div>
+            <label className="block text-sm font-medium">Max Price</label>
+            <input
+              type="range"
+              min={filter.initial.price.min}
+              max={filter.initial.price.max}
+              value={filter.price.max}
+              onChange={handleSetMaxPrice}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
+            />
+            <div>Selected: {filter.price.max}</div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -81,15 +86,15 @@ export default function ProductFilter({ loading }) {
 export function ProductFilterSkeleton() {
   return (
     <div className="min-w-[250px]">
-      <div className="animate-pulse h-6 mb-4 w-12 bg-gray-300"></div>
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="mb-4 h-6 w-12 animate-pulse bg-gray-300"></div>
+      <div className="mb-6 grid grid-cols-2 gap-4">
         {[...Array(4)].map((_, index) => (
-          <div className="animate-pulse h-8 w-full bg-gray-300"></div>
+          <div key={index} className="h-8 w-full animate-pulse bg-gray-300" />
         ))}
       </div>
-      <div className="animate-pulse h-6 mb-4 w-12 bg-gray-300"></div>
-      <div className="animate-pulse h-6 mb-4 w-full bg-gray-300"></div>
-      <div className="animate-pulse h-6 mb-4 w-full bg-gray-300"></div>
+      <div className="mb-4 h-6 w-12 animate-pulse bg-gray-300"></div>
+      <div className="mb-4 h-6 w-full animate-pulse bg-gray-300"></div>
+      <div className="mb-4 h-6 w-full animate-pulse bg-gray-300"></div>
     </div>
   );
 }
