@@ -1,6 +1,8 @@
 # Sneaker Ecommerce
 
-> Note: I've improved the front-end code on the improve/legacy-code branch. If you're having issues starting the project with the backend, use this branch—it's set up with dummy data for now, but you can switch it out with your own backend. I'll be improving the backend code and connecting it soon.
+> I've improved and updated the front-end code on the improve/legacy-code branch. If you're having issues starting the project with the backend, use this branch. I'll be improving the backend code and connecting it soon.
+>
+> See it live here: https://ecommerce-app-ms-sql-net-react.vercel.app/
 
 
 <!-- TABLE OF CONTENTS -->
