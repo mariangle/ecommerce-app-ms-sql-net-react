@@ -28,14 +28,17 @@ export const currencies = [
 ];
 
 const initialState = {
-  locale: "da-DK",
+  locale: localStorage.getItem("currency-locale")
+    ? JSON.parse(localStorage.getItem("currency-locale"))
+    : "da-DK",
 };
 
 const filterSlice = createSlice({
-  name: "filter",
+  name: "currency",
   initialState,
   reducers: {
     setCurrency: (state, action) => {
+      localStorage.setItem("currency-locale", JSON.stringify(state.locale));
       state.locale = action.payload;
     },
   },

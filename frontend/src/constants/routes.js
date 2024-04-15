@@ -3,6 +3,7 @@ import ProductDetails from "@/pages/ProductDetails";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import AdminPanel from "@/pages/AdminPanel";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import Login from "@/pages/Login";
 import ProductList from "@/pages/ProductList";
 import Wishlist from "@/pages/Wishlist";
@@ -47,5 +48,9 @@ export const routes = [
   {
     path: "/wishlist",
     component: Wishlist,
+  },
+  {
+    path: "/privacy-policy",
+    component: PrivacyPolicy,
   },
 ];
