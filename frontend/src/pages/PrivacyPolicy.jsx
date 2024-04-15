@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
       <p className="mb-2">Here's how we use them:</p>
       <p className="list-item list-inside list-disc pl-4">
         <b>Essential Cookies:</b> These ensure basic website functionality, like
-        adding items to your cart and wishlist. No personal data is stored.{" "}
+        adding items to your cart and wishlist. No personal data is stored.
       </p>
       <p className="mb-4 list-item list-inside list-disc pl-4">
         <b>Local Storage:</b> We utilize local storage to remember your cart
