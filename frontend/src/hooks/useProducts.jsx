@@ -1,13 +1,11 @@
 import * as React from "react";
 
 import { useLocation, useParams } from "react-router-dom";
-
-import Products from "@/content/Products.json";
-
-import { brands } from "@/constants/navLinks";
 import { toKebabCase } from "@/utils/toKebabCase";
 
-export default function useProducts(productId) {
+import productsJSON from "@/constants/Products.json";
+
+export default function useProducts(slug) {
   const location = useLocation();
   const params = useParams();
 
@@ -16,11 +14,13 @@ export default function useProducts(productId) {
   const [product, setProduct] = React.useState(null);
   const [products, setProducts] = React.useState([]);
 
-  const getProduct = (productId) => {
+  const getProduct = (slug) => {
     setLoading(true);
     setTimeout(() => {
       try {
-        const product = Products.find((product) => product.id === productId);
+        const product = products.find(
+          (product) => toKebabCase(product.name) === slug,
+        );
         setProduct(product);
       } catch (error) {
         setError(true);
@@ -31,14 +31,15 @@ export default function useProducts(productId) {
   };
 
   React.useEffect(() => {
-    productId ? getProduct(productId) : getProducts();
+    slug ? getProduct(slug) : getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productId, location.pathname]);
+  }, [slug, location.pathname]);
 
   const getProducts = () => {
     setLoading(true);
     setTimeout(() => {
-      let products = Products;
+      let products = productsJSON;
+      const isSalesPage = location.pathname.includes("/sale");
 
       if (params.brand) {
         products = products.filter(
@@ -46,7 +47,8 @@ export default function useProducts(productId) {
         );
       }
 
-      if (params.sale) {
+      if (isSalesPage) {
+        console.log("SALE");
         products = products.filter((product) => product.price.discount !== 0);
       }
 
@@ -60,13 +62,10 @@ export default function useProducts(productId) {
     }, 200);
   };
 
-  const returnProducts = () => Products;
-
   return {
     products,
     product,
     loading,
     error,
-    returnProducts,
   };
 }

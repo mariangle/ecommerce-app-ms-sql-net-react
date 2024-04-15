@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icons } from "../../constants/icons";
-import { useUser } from "../../utils/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 import { Link } from "react-router-dom";
 
 function Complete() {

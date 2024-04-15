@@ -1,12 +1,12 @@
-import Landing from "../pages/Landing";
-import ProductDetails from "../pages/ProductDetails";
-import Cart from "../pages/Cart";
-import Checkout from "../pages/Checkout";
-import AdminPanel from "../pages/AdminPanel";
-import Account from "../components/checkout/LogIn";
-import Authentication from "../pages/Authentication";
-import ProductList from "../pages/ProductList";
-import Wishlist from "../pages/Wishlist";
+import Landing from "@/pages/Landing";
+import ProductDetails from "@/pages/ProductDetails";
+import Cart from "@/pages/Cart";
+import Checkout from "@/pages/Checkout";
+import AdminPanel from "@/pages/AdminPanel";
+import Account from "@/components/checkout/LogIn";
+import Authentication from "@/pages/Authentication";
+import ProductList from "@/pages/ProductList";
+import Wishlist from "@/pages/Wishlist";
 
 export const routes = [
   {
@@ -14,19 +14,19 @@ export const routes = [
     component: Landing,
   },
   {
-    path: "/:sneakers",
+    path: "/sneakers",
     component: ProductList,
   },
   {
-    path: "/:sneakers/:brand",
+    path: "/sneakers/:brand",
     component: ProductList,
   },
   {
-    path: "/:sneakers/sale",
+    path: "/sneakers/sale",
     component: ProductList,
   },
   {
-    path: "/products/:id",
+    path: "/products/:slug",
     component: ProductDetails,
   },
   {

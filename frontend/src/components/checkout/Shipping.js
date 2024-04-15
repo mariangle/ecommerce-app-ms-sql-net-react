@@ -1,8 +1,8 @@
 import React from "react";
-import { useUser } from "../../utils/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icons } from "../../constants/icons";
-import useToggle from "../../utils/hooks/useUtil";
+import useToggle from "@/hooks/useUtil";
 
 function Details() {
   const { currentUser } = useUser();

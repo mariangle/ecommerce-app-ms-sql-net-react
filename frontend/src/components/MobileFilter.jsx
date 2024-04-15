@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/utils/cn";
-import ProductFilter from "@/components/filter/ProductFilter";
+import ProductFilter from "@/components/ProductFilter";
 import { icons } from "@/constants/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

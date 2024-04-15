@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import MobileFilter from "@/components/filter/MobileFilter";
+import MobileFilter from "@/components/MobileFilter";
 import { setSort } from "@/store/reducers/filter-store";
 import useFilter from "@/hooks/useFilter";
 

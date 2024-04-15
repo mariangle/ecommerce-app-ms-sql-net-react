@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import OrderSummary from "./OrderSummary";
 import CartItem from "@/components/CartItem";
-import { useUser } from "../../utils/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 import { useCart } from "@/hooks/useCart";
 
 function Confirmation({ onPaymentComplete }) {

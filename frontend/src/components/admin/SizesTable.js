@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { icons } from "../../constants/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSize } from "../../utils/hooks/useSize";
+import { useSize } from "@/hooks/useSize";
 
 function ProductSizes({ product }) {
   const { addSize, updateSize, deleteSize } = useSize();
@@ -40,7 +40,7 @@ function ProductSizes({ product }) {
                 </option>
                 {Array.from({ length: 16 }, (_, i) => i + 35)
                   .filter(
-                    (size) => !product?.sizes.find((ps) => ps.size === size)
+                    (size) => !product?.sizes.find((ps) => ps.size === size),
                   )
                   .map((size, index) => (
                     <option key={index} value={size}>

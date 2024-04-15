@@ -4,8 +4,10 @@ import { useLocation } from "react-router-dom";
 import useProducts from "@/hooks/useProducts";
 import useFilter from "@/hooks/useFilter";
 import Container from "@/components/ui/Container";
-import ProductListGrid from "@/components/product/ProductList";
-import FilterPanel from "@/components/filter/FilterPanel";
+import ProductListGrid from "@/components/ProductList";
+import ProductListHeader from "@/components/ProductListHeader";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FilterPanel from "@/components/FilterPanel";
 import { navLinks } from "@/constants/navLinks";
 
 export default function ProductList() {
@@ -32,9 +34,13 @@ export default function ProductList() {
         </h1>
       </div>
       <Container className="px-0 md:px-4">
+        <Breadcrumbs className="mt-4" />
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-start md:pt-12">
           <FilterPanel loading={loading} />
-          <ProductListGrid products={filteredProducts} loading={loading} />
+          <div className="w-full">
+            <ProductListHeader products={products} loading={loading} />
+            <ProductListGrid products={filteredProducts} loading={loading} />
+          </div>
         </div>
       </Container>
     </>

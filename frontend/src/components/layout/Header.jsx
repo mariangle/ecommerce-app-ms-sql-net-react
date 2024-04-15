@@ -1,21 +1,21 @@
 import * as React from "react";
 
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { HeartIcon, UserIcon, SearchIcon } from "lucide-react";
+
 import { cn } from "@/utils/cn";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icons } from "@/constants/icons";
-import { useCart } from "@/hooks/useCart";
-import { useWishlist } from "@/utils/hooks/useWishlist";
 import { navLinks } from "@/constants/navLinks";
 
 import MobileNav from "@/components/layout/MobileNav";
-import SearchDialog from "@/components/SearchBar";
+import SearchDialog from "@/components/SearchDialog";
 import Container from "@/components/ui/Container";
 import Banner from "@/components/layout/Banner";
 
 export default function Header() {
-  const { quantity } = useCart();
-  const { wishlistCount } = useWishlist();
+  const wishlistCount = useSelector((state) => state.wishlist.items).length;
+  const cartCount = useSelector((state) => state.cart.items).length;
+
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = React.useState(false);
 
@@ -27,7 +27,7 @@ export default function Header() {
       />
       <SearchDialog close={() => setIsSearchOpen(false)} open={isSearchOpen} />
       <Banner />
-      <div className="sticky top-0 z-20 border-b bg-white">
+      <header className="sticky top-0 z-20 border-b bg-white">
         <Container className="flex items-center justify-between py-4">
           <div className="flex items-center gap-4">
             <button
@@ -55,25 +55,25 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="flex items-center justify-end gap-4">
+          <div className="flex items-center justify-end gap-3">
             <button onClick={() => setIsSearchOpen(true)}>
-              <FontAwesomeIcon icon={icons.search} />
+              <SearchIcon className="size-4" />
             </button>
             <Link to="/account">
-              <FontAwesomeIcon icon={icons.user} />
+              <UserIcon className="size-4" />
             </Link>
-            <Link to="/wishlist" className="flex w-4 items-center">
-              <FontAwesomeIcon icon={icons.heart} />
+            <Link to="/wishlist" className="flex items-center">
+              <HeartIcon className="size-4" />
               {wishlistCount > 0 && (
                 <span>{wishlistCount > 9 ? "9+" : wishlistCount} </span>
               )}
             </Link>
             <Link to="/cart">
-              Shopping bag <span>({quantity > 9 ? "9+" : quantity})</span>
+              Shopping bag <span>({cartCount > 9 ? "9+" : cartCount})</span>
             </Link>
           </div>
         </Container>
-      </div>
+      </header>
     </>
   );
 }

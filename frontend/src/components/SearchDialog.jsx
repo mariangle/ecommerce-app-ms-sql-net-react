@@ -1,12 +1,11 @@
 import * as React from "react";
 
 import { cn } from "@/utils/cn";
-import { icons } from "@/constants/icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SearchIcon } from "lucide-react";
 
-import Products from "@/content/Products.json";
+import products from "@/constants/Products.json";
 
-import { ProductCardSearch } from "@/components/product/ProductCard";
+import { ProductCardSearch } from "@/components/ProductCard";
 import Container from "@/components/ui/Container";
 
 export default function SearchDialog({ close, open }) {
@@ -15,7 +14,7 @@ export default function SearchDialog({ close, open }) {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    const results = Products.filter((product) =>
+    const results = products?.filter((product) =>
       product.name.toLowerCase().includes(e.target.value.toLowerCase()),
     );
     setSearchResults(results);
@@ -33,14 +32,11 @@ export default function SearchDialog({ close, open }) {
       )}
     >
       <button onClick={close} className="fixed right-0 top-0 m-8">
-        <FontAwesomeIcon icon={icons.close} />
+        <SearchIcon className="size-4" />
       </button>
       <Container className="max-w-screen-md">
         <div className="relative bg-black/5 p-2">
-          <FontAwesomeIcon
-            icon={icons.search}
-            className="absolute left-5 top-1/2 z-50 -translate-y-1/2"
-          />
+          <SearchIcon className="absolute left-5 top-1/2 z-50 size-4 -translate-y-1/2" />
           <input
             type="text"
             id="search"

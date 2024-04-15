@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -6,71 +6,64 @@ import {
   updateQuantity,
   calculateSubtotal,
   getTotal,
-  applyDiscount,
   clearCart,
-} from "../store/reducers/cartSlice";
-import { formatPrice } from "../utils/hooks/useUtil";
+} from "@/store/reducers/cartSlice";
+import { playPopAudio } from "@/utils/audio";
+
+function generateRandomId() {
+  return Math.floor(Math.random() * Date.now()).toString();
+}
 
 export const useCart = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
-  const subtotal = useSelector((state) => state.cart.subtotal);
-  const delivery = useSelector((state) => state.cart.delivery);
-  const discount = useSelector((state) => state.cart.discount);
-  const total = useSelector((state) => state.cart.total);
-  const quantity = items.length ?? 0;
+  const cart = useSelector((state) => state.cart);
 
-  useEffect(() => {
-    dispatch(calculateSubtotal());
-  }, [items, dispatch]);
-
-  useEffect(() => {
+  React.useEffect(() => {
     dispatch(getTotal());
-  }, [subtotal, delivery, dispatch, discount]);
+    dispatch(calculateSubtotal());
+  }, [cart, dispatch]);
 
-  const add = (item) => dispatch(addToCart(item));
-  const remove = (itemId) => dispatch(removeFromCart(itemId));
+  const addToCartHandler = ({ productId, size, quantity = 0 }) => {
+    dispatch(addToCart({ id: generateRandomId(), productId, size, quantity }));
 
-  const update = (productId, size, newQuantity) => {
-    if (newQuantity === 0) {
-      const item = items.find(
-        (item) => item.product.id === productId && item.size === size
-      );
-      if (item) {
-        dispatch(removeFromCart({ product: item.product, size }));
-      }
-    } else if (newQuantity <= 10) {
-      dispatch(updateQuantity({ productId, size, quantity: newQuantity }));
-    }
+    playPopAudio();
   };
 
-  const clear = () => {
-    dispatch(clearCart());
+  const removeFromCartHandler = (itemId) => {
+    dispatch(removeFromCart(itemId));
+    playPopAudio();
   };
 
-  const applyDiscountHandler = (discountCode) => {
-    const discount = 0.1;
-    if (discountCode.toLowerCase() === "10off") {
-      dispatch(applyDiscount({ discount }));
+  const update = (id, newQuantity) => {
+    dispatch(updateQuantity({ id, newQuantity }));
+    playPopAudio();
+  };
+
+  const incrementQuantity = (itemId) => {
+    const item = items.find((item) => item.id === itemId);
+    update(itemId, item.quantity + 1);
+  };
+  const decrementQuantity = (itemId) => {
+    const item = items.find((item) => item.id === itemId);
+    if (item.quantity === 1) {
+      removeFromCartHandler(itemId);
     } else {
-      alert("Wrong discount");
+      update(itemId, item.quantity - 1);
     }
+  };
+
+  const clearCartHandler = () => {
+    dispatch(clearCart());
+    playPopAudio();
   };
 
   return {
-    addToCart: add,
-    removeFromCart: remove,
-    updateQuantity: update,
-    clearCart: clear,
-    applyDiscount: applyDiscountHandler,
-    items,
-    defaultSubtotal: subtotal,
-    defaultTotal: total,
-    subtotal: formatPrice(subtotal),
-    delivery: formatPrice(delivery),
-    total: formatPrice(total),
-    quantity,
-    discount,
+    addToCart: addToCartHandler,
+    removeFromCart: removeFromCartHandler,
+    incrementQuantity,
+    decrementQuantity,
+    clearCart: clearCartHandler,
   };
 };
 

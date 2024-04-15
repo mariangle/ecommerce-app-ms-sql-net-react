@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useLocation } from "react-router-dom";
 import { icons } from "../../constants/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useUser } from "../../utils/hooks/useUser";
+import { useUser } from "@/hooks/useUser";
 
 function Login() {
   const navigate = useNavigate();

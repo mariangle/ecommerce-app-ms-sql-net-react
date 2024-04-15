@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { getProductPrice } from "@/utils/getProductPrice";
+import { getProductPrice } from "@/utils/product";
 import {
   setMinPrice,
   setMaxPrice,
@@ -44,7 +44,7 @@ export default function useFilter() {
 
   const getFilteredProducts = React.useCallback(
     (products) => {
-      let filtered = products.filter((product) => {
+      let filteredProducts = products.filter((product) => {
         if (
           filter.price.min !== 0 &&
           getProductPrice(product) < filter.price.min
@@ -63,21 +63,20 @@ export default function useFilter() {
         return true;
       });
 
-      filtered.sort((a, b) => {
+      filteredProducts.sort((a, b) => {
         if (filter.sort === "asc") {
           return getProductPrice(a) - getProductPrice(b);
         } else {
           return getProductPrice(b) - getProductPrice(a);
         }
       });
-      return filtered;
+      return filteredProducts;
     },
     [filter],
   );
 
   React.useEffect(() => {
-    const filteredProducts = getFilteredProducts(unfilteredProducts);
-    setFilteredProducts(filteredProducts);
+    setFilteredProducts(getFilteredProducts(unfilteredProducts));
   }, [filter, unfilteredProducts, getFilteredProducts]);
 
   return {

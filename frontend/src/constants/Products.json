@@ -6,7 +6,8 @@
     "image": "https://www.nakedcph.com/images/23276/card.jpg",
     "description": "The Yeezy Boost 350 V2 is a popular sneaker designed by Kanye West.",
     "price": {
-      "default": 1900
+      "default": 1900,
+      "discount": 0
     },
     "sizes": [
       {
@@ -22,7 +23,8 @@
     "image": "https://www.nakedcph.com/images/61514/product.jpg",
     "description": "The Air Jordan 1 Retro High OG is a classic basketball sneaker with iconic design.",
     "price": {
-      "default": 1400
+      "default": 1400,
+      "discount": 0
     },
     "sizes": [
       {
@@ -56,11 +58,11 @@
       },
       {
         "size": "US 8",
-        "stock": 10
+        "stock": 1
       },
       {
         "size": "US 9",
-        "stock": 10
+        "stock": 0
       }
     ]
   },
@@ -71,7 +73,8 @@
     "image": "https://www.nakedcph.com/images/66390/product.jpg",
     "description": "The Yeezy Boost 350 V2 is a popular sneaker designed by Kanye West.",
     "price": {
-      "default": 1800
+      "default": 1800,
+      "discount": 0
     },
     "sizes": [
       {

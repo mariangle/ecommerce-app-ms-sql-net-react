@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { getProductPrice } from "@/utils/getProductPrice";
+import { getProductPrice } from "@/utils/product";
+
+import products from "@/constants/Products.json";
 
 export const DELIVERY_THRESHOLD = 1200;
 
@@ -17,8 +19,7 @@ const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      const product = action.payload;
-      state.items.push(product);
+      state.items.push(action.payload);
       localStorage.setItem("cart-items", JSON.stringify(state.items));
     },
     removeFromCart: (state, action) => {
@@ -27,22 +28,21 @@ const cartSlice = createSlice({
       localStorage.setItem("cart-items", JSON.stringify(state.items));
     },
     updateQuantity: (state, action) => {
-      const { productId, size, quantity } = action.payload;
-      const cartItemIndex = state.items.findIndex(
-        (item) => item.product.id === productId && item.size === size,
-      );
-      if (cartItemIndex !== -1) {
-        state.items[cartItemIndex].quantity = quantity;
-        localStorage.setItem("cart-items", JSON.stringify(state.items));
-      }
+      const { id, newQuantity } = action.payload;
+      const item = state.items.find((item) => item.id === id);
+      item.quantity = newQuantity;
+      localStorage.setItem("cart-items", JSON.stringify(state.items));
     },
-    clearCart: (state, action) => {
+    clearCart: (state) => {
       state.items = [];
       localStorage.removeItem("cart-items");
     },
-    calculateSubtotal: (state, action) => {
+    calculateSubtotal: (state) => {
       const subtotal = state.items.reduce(
-        (acc, item) => acc + getProductPrice(item),
+        (acc, item) =>
+          acc +
+          getProductPrice(products?.find((p) => p.id === item.productId)) *
+            item.quantity,
         0,
       );
 

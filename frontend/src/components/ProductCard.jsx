@@ -1,25 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { icons } from "../../constants/icons";
+import { icons } from "@/constants/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useWishlist } from "../../utils/hooks/useWishlist";
+import { useWishlist } from "@/hooks/useWishlist";
+import { getProductUrl } from "@/utils/product";
 
 export default function ProductCard({ product }) {
-  const { wishlistItems, toggleWishlistItem } = useWishlist();
-  const itemExists = wishlistItems.find((item) => item.id === product.id);
+  const { wishlistItems, addToWishlist, removeFromWishlist } = useWishlist();
+  const inWishlist = wishlistItems.find((item) => item.id === product.id);
 
   return (
     <div className="relative z-0">
       <FontAwesomeIcon
-        icon={itemExists ? icons.heartFull : icons.heart}
-        onClick={() => toggleWishlistItem(product)}
+        icon={inWishlist ? icons.heartFull : icons.heart}
+        onClick={() =>
+          inWishlist ? removeFromWishlist(product) : addToWishlist(product)
+        }
         className="absolute right-2 top-2 h-4 w-4 cursor-pointer rounded-full bg-white p-1 transition-all duration-300 ease-in-out hover:bg-gray-100"
       />
-      <Link to={`/products/${product.id}`}>
+      <Link to={getProductUrl(product)}>
         <div className="aspect-square">
           <img
             src={product.image}
-            alt=""
+            alt={product.name}
             width={1000}
             height={1000}
             className="h-full w-full object-cover"
@@ -27,7 +30,7 @@ export default function ProductCard({ product }) {
         </div>
       </Link>
       <div className="mt-4 text-center">
-        <Link to={`/products/${product.id}`}>
+        <Link to={getProductUrl(product)}>
           <p>{product.brand}</p>
           <h3 className="font-bold">{product.name}</h3>
           {product.price.discount ? (
@@ -48,15 +51,11 @@ export default function ProductCard({ product }) {
 
 export function ProductCardSearch({ product, close }) {
   return (
-    <Link
-      to={`/products/${product.id}`}
-      className="relative z-0"
-      onClick={close}
-    >
+    <Link to={getProductUrl(product)} className="relative z-0" onClick={close}>
       <div className="aspect-square">
         <img
           src={product.image}
-          alt=""
+          alt={product.name}
           width={1000}
           height={1000}
           className="h-full w-full object-cover"

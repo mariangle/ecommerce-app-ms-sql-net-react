@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import Container from "@/components/ui/Container";
 import Newsletter from "@/components/Newsletter";
-import ProductList from "@/components/product/ProductList";
+import ProductList from "@/components/ProductList";
 
 import useProducts from "@/hooks/useProducts";
 
@@ -24,27 +24,24 @@ export default function Landing() {
               View All
             </Link>
           </div>
-          <ProductList
-            products={latestProducts}
-            loading={loading}
-            noFilter
-            noHeader
-          />
+          <ProductList products={latestProducts} loading={loading} big />
         </div>
       </Container>
       <div className="bg-neutral-100 py-16">
         <Container className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           {brands.map((brand, index) => (
-            <Link to={brand.url} key={index}>
-              <img
-                src={brand.image}
-                alt=""
-                className="h-full w-full object-cover"
-              />
-              <div className="mt-4">
-                <div className="font-semibold uppercase">{brand.name}</div>
-              </div>
-            </Link>
+            <div>
+              <Link to={brand.url} key={index} className="block">
+                <img
+                  src={brand.image}
+                  alt=""
+                  className="aspect-square h-full w-full object-cover"
+                />
+                <div className="mt-4">
+                  <div className="font-semibold uppercase">{brand.name}</div>
+                </div>
+              </Link>
+            </div>
           ))}
         </Container>
       </div>
@@ -58,22 +55,22 @@ const brands = [
     name: "Nike",
     image:
       "https://images.squarespace-cdn.com/content/v1/5e31b33a1b5911193c47e7b5/279b45e0-3243-4e58-aee2-dd18403e2085/nike-swoosh-logo.jpeg",
-    url: "/products?brand=Nike",
+    url: "/sneakers/nike",
   },
   {
     name: "Adidas",
     image: "https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg",
-    url: "/products?brand=Adidas",
+    url: "/sneakers/adidas",
   },
   {
     name: "Jordan",
     image:
       "https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Jumpman_logo.svg/1200px-Jumpman_logo.svg.png",
-    url: "/products?brand=Jordan",
+    url: "/sneakers/jordan",
   },
   {
     name: "New Balance",
     image: "https://logowik.com/content/uploads/images/new-balance.jpg",
-    url: "/products?brand=new-balance",
+    url: "/sneakers/new-balance",
   },
 ];

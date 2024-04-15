@@ -1,4 +1,4 @@
-import ProductFilter from "@/components/filter/ProductFilter";
+import ProductFilter from "@/components/ProductFilter";
 
 export default function FilterPanel({ loading }) {
   return (
