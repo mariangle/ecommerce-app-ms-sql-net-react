@@ -3,8 +3,7 @@ import ProductDetails from "@/pages/ProductDetails";
 import Cart from "@/pages/Cart";
 import Checkout from "@/pages/Checkout";
 import AdminPanel from "@/pages/AdminPanel";
-import Account from "@/components/checkout/LogIn";
-import Authentication from "@/pages/Authentication";
+import Login from "@/pages/Login";
 import ProductList from "@/pages/ProductList";
 import Wishlist from "@/pages/Wishlist";
 
@@ -42,12 +41,8 @@ export const routes = [
     component: AdminPanel,
   },
   {
-    path: "/account",
-    component: Account,
-  },
-  {
     path: "/auth",
-    component: Authentication,
+    component: Login,
   },
   {
     path: "/wishlist",

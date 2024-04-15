@@ -5,7 +5,7 @@ import {
   setMinPrice,
   setMaxPrice,
   setSizes,
-} from "@/store/reducers/filter-store";
+} from "@/store/reducers/filterStore";
 import useFilter from "@/hooks/useFilter";
 
 export default function ProductFilter({ loading }) {

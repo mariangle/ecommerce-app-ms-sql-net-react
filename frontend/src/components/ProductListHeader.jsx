@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 
 import MobileFilter from "@/components/MobileFilter";
-import { setSort } from "@/store/reducers/filter-store";
+import { setSort } from "@/store/reducers/filterStore";
 import useFilter from "@/hooks/useFilter";
 
 export default function ProductListHeader({ loading, products }) {
@@ -43,7 +43,7 @@ export default function ProductListHeader({ loading, products }) {
           </select>
         )}
       </div>
-      <div className="sticky top-[57px] z-20 flex items-center divide-x border-b bg-white lg:hidden">
+      <div className="sticky top-[64px] z-20 flex items-center divide-x border-b bg-white lg:hidden">
         <select
           value={filter.sort}
           onChange={handleSort}

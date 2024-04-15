@@ -9,9 +9,9 @@ export default function Button({
   return (
     <button
       className={cn(
-        "uppercase button",
+        "button uppercase",
         variant === "secondary" ? "secondary-button" : "primary-button",
-        className
+        className,
       )}
       {...props}
     >

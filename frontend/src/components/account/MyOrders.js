@@ -4,9 +4,11 @@ import { fetchOrdersByUserId } from "../../store/actions/orderActions";
 import orderItemApi from "../../utils/api/orderItemApi";
 import sizeApi from "../../utils/api/sizeApi";
 import productApi from "../../utils/api/productApi";
-import { useStatusString, formatPrice, formatDateTime } from "@/hooks/useUtil";
+import { useStatusString, formatDateTime } from "@/hooks/useUtil";
+import { useCurrency } from "@/hooks/useCurrency";
 
 function MyOrders({ currentUser }) {
+  const { formatPrice } = useCurrency();
   const [orders, setOrders] = useState([]);
   const getStatusString = useStatusString();
   const dispatch = useDispatch();

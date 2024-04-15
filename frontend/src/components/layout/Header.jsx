@@ -2,7 +2,12 @@ import * as React from "react";
 
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { HeartIcon, UserIcon, SearchIcon } from "lucide-react";
+import {
+  HeartIcon,
+  UserIcon,
+  SearchIcon,
+  ShoppingBasketIcon,
+} from "lucide-react";
 
 import { cn } from "@/utils/cn";
 import { navLinks } from "@/constants/navLinks";
@@ -11,6 +16,7 @@ import MobileNav from "@/components/layout/MobileNav";
 import SearchDialog from "@/components/SearchDialog";
 import Container from "@/components/ui/Container";
 import Banner from "@/components/layout/Banner";
+import CurrencyPicker from "@/components/CurrencyPicker";
 
 export default function Header() {
   const wishlistCount = useSelector((state) => state.wishlist.items).length;
@@ -27,12 +33,12 @@ export default function Header() {
       />
       <SearchDialog close={() => setIsSearchOpen(false)} open={isSearchOpen} />
       <Banner />
-      <header className="sticky top-0 z-20 border-b bg-white">
+      <header className="sticky top-0 z-20 h-16 border-b bg-white">
         <Container className="flex items-center justify-between py-4">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
-              className="space-y-1.5 lg:hidden"
+              className="space-y-1.5 sm:hidden"
             >
               <div className="h-px w-6 bg-black" />
               <div className="h-px w-4 bg-black" />
@@ -41,9 +47,41 @@ export default function Header() {
               restocks
             </Link>
           </div>
-          <ul className="hidden items-center gap-2 lg:flex">
+          <div className="flex items-center justify-end gap-3">
+            <CurrencyPicker />
+            <button onClick={() => setIsSearchOpen(true)}>
+              <SearchIcon className="size-4" />
+            </button>
+            <Link to="/auth">
+              <UserIcon className="size-4" />
+            </Link>
+            <Link to="/wishlist" className="relative flex items-center">
+              <HeartIcon className="size-4" />
+              {wishlistCount > 0 && (
+                <span className="absolute right-0 top-0 grid size-3.5 -translate-y-1/2 translate-x-1/2 place-content-center rounded-full bg-black text-[10px] text-white">
+                  {wishlistCount > 9 ? "9+" : wishlistCount}{" "}
+                </span>
+              )}
+            </Link>
+            <Link to="/cart" className="relative flex items-center md:hidden">
+              <ShoppingBasketIcon className="size-4" />
+              {cartCount > 0 && (
+                <span className="absolute right-0 top-0 grid size-3.5 -translate-y-1/2 translate-x-1/2 place-content-center rounded-full bg-black text-[10px] text-white">
+                  {cartCount > 9 ? "9+" : cartCount}{" "}
+                </span>
+              )}
+            </Link>
+            <Link to="/cart" className="hidden md:block">
+              Shopping bag <span>({cartCount > 9 ? "9+" : cartCount})</span>
+            </Link>
+          </div>
+        </Container>
+      </header>
+      <div className="hidden border-b bg-neutral-50 py-4 sm:block">
+        <Container>
+          <ul className="flex items-center gap-4">
             {navLinks.map((item, index) => (
-              <li key={index}>
+              <li key={index} className="p-0">
                 <Link
                   to={item.url}
                   className={cn(
@@ -55,25 +93,8 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="flex items-center justify-end gap-3">
-            <button onClick={() => setIsSearchOpen(true)}>
-              <SearchIcon className="size-4" />
-            </button>
-            <Link to="/account">
-              <UserIcon className="size-4" />
-            </Link>
-            <Link to="/wishlist" className="flex items-center">
-              <HeartIcon className="size-4" />
-              {wishlistCount > 0 && (
-                <span>{wishlistCount > 9 ? "9+" : wishlistCount} </span>
-              )}
-            </Link>
-            <Link to="/cart">
-              Shopping bag <span>({cartCount > 9 ? "9+" : cartCount})</span>
-            </Link>
-          </div>
         </Container>
-      </header>
+      </div>
     </>
   );
 }

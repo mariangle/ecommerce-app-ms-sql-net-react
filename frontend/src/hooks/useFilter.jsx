@@ -7,7 +7,7 @@ import {
   setMinPrice,
   setMaxPrice,
   setInitial,
-} from "@/store/reducers/filter-store";
+} from "@/store/reducers/filterStore";
 
 export default function useFilter() {
   const dispatch = useDispatch();

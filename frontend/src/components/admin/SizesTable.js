@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { icons } from "../../constants/icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSize } from "@/hooks/useSize";
 
 function ProductSizes({ product }) {
@@ -106,14 +104,14 @@ function ProductSizes({ product }) {
               </td>
               <td>
                 <button onClick={(e) => deleteSize(size.productSizeID, e)}>
-                  <FontAwesomeIcon icon={icons.trash}></FontAwesomeIcon>
+                  delete
                 </button>
                 <button
                   onClick={() =>
                     updateSize({ sizeId: size.productSizeID, size: editedSize })
                   }
                 >
-                  <FontAwesomeIcon icon={icons.save}></FontAwesomeIcon>
+                  save
                 </button>
               </td>
             </tr>

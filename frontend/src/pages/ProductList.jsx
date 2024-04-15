@@ -28,18 +28,22 @@ export default function ProductList() {
 
   return (
     <>
-      <div className="grid h-32 place-content-center border-b bg-black">
+      <div className="grid h-32 place-content-center border-b bg-gradient-to-br from-black to-neutral-900">
         <h1 className="text-center text-2xl font-medium uppercase text-white">
           {categoryData?.label}
         </h1>
       </div>
-      <Container className="px-0 md:px-4">
-        <Breadcrumbs className="mt-4" />
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-start md:pt-12">
+      <Container className="px-0 lg:px-4">
+        <Breadcrumbs className="mt-4 hidden lg:flex" />
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-start lg:pt-12">
           <FilterPanel loading={loading} />
           <div className="w-full">
             <ProductListHeader products={products} loading={loading} />
-            <ProductListGrid products={filteredProducts} loading={loading} />
+            <ProductListGrid
+              products={filteredProducts}
+              loading={loading}
+              className="px-4 lg:px-0"
+            />
           </div>
         </div>
       </Container>

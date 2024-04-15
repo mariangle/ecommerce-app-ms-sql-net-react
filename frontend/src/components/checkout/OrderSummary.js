@@ -12,12 +12,11 @@ function OrderSummary({ onPaymentComplete }) {
 
   const onApprove = async (data, actions) => {
     const order = await actions.order.capture();
-    console.log("Order details:", order);
     const email = order.payer.email_address;
     const transactionId = order.purchase_units[0].payments.captures[0].id;
     clearCart();
     alert(
-      `An order confirmation will be sent to email: ${email}. Transaction ID: ${transactionId}.`
+      `An order confirmation will be sent to email: ${email}. Transaction ID: ${transactionId}.`,
     );
     onPaymentComplete();
   };

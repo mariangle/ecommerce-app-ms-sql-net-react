@@ -18,7 +18,7 @@ export default function useProducts(slug) {
     setLoading(true);
     setTimeout(() => {
       try {
-        const product = products.find(
+        const product = productsJSON.find(
           (product) => toKebabCase(product.name) === slug,
         );
         setProduct(product);
@@ -48,7 +48,6 @@ export default function useProducts(slug) {
       }
 
       if (isSalesPage) {
-        console.log("SALE");
         products = products.filter((product) => product.price.discount !== 0);
       }
 

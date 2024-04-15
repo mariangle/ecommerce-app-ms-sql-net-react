@@ -3,12 +3,13 @@ import orderItemApi from "../../utils/api/orderItemApi";
 import sizeApi from "../../utils/api/sizeApi";
 import { Link } from "react-router-dom";
 import { useProduct } from "@/hooks/useProduct";
-import { formatPrice } from "@/hooks/useUtil";
+import { useCurrency } from "@/hooks/useCurrency";
 
 function OrderItemsTable({ selectedOrder }) {
   const [orderItems, setOrderItems] = useState([]);
   const [productSizes, setProductSizes] = useState([]);
   const { products } = useProduct();
+  const { formatPrice } = useCurrency();
 
   useEffect(() => {
     if (selectedOrder) {

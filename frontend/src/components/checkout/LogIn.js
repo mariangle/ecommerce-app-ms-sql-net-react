@@ -1,6 +1,6 @@
 import React from "react";
 import { useUser } from "@/hooks/useUser";
-import Login from "../auth/LoginForm";
+import LoginForm from "@/components/LoginForm";
 
 function Account() {
   const { currentUser } = useUser();
@@ -13,7 +13,7 @@ function Account() {
         </div>
       ) : (
         <div>
-          <Login />
+          <LoginForm />
         </div>
       )}
     </div>

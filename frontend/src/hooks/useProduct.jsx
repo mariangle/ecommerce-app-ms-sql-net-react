@@ -28,7 +28,6 @@ export const useProduct = () => {
   };
 
   const removeProductHandler = (productId) => {
-    console.log("hey");
     if (window.confirm("Are you sure you want to delete this product?")) {
       dispatch(removeProduct(productId)).then(() => {
         alert("Product has been deleted.");
@@ -47,3 +46,5 @@ export const useProduct = () => {
     status,
   };
 };
+
+export default useProduct;

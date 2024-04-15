@@ -32,7 +32,6 @@ export const userSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.isLoading = true;
         state.error = null;
-
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -45,7 +44,6 @@ export const userSlice = createSlice({
         state.error = action.error.message;
         state.token = "";
         state.currentUser = null;
-        console.log("rejected")
       });
   },
 });
@@ -58,6 +56,5 @@ export const selectIsLoading = (state) => state.user.isLoading;
 export const selectError = (state) => state.user.error;
 
 export const { setUser, setLoading, setError } = userSlice.actions;
-
 
 export default userSlice.reducer;

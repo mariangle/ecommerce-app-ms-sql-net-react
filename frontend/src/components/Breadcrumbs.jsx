@@ -45,12 +45,12 @@ export default function Breadcrumbs({ className = "", product }) {
       {routes.map((route, index) => {
         const navLink = navLinks.find((link) => link.url.includes(route));
         return (
-          <>
-            <li key={index} className="p-0">
+          <div key={index} className="flex items-center gap-2">
+            <li className="p-0">
               <Link to={navLink.url}>{navLink.label}</Link>
             </li>
             {index !== routes.length - 1 && <span className="text-sm">/</span>}
-          </>
+          </div>
         );
       })}
     </ul>

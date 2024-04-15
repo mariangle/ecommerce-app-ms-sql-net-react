@@ -1,18 +1,25 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
-import { icons } from "@/constants/icons";
+
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { useWishlist } from "@/hooks/useWishlist";
+import { useCurrency } from "@/hooks/useCurrency";
 import { getProductUrl } from "@/utils/product";
+import { getProductPrice } from "@/utils/product";
 
 export default function ProductCard({ product }) {
+  const { formatPrice } = useCurrency();
   const { wishlistItems, addToWishlist, removeFromWishlist } = useWishlist();
   const inWishlist = wishlistItems.find((item) => item.id === product.id);
 
   return (
     <div className="relative z-0">
       <FontAwesomeIcon
-        icon={inWishlist ? icons.heartFull : icons.heart}
+        icon={inWishlist ? faHeartSolid : faHeartRegular}
         onClick={() =>
           inWishlist ? removeFromWishlist(product) : addToWishlist(product)
         }
@@ -35,13 +42,15 @@ export default function ProductCard({ product }) {
           <h3 className="font-bold">{product.name}</h3>
           {product.price.discount ? (
             <div>
-              <p className="line-through">DKK {product.price.default}</p>
+              <p className="line-through">
+                {formatPrice(product.price.default)}
+              </p>
               <p className="text-red-700">
-                DKK {product.price.default * (1 - product.price.discount)}
+                {formatPrice(getProductPrice(product))}
               </p>
             </div>
           ) : (
-            <p>DKK {product.price.default}</p>
+            <p>{formatPrice(product.price.default)}</p>
           )}
         </Link>
       </div>

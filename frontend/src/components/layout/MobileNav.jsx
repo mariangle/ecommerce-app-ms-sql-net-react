@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import { XIcon } from "lucide-react";
 import { cn } from "@/utils/cn";
 import { navLinks } from "@/constants/navLinks";
 
@@ -20,12 +21,23 @@ export default function MobileNav({ open, close }) {
         )}
       >
         <button className="absolute right-4 top-4" onClick={close}>
-          x
+          <XIcon className="size-5" />
         </button>
+        <div>
+          <Link className="mb-4 block text-lg font-bold" to="/" onClick={close}>
+            restocks
+          </Link>
+        </div>
         <ul className="space-y-4">
           {navLinks.map((item, index) => (
             <li className="p-0" key={index} onClick={close}>
-              <Link to={item.url} className="text-lg">
+              <Link
+                to={item.url}
+                className={cn(
+                  "text-base",
+                  item.url === "/sneakers/sale" && "text-red-700",
+                )}
+              >
                 {item.label}
               </Link>
             </li>

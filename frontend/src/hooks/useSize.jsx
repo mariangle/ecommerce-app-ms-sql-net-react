@@ -17,7 +17,6 @@ export const useSize = () => {
 
   const deleteSizeHandler = (sizeId, e) => {
     e.preventDefault();
-    console.log("sizehook", sizeId);
     if (window.confirm("Are you sure you want to delete this size?")) {
       dispatch(deleteSize(sizeId)).then(() => {
         alert("Size has been deleted.");

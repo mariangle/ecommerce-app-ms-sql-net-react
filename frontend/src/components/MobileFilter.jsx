@@ -1,9 +1,8 @@
 import * as React from "react";
 
 import { cn } from "@/utils/cn";
+import { XIcon } from "lucide-react";
 import ProductFilter from "@/components/ProductFilter";
-import { icons } from "@/constants/icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function MobileFilter({ loading }) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -29,7 +28,7 @@ export default function MobileFilter({ loading }) {
       >
         <div className="grid grid-cols-3 border-b p-4">
           <div role="button" onClick={close}>
-            <FontAwesomeIcon icon={icons.close} />
+            <XIcon className="size-5" />
           </div>
           <div className="text-center font-semibold uppercase">Filter</div>
         </div>

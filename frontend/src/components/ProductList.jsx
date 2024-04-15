@@ -3,12 +3,18 @@ import ProductCard, { ProductCardSkeleton } from "@/components/ProductCard";
 
 import React from "react";
 
-export default function ProductList({ loading, products, big = false }) {
+export default function ProductList({
+  loading,
+  products,
+  big = false,
+  className,
+}) {
   return (
     <div
       className={cn(
         "grid w-full grid-cols-2 gap-4 py-12 sm:grid-cols-3 lg:grid-cols-4",
         big && "sm:grid-cols-4 lg:grid-cols-5",
+        className,
       )}
     >
       {loading ? (

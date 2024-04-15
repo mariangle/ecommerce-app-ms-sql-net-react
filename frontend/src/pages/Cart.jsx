@@ -13,8 +13,8 @@ export default function Cart() {
 
   const { clearCart } = useCart();
   return (
-    <Container className="flex flex-col py-24 md:flex-row md:justify-between">
-      <div className="flex-2">
+    <Container className="flex flex-col gap-8 py-24 md:flex-row md:justify-between">
+      <div className="md:flex-2 w-full">
         <h1 className="mb-4 font-bold">
           Shopping Bag{" "}
           {cartCount > 0 &&
@@ -23,7 +23,7 @@ export default function Cart() {
         {cartItems.length === 0 ? (
           <p>There’s nothing in your bag yet.</p>
         ) : (
-          <div className="space-y-4">
+          <div className="w-full space-y-4">
             {cartItems.map((item, index) => (
               <CartItem item={item} key={index} />
             ))}

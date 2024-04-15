@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 import { useCart } from "@/hooks/useCart";
-import { getProductUrl } from "@/utils/product";
+import { useCurrency } from "@/hooks/useCurrency";
+import { getProductUrl, getProductPrice } from "@/utils/product";
 
 import { PlusIcon, MinusIcon, Trash2Icon as TrashIcon } from "lucide-react";
 import products from "@/constants/Products.json";
 
 export default function CartItem({ item }) {
   const { removeFromCart, incrementQuantity, decrementQuantity } = useCart();
+  const { formatPrice } = useCurrency();
 
   const product = products?.find((product) => product.id === item.productId);
 
   return (
-    <div className="flex max-w-lg justify-start gap-4">
+    <div className="flex w-full justify-start gap-4 md:max-w-lg">
       <Link to={getProductUrl(product)}>
         <div className="size-24">
           <img
@@ -32,13 +34,15 @@ export default function CartItem({ item }) {
           </div>
           {product?.price.discount ? (
             <div>
-              <p className="line-through">DKK {product.price.default}</p>
+              <p className="line-through">
+                {formatPrice(product.price.default)}
+              </p>
               <p className="text-red-700">
-                DKK {product.price.default * (1 - product.price.discount)}
+                {formatPrice(getProductPrice(product))}
               </p>
             </div>
           ) : (
-            <p>DKK {product.price.default}</p>
+            <p>{formatPrice(product.price.default)}</p>
           )}
         </div>
         <div className="flex items-center gap-3">

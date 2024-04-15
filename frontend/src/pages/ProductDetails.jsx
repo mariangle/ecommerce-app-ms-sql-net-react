@@ -9,12 +9,14 @@ import Container from "@/components/ui/Container";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 import useProducts from "@/hooks/useProducts";
+import useCurrency from "@/hooks/useCurrency";
 import useCart from "@/hooks/useCart";
 
 export default function ProductDetails() {
   const { slug } = useParams();
   const { addToCart } = useCart();
   const { product, loading } = useProducts(slug);
+  const { formatPrice } = useCurrency();
   const [selectedSize, setSelectedSize] = React.useState(null);
 
   React.useEffect(() => {
@@ -23,7 +25,9 @@ export default function ProductDetails() {
 
   // do smth better here when no size
 
-  if (loading || !selectedSize) return <ProductDetailsSkeleton />;
+  if (loading) return <ProductDetailsSkeleton />;
+
+  if (!selectedSize) return <div>no sleected size</div>;
 
   if (!product) return <Container>no product found</Container>;
 
@@ -31,9 +35,9 @@ export default function ProductDetails() {
   const isLowStock = selectedSize.stock > 0 && selectedSize.stock <= 3;
 
   return (
-    <Container>
+    <Container className="pb-24">
       <Breadcrumbs product={product} className="my-2" />
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col gap-12 md:flex-row">
         <div className="grid w-full place-content-center bg-gray-100 md:flex-[2]">
           <img
             src={product.image}
@@ -41,21 +45,18 @@ export default function ProductDetails() {
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="flex-1 md:sticky md:top-24">
+        <div className="w-full flex-1 md:sticky md:top-24">
           <div>
             <div className="font-bold">{product.brand}</div>
             <h1 className="mt-4 text-2xl font-semibold md:text-3xl">
               {product.name}
             </h1>
             <div className="my-8 text-xl md:text-2xl">
-              {new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "DKK",
-              }).format(product.price.default)}
+              {formatPrice(product.price.default)}
             </div>
           </div>
           <div className="mb-2 text-sm">Size: {selectedSize.size}</div>
-          <div className="mb-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5">
+          <div className="mb-4 grid grid-cols-4 gap-2 sm:grid-cols-5">
             {product.sizes.map((item, index) => (
               <button
                 key={index}

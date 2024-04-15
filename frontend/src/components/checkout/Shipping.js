@@ -1,7 +1,5 @@
 import React from "react";
 import { useUser } from "@/hooks/useUser";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { icons } from "../../constants/icons";
 import useToggle from "@/hooks/useUtil";
 
 function Details() {
@@ -12,10 +10,6 @@ function Details() {
     <div className="shipping-content">
       <div className="space-between">
         <h1>SHIPPING ADDRESS</h1>
-        <FontAwesomeIcon
-          onClick={() => toggle()}
-          icon={icons.edit}
-        ></FontAwesomeIcon>
       </div>
       <div className="line-divider"></div>
       <p>

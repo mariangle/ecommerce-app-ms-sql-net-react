@@ -128,7 +128,7 @@ const Footer = () => {
       </Container>
       <div className="h-px w-full bg-gray-200"></div>
       <Container className="flex flex-col gap-4 py-6 md:flex-row md:justify-between">
-        <div className="flex flex-col items-center gap-6 md:flex-row">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center">
           <div className="text-center text-sm font-bold">restocks</div>
           <ul className="flex flex-col gap-3 sm:flex-row">
             <li className="p-0 text-neutral-500">Terms & Conditions</li>
